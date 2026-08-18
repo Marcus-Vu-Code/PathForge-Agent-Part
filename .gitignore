@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.venv/
+.env
+*.db
+*.sqlite
+node_modules/
+dist/
+.pnpm-store/
+.vercel/

@@ -1,0 +1,64 @@
+[
+  {
+    "case_id": "backend_swe_to_ml",
+    "schema_success": true,
+    "verifier_failures": 0,
+    "unsupported_profile_claims": [],
+    "evidence_citation_coverage": 6,
+    "latency_ms": 0,
+    "provider": "fake",
+    "fallback": [],
+    "tool_count": 5,
+    "routing_trace": null
+  },
+  {
+    "case_id": "ms_ai_to_ai_engineer",
+    "schema_success": true,
+    "verifier_failures": 0,
+    "unsupported_profile_claims": [],
+    "evidence_citation_coverage": 6,
+    "latency_ms": 0,
+    "provider": "fake",
+    "fallback": [],
+    "tool_count": 5,
+    "routing_trace": null
+  },
+  {
+    "case_id": "controls_to_robotics",
+    "schema_success": true,
+    "verifier_failures": 0,
+    "unsupported_profile_claims": [],
+    "evidence_citation_coverage": 6,
+    "latency_ms": 0,
+    "provider": "fake",
+    "fallback": [],
+    "tool_count": 5,
+    "routing_trace": null
+  },
+  {
+    "case_id": "biology_to_health_ds",
+    "schema_success": true,
+    "verifier_failures": 0,
+    "unsupported_profile_claims": [],
+    "evidence_citation_coverage": 6,
+    "latency_ms": 0,
+    "provider": "fake",
+    "fallback": [],
+    "tool_count": 5,
+    "routing_trace": null
+  },
+  {
+    "case_id": "ambiguous_ai",
+    "schema_success": true,
+    "verifier_failures": 1,
+    "unsupported_profile_claims": [
+      "Some claimed user strengths were not found in the structured profile."
+    ],
+    "evidence_citation_coverage": 6,
+    "latency_ms": 0,
+    "provider": "fake",
+    "fallback": [],
+    "tool_count": 5,
+    "routing_trace": null
+  }
+]
