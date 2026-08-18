@@ -31,16 +31,16 @@ const knownSkills = [
 ];
 
 const sectors = [
-  sector("business_operations", "Business / Operations", ["Operations Analyst", "Business Analyst", "Project Coordinator", "Program Manager", "Operations Manager"]),
-  sector("healthcare_wellness", "Healthcare / Wellness", ["Clinical Research Coordinator", "Healthcare Administrator", "Patient Care Coordinator", "Public Health Analyst", "Health Educator"]),
-  sector("education_training", "Education / Training", ["Teacher", "Tutor", "Instructional Designer", "Academic Advisor", "Training Coordinator"]),
-  sector("skilled_trades_construction", "Skilled Trades / Construction", ["Electrician Apprentice", "HVAC Technician", "Construction Project Coordinator", "Manufacturing Technician", "Quality Control Inspector"]),
-  sector("public_service_government", "Public Service / Government", ["Policy Analyst", "City Planner", "Public Administration Analyst", "Emergency Management Specialist", "Community Outreach Coordinator"]),
-  sector("arts_media_design", "Arts / Media / Design", ["Graphic Designer", "UX Designer", "Content Strategist", "Video Producer", "Product Designer"]),
-  sector("law_policy_compliance", "Law / Policy / Compliance", ["Paralegal", "Legal Assistant", "Compliance Analyst", "Privacy Analyst", "Risk Analyst"]),
-  sector("sales_marketing_customer", "Sales / Marketing / Customer", ["Sales Development Representative", "Account Manager", "Customer Success Manager", "Marketing Coordinator", "Growth Marketing Analyst"]),
-  sector("finance_accounting_real_estate", "Finance / Accounting / Real Estate", ["Financial Analyst", "Accountant", "Bookkeeper", "Loan Officer", "Budget Analyst"]),
-  sector("science_engineering_environment", "Science / Engineering / Environment", ["Research Assistant", "Lab Technician", "Environmental Analyst", "Data Analyst", "Software Engineer", "AI Engineer"]),
+  sector("business_operations", "Business / Operations", "Operations, project delivery, people operations, logistics, and process improvement.", ["Operations Analyst", "Business Analyst", "Project Coordinator", "Program Manager", "Operations Manager", "Supply Chain Coordinator", "Human Resources Coordinator", "Executive Assistant", "Process Improvement Specialist", "Management Consultant"]),
+  sector("healthcare_wellness", "Healthcare / Wellness", "Clinical support, patient services, health administration, wellness, and public health.", ["Clinical Research Coordinator", "Healthcare Administrator", "Patient Care Coordinator", "Medical Assistant", "Public Health Analyst", "Health Educator", "Behavioral Health Technician", "Pharmacy Technician", "Wellness Program Coordinator", "Health Information Specialist"]),
+  sector("education_training", "Education / Training", "Teaching, tutoring, learning design, student support, and workforce training.", ["Teacher", "Tutor", "Instructional Designer", "Academic Advisor", "Training Coordinator", "Curriculum Developer", "Student Success Coach", "Education Program Manager", "Learning Experience Designer", "Corporate Trainer"]),
+  sector("skilled_trades_construction", "Skilled Trades / Construction", "Construction, maintenance, field service, manufacturing trades, and technical operations.", ["Electrician Apprentice", "HVAC Technician", "Construction Project Coordinator", "Manufacturing Technician", "Quality Control Inspector", "Field Service Technician", "Facilities Coordinator", "CNC Operator", "Safety Coordinator", "Maintenance Planner"]),
+  sector("public_service_government", "Public Service / Government", "Civic service, government operations, emergency management, policy support, and nonprofits.", ["Policy Analyst", "City Planner", "Public Administration Analyst", "Emergency Management Specialist", "Community Outreach Coordinator", "Nonprofit Program Coordinator", "Case Manager", "Grant Writer", "Compliance Specialist", "Legislative Aide"]),
+  sector("arts_media_design", "Arts / Media / Design", "Design, content, communications, production, UX, and creative operations.", ["Graphic Designer", "UX Designer", "Content Strategist", "Video Producer", "Social Media Manager", "Copywriter", "Brand Strategist", "Product Designer", "Digital Marketing Designer", "Game Designer"]),
+  sector("law_policy_compliance", "Law / Policy / Compliance", "Legal support, governance, privacy, regulatory operations, and risk controls.", ["Paralegal", "Legal Assistant", "Compliance Analyst", "Privacy Analyst", "Contract Administrator", "Risk Analyst", "Regulatory Affairs Specialist", "Policy Research Assistant", "Audit Associate", "Trust and Safety Analyst"]),
+  sector("sales_marketing_customer", "Sales / Marketing / Customer", "Revenue, growth, customer success, account management, and market communication.", ["Sales Development Representative", "Account Manager", "Customer Success Manager", "Marketing Coordinator", "Growth Marketing Analyst", "Product Marketing Associate", "Business Development Representative", "Customer Support Specialist", "Market Research Analyst", "Community Manager"]),
+  sector("finance_accounting_real_estate", "Finance / Accounting / Real Estate", "Accounting, financial planning, banking, insurance, real estate, and investment support.", ["Financial Analyst", "Accountant", "Bookkeeper", "Loan Officer", "Insurance Claims Analyst", "Real Estate Analyst", "Portfolio Analyst", "Tax Associate", "Budget Analyst", "Procurement Analyst"]),
+  sector("science_engineering_environment", "Science / Engineering / Environment", "Research, engineering, lab work, environmental analysis, and technical problem solving.", ["Research Assistant", "Lab Technician", "Environmental Analyst", "Mechanical Engineer", "Civil Engineering Technician", "Data Analyst", "Software Engineer", "Quality Engineer", "Robotics Engineer", "AI Engineer"]),
 ];
 
 const worker = {
@@ -99,7 +99,7 @@ async function handleApi(request, env, url) {
           content_type: document.content_type,
           character_count: document.text.length,
         })),
-        warnings: extraction.warnings,
+        warnings: extraction.warnings.concat(documents.map((document) => document.warning).filter(Boolean)),
       });
     }
     if (request.method === "POST" && url.pathname === "/api/profiles") {
@@ -136,11 +136,11 @@ function providerOptions(env) {
   };
 }
 
-function sector(value, label, roles) {
+function sector(value, label, description, roles) {
   return {
     value,
     label,
-    description: label,
+    description,
     roles: roles.map((role) => ({ value: role, label: role, specializations: [] })),
   };
 }
@@ -169,12 +169,14 @@ function generateSpecializations(sectorValue, targetRole) {
 }
 
 async function readUploadedDocument(file) {
-  const text = await file.text();
+  const rawText = await safeFileText(file);
+  const text = readableDocumentText(rawText, file.name || "uploaded-document");
   return {
     filename: file.name || "uploaded-document",
     content_type: file.type || "application/octet-stream",
     artifact_type: artifactTypeFromFilename(file.name || ""),
-    text: text.trim(),
+    text,
+    warning: text === rawText.trim() ? null : `${file.name || "Uploaded document"} could not be fully read as plain text in the hosted version. Paste the document text for a richer extraction.`,
   };
 }
 
@@ -484,6 +486,10 @@ function backgroundPromptFromProfile(extraction, documents) {
     "Source Documents",
     ...documents.map((document) => `- ${document.filename} (${document.artifact_type})`),
   ];
+  const warnings = extraction.warnings.concat(documents.map((document) => document.warning).filter(Boolean));
+  if (warnings.length) {
+    lines.push("", "Review Notes", ...warnings.map((warning) => `- ${warning}`));
+  }
   return lines.filter(Boolean).join("\n").trim();
 }
 
@@ -536,6 +542,26 @@ function artifactTypeFromFilename(filename) {
   if (lowered.includes("certificate")) return "certificate";
   if (lowered.includes("resume") || lowered.includes("cv")) return "resume";
   return "other";
+}
+
+async function safeFileText(file) {
+  if (typeof file.text === "function") {
+    return file.text();
+  }
+  if (typeof file.arrayBuffer === "function") {
+    return new TextDecoder("utf-8", { fatal: false }).decode(await file.arrayBuffer());
+  }
+  return "";
+}
+
+function readableDocumentText(text, filename) {
+  const trimmed = String(text || "").replace(/\u0000/g, " ").trim();
+  const readableCharacters = (trimmed.match(/[A-Za-z0-9.,;:!?@#$%&()[\]\-_/\\\s]/g) || []).length;
+  const readability = trimmed.length ? readableCharacters / trimmed.length : 0;
+  if (trimmed.length >= 20 && readability >= 0.55) {
+    return trimmed.slice(0, 120000);
+  }
+  return `Uploaded document: ${filename}. Hosted extraction could not read usable plain text from this file.`;
 }
 
 function candidateSkills(text) {
