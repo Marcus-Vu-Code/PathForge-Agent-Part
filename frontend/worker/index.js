@@ -169,14 +169,15 @@ function generateSpecializations(sectorValue, targetRole) {
 }
 
 async function readUploadedDocument(file) {
-  const rawText = await safeFileText(file);
-  const text = readableDocumentText(rawText, file.name || "uploaded-document");
+  const filename = file.name || "uploaded-document";
+  const artifactType = artifactTypeFromFilename(filename);
+  const document = await extractHostedDocumentText(file, filename);
   return {
-    filename: file.name || "uploaded-document",
+    filename,
     content_type: file.type || "application/octet-stream",
-    artifact_type: artifactTypeFromFilename(file.name || ""),
-    text,
-    warning: text === rawText.trim() ? null : `${file.name || "Uploaded document"} could not be fully read as plain text in the hosted version. Paste the document text for a richer extraction.`,
+    artifact_type: artifactType,
+    text: document.text,
+    warning: document.warning,
   };
 }
 
@@ -541,17 +542,26 @@ function artifactTypeFromFilename(filename) {
   if (lowered.includes("portfolio") || lowered.includes("project")) return "portfolio";
   if (lowered.includes("certificate")) return "certificate";
   if (lowered.includes("resume") || lowered.includes("cv")) return "resume";
+  if (/\.(docx|pdf|txt|md)$/i.test(lowered)) return "resume";
   return "other";
 }
 
-async function safeFileText(file) {
-  if (typeof file.text === "function") {
-    return file.text();
-  }
+async function extractHostedDocumentText(file, filename) {
+  const lowered = filename.toLowerCase();
   if (typeof file.arrayBuffer === "function") {
-    return new TextDecoder("utf-8", { fatal: false }).decode(await file.arrayBuffer());
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    if (lowered.endsWith(".docx")) {
+      const text = await extractDocxText(bytes);
+      if (text) return { text, warning: null };
+      return unreadableDocument(filename, "Hosted extraction could not find readable Word document text.");
+    }
+    const decoded = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+    return readableDocumentText(decoded, filename);
   }
-  return "";
+  if (typeof file.text === "function") {
+    return readableDocumentText(await file.text(), filename);
+  }
+  return unreadableDocument(filename, "Hosted extraction could not read this upload.");
 }
 
 function readableDocumentText(text, filename) {
@@ -559,9 +569,95 @@ function readableDocumentText(text, filename) {
   const readableCharacters = (trimmed.match(/[A-Za-z0-9.,;:!?@#$%&()[\]\-_/\\\s]/g) || []).length;
   const readability = trimmed.length ? readableCharacters / trimmed.length : 0;
   if (trimmed.length >= 20 && readability >= 0.55) {
-    return trimmed.slice(0, 120000);
+    return { text: trimmed.slice(0, 120000), warning: null };
   }
-  return `Uploaded document: ${filename}. Hosted extraction could not read usable plain text from this file.`;
+  return unreadableDocument(filename, "Hosted extraction could not read usable plain text from this file.");
+}
+
+function unreadableDocument(filename, warning) {
+  return {
+    text: `Uploaded document: ${filename}. ${warning}`,
+    warning: `${filename} could not be fully read in the hosted version. Paste the document text for a richer extraction.`,
+  };
+}
+
+async function extractDocxText(bytes) {
+  try {
+    const files = await unzipDocxParts(bytes);
+    const docxParts = files
+      .filter(([name]) => name === "word/document.xml" || name.startsWith("word/header") || name.startsWith("word/footer"))
+      .sort(([left], [right]) => Number(left !== "word/document.xml") - Number(right !== "word/document.xml"));
+    const decoder = new TextDecoder("utf-8", { fatal: false });
+    const text = docxParts
+      .map(([, data]) => xmlText(decoder.decode(data)))
+      .filter(Boolean)
+      .join("\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+    return text.slice(0, 120000);
+  } catch {
+    return "";
+  }
+}
+
+async function unzipDocxParts(bytes) {
+  const { inflateRawSync } = await import("node:zlib");
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  const endOffset = findZipEnd(view);
+  if (endOffset < 0) return [];
+  const entryCount = view.getUint16(endOffset + 10, true);
+  let centralOffset = view.getUint32(endOffset + 16, true);
+  const files = [];
+
+  for (let index = 0; index < entryCount; index += 1) {
+    if (view.getUint32(centralOffset, true) !== 0x02014b50) break;
+    const method = view.getUint16(centralOffset + 10, true);
+    const compressedSize = view.getUint32(centralOffset + 20, true);
+    const filenameLength = view.getUint16(centralOffset + 28, true);
+    const extraLength = view.getUint16(centralOffset + 30, true);
+    const commentLength = view.getUint16(centralOffset + 32, true);
+    const localOffset = view.getUint32(centralOffset + 42, true);
+    const filenameBytes = bytes.slice(centralOffset + 46, centralOffset + 46 + filenameLength);
+    const filename = new TextDecoder("utf-8", { fatal: false }).decode(filenameBytes);
+
+    if (view.getUint32(localOffset, true) === 0x04034b50) {
+      const localFilenameLength = view.getUint16(localOffset + 26, true);
+      const localExtraLength = view.getUint16(localOffset + 28, true);
+      const dataStart = localOffset + 30 + localFilenameLength + localExtraLength;
+      const compressed = bytes.slice(dataStart, dataStart + compressedSize);
+      if (method === 0) {
+        files.push([filename, compressed]);
+      } else if (method === 8) {
+        files.push([filename, new Uint8Array(inflateRawSync(compressed))]);
+      }
+    }
+    centralOffset += 46 + filenameLength + extraLength + commentLength;
+  }
+  return files;
+}
+
+function findZipEnd(view) {
+  for (let offset = view.byteLength - 22; offset >= 0; offset -= 1) {
+    if (view.getUint32(offset, true) === 0x06054b50) return offset;
+  }
+  return -1;
+}
+
+function xmlText(xml) {
+  return xml
+    .replace(/<w:tab\/>/g, "\t")
+    .replace(/<w:br\/>/g, "\n")
+    .replace(/<\/w:p>/g, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .split(/\n/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join("\n");
 }
 
 function candidateSkills(text) {
