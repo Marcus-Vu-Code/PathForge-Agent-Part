@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "npm install -g pnpm@9.15.9 && cd frontend && pnpm install --no-frozen-lockfile",
-  "buildCommand": "cd frontend && pnpm build",
+  "installCommand": "cd frontend && npm install",
+  "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/dist",
   "functions": {
     "api/**/*.js": {
