@@ -555,6 +555,11 @@ async function extractHostedDocumentText(file, filename) {
       if (text) return { text, warning: null };
       return unreadableDocument(filename, "Hosted extraction could not find readable Word document text.");
     }
+    if (lowered.endsWith(".pdf")) {
+      const text = await extractPdfText(bytes);
+      if (text) return { text, warning: null };
+      return unreadableDocument(filename, "Hosted extraction could not find selectable PDF text.");
+    }
     const decoded = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
     return readableDocumentText(decoded, filename);
   }
@@ -579,6 +584,21 @@ function unreadableDocument(filename, warning) {
     text: `Uploaded document: ${filename}. ${warning}`,
     warning: `${filename} could not be fully read in the hosted version. Paste the document text for a richer extraction.`,
   };
+}
+
+async function extractPdfText(bytes) {
+  try {
+    const module = await import("pdf-parse");
+    const pdfParse = module.default ?? module;
+    const parsed = await pdfParse(Buffer.from(bytes));
+    return String(parsed.text || "")
+      .replace(/\r/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim()
+      .slice(0, 120000);
+  } catch {
+    return "";
+  }
 }
 
 async function extractDocxText(bytes) {
