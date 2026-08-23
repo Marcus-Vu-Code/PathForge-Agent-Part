@@ -495,16 +495,110 @@ function backgroundPromptFromProfile(extraction, documents) {
 }
 
 function normalizePlan(value, evidence, gaps, projects, nextActions) {
+  const fallback = fakePlan({ skills: [] }, { target_role: "Target Role" }, evidence, gaps, projects, nextActions);
+  const source = value && typeof value === "object" ? value : {};
+  const normalizedEvidence = listOr(source.evidence, evidence).map(normalizeEvidenceItem).filter((item) => item.claim);
   return {
     schema_version: "1.0",
-    recommended_paths: Array.isArray(value.recommended_paths) && value.recommended_paths.length ? value.recommended_paths : fakePlan({ skills: [] }, { target_role: "Target Role" }, evidence, gaps, projects, nextActions).recommended_paths,
-    strengths: Array.isArray(value.strengths) ? value.strengths : [],
-    gaps: Array.isArray(value.gaps) && value.gaps.length ? value.gaps : gaps,
-    next_actions: Array.isArray(value.next_actions) && value.next_actions.length ? value.next_actions : nextActions,
-    project_recommendations: Array.isArray(value.project_recommendations) && value.project_recommendations.length ? value.project_recommendations : projects,
-    evidence: Array.isArray(value.evidence) && value.evidence.length ? value.evidence : evidence,
-    caveats: Array.isArray(value.caveats) ? value.caveats : [],
-    overall_confidence: typeof value.overall_confidence === "number" ? value.overall_confidence : 0.68,
+    recommended_paths: listOr(source.recommended_paths, fallback.recommended_paths).map(normalizeRecommendedPath),
+    strengths: stringList(source.strengths),
+    gaps: listOr(source.gaps, gaps).map(normalizeGap).filter((gap) => gap.skill),
+    next_actions: listOr(source.next_actions, nextActions).map(normalizeNextAction).filter((action) => action.title),
+    project_recommendations: listOr(source.project_recommendations, projects).map(normalizeProject).filter((project) => project.title),
+    evidence: normalizedEvidence.length ? normalizedEvidence : evidence.map(normalizeEvidenceItem),
+    caveats: stringList(source.caveats),
+    overall_confidence: boundedNumber(source.overall_confidence, 0.68, 0, 1),
+  };
+}
+
+function listOr(value, fallback) {
+  return Array.isArray(value) && value.length ? value : fallback;
+}
+
+function stringValue(value, fallback = "") {
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value && typeof value === "object") {
+    if (typeof value.title === "string") return value.title.trim();
+    if (typeof value.name === "string") return value.name.trim();
+    if (typeof value.skill === "string") return value.skill.trim();
+    if (typeof value.claim === "string") return value.claim.trim();
+    if (typeof value.description === "string") return value.description.trim();
+  }
+  return fallback;
+}
+
+function stringList(value) {
+  if (!Array.isArray(value)) return [];
+  return dedupe(value.map((item) => stringValue(item)).filter(Boolean));
+}
+
+function boundedNumber(value, fallback, min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(max, Math.max(min, parsed));
+}
+
+function normalizeRecommendedPath(value) {
+  const item = value && typeof value === "object" ? value : {};
+  const title = stringValue(item.title || value, "Recommended path");
+  return {
+    title,
+    rationale: stringValue(item.rationale, "This path aligns with the available profile evidence and target role."),
+    fit_summary: stringValue(item.fit_summary || item.summary || item.description, title),
+    confidence: boundedNumber(item.confidence, 0.62, 0, 1),
+  };
+}
+
+function normalizeGap(value) {
+  const item = value && typeof value === "object" ? value : {};
+  const skill = stringValue(item.skill || value, "target-role evidence");
+  return {
+    skill,
+    reason: stringValue(item.reason || item.rationale, `Build clearer evidence for ${skill}.`),
+    relevance: boundedNumber(item.relevance, 0.6, 0, 1),
+    evidence_count: Math.max(0, Math.round(boundedNumber(item.evidence_count, 1, 0))),
+    supporting_evidence_ids: stringList(item.supporting_evidence_ids),
+  };
+}
+
+function normalizeNextAction(value) {
+  const item = value && typeof value === "object" ? value : {};
+  const title = stringValue(item.title || value, "Clarify target-role evidence");
+  return {
+    title,
+    rationale: stringValue(item.rationale || item.reason || item.description, "Make the next step concrete, visible, and easy to verify."),
+    impact: Math.round(boundedNumber(item.impact, 3, 1, 5)),
+    effort: Math.round(boundedNumber(item.effort, 3, 1, 5)),
+    priority: Math.max(1, Math.round(boundedNumber(item.priority, 1, 1))),
+    constraint_notes: stringList(item.constraint_notes),
+  };
+}
+
+function normalizeProject(value) {
+  const item = value && typeof value === "object" ? value : {};
+  const title = stringValue(item.title || item.name || value, "Target-role proof project");
+  return {
+    title,
+    description: stringValue(item.description || item.rationale, "Create a portfolio artifact that demonstrates readiness for the target role."),
+    addressed_gaps: stringList(item.addressed_gaps).length ? stringList(item.addressed_gaps) : ["target-role readiness"],
+    expected_artifacts: stringList(item.expected_artifacts),
+    estimated_weeks: Math.max(1, Math.round(boundedNumber(item.estimated_weeks, 4, 1))),
+  };
+}
+
+function normalizeEvidenceItem(value) {
+  const item = value && typeof value === "object" ? value : {};
+  const requirement = stringValue(item.extracted_requirement || item.requirement || item.claim || value, "target-role readiness");
+  const claim = stringValue(item.claim || item.description, `${requirement} matters for the target role.`);
+  return {
+    id: stringValue(item.id, crypto.randomUUID()),
+    claim,
+    source_type: stringValue(item.source_type, "hosted"),
+    source_title: stringValue(item.source_title, "PathForge hosted evidence"),
+    source_url: typeof item.source_url === "string" ? item.source_url : null,
+    extracted_requirement: requirement,
+    confidence: boundedNumber(item.confidence, 0.6, 0, 1),
   };
 }
 

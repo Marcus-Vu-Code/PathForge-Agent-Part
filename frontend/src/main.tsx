@@ -483,7 +483,7 @@ function App() {
         <section className="results" id="results">
           <FeedbackGuide />
           <SkillEvidenceCheck profile={profile} result={result} />
-          <ResultList title="Recommended Paths" intro="Career directions the agent thinks fit your background and goal." items={result.plan.recommended_paths.map((path) => `${path.title}: ${path.fit_summary}`)} />
+          <ResultList title="Recommended Paths" intro="Career directions the agent thinks fit your background and goal." items={result.plan.recommended_paths.map((path) => `${displayText(path.title, "Recommended path")}: ${displayText(path.fit_summary || path.rationale, "Review the supporting evidence and next steps.")}`)} />
           <ResultList title="Strengths" items={result.plan.strengths} />
           <GapResults gaps={result.plan.gaps} />
           <NextActionResults actions={result.plan.next_actions} />
@@ -614,13 +614,18 @@ function GapResults({ gaps }: { gaps: CareerPlanResponse["plan"]["gaps"] }) {
       <p className="sectionIntro">These are the most important pieces of proof or skill evidence to strengthen first.</p>
       {gaps.length ? (
         <ul className="richList">
-          {gaps.map((gap) => (
-            <li key={gap.skill}>
-              <strong>{humanize(gap.skill)}</strong>
-              <p>{gap.reason}</p>
-              <span className="metaLine">Priority signal: {Math.round(gap.relevance * 100)}% relevance from {gap.evidence_count} evidence item(s)</span>
+          {gaps.map((gap, index) => {
+            const skill = displayText(gap.skill, "Target-role evidence");
+            const relevance = Number.isFinite(Number(gap.relevance)) ? Number(gap.relevance) : 0;
+            const evidenceCount = Number.isFinite(Number(gap.evidence_count)) ? Number(gap.evidence_count) : 0;
+            return (
+            <li key={`${skill}-${index}`}>
+              <strong>{humanize(skill)}</strong>
+              <p>{displayText(gap.reason, `Build clearer evidence for ${skill}.`)}</p>
+              <span className="metaLine">Priority signal: {Math.round(relevance * 100)}% relevance from {evidenceCount} evidence item(s)</span>
             </li>
-          ))}
+            );
+          })}
         </ul>
       ) : (
         <p>No major gaps were detected from the available evidence.</p>
@@ -635,17 +640,24 @@ function NextActionResults({ actions }: { actions: CareerPlanResponse["plan"]["n
       <h3>Next Actions</h3>
       <p className="sectionIntro">The number is the priority order. It is not an evidence citation.</p>
       <ul className="richList">
-        {actions.map((action) => (
-          <li key={`${action.priority}-${action.title}`}>
-            <strong>{action.priority}. {action.title}</strong>
-            <p>{action.rationale}</p>
-            {action.title.toLowerCase().includes("informational interviews") && (
+        {actions.map((action, index) => {
+          const title = displayText(action.title, "Next action");
+          const priority = Number.isFinite(Number(action.priority)) ? Number(action.priority) : index + 1;
+          const impact = Number.isFinite(Number(action.impact)) ? Number(action.impact) : 3;
+          const effort = Number.isFinite(Number(action.effort)) ? Number(action.effort) : 3;
+          const notes = Array.isArray(action.constraint_notes) ? action.constraint_notes : [];
+          return (
+          <li key={`${priority}-${title}-${index}`}>
+            <strong>{priority}. {title}</strong>
+            <p>{displayText(action.rationale, "Make the next step concrete, visible, and easy to verify.")}</p>
+            {title.toLowerCase().includes("informational interviews") && (
               <p className="plainHint">Yes: this means ask working professionals, recruiters, professors, mentors, or advanced students in the field to review your resume/portfolio.</p>
             )}
-            <span className="metaLine">Impact {action.impact}/5, effort {action.effort}/5</span>
-            {action.constraint_notes?.map((note) => <span className="metaLine" key={note}>{note}</span>)}
+            <span className="metaLine">Impact {impact}/5, effort {effort}/5</span>
+            {notes.map((note, noteIndex) => <span className="metaLine" key={`${displayText(note)}-${noteIndex}`}>{displayText(note)}</span>)}
           </li>
-        ))}
+          );
+        })}
       </ul>
     </article>
   );
@@ -657,17 +669,22 @@ function ProjectResults({ projects }: { projects: CareerPlanResponse["plan"]["pr
       <h3>Projects</h3>
       <p className="sectionIntro">These are portfolio ideas. A good project should show what you built, why it matters, how you tested it, and what someone can inspect.</p>
       <ul className="richList">
-        {projects.map((project) => (
-          <li key={project.title}>
-            <strong>{project.title}</strong>
-            <p>{project.description}</p>
-            <p><span className="labelText">Helps prove:</span> {project.addressed_gaps.map(humanize).join(", ") || "target-role readiness"}</p>
-            {project.expected_artifacts?.length ? (
-              <p><span className="labelText">What to show:</span> {project.expected_artifacts.join(", ")}</p>
+        {projects.map((project, index) => {
+          const title = displayText(project.title, "Target-role proof project");
+          const addressedGaps = Array.isArray(project.addressed_gaps) ? project.addressed_gaps : [];
+          const artifacts = Array.isArray(project.expected_artifacts) ? project.expected_artifacts : [];
+          return (
+          <li key={`${title}-${index}`}>
+            <strong>{title}</strong>
+            <p>{displayText(project.description, "Create a portfolio artifact that demonstrates target-role readiness.")}</p>
+            <p><span className="labelText">Helps prove:</span> {addressedGaps.map(humanize).join(", ") || "target-role readiness"}</p>
+            {artifacts.length ? (
+              <p><span className="labelText">What to show:</span> {artifacts.map((artifact) => displayText(artifact)).join(", ")}</p>
             ) : null}
             {project.estimated_weeks ? <span className="metaLine">Estimated time: {project.estimated_weeks} week(s)</span> : null}
           </li>
-        ))}
+          );
+        })}
       </ul>
     </article>
   );
@@ -680,13 +697,14 @@ function EvidenceResults({ evidence, profile }: { evidence: CareerPlanResponse["
       <h3>Evidence</h3>
       <p className="sectionIntro">Evidence means the requirement or signal the agent used when judging fit. The check below shows whether your profile already clearly mentions it.</p>
       <ul className="richList">
-        {evidence.map((item) => {
-          const requirement = item.extracted_requirement ?? item.claim;
+        {evidence.map((item, index) => {
+          const requirement = displayText(item.extracted_requirement ?? item.claim, "target-role readiness");
+          const claim = displayText(item.claim, `${requirement} matters for the target role.`);
           const demonstrated = profileText.includes(requirement.toLowerCase());
           return (
-            <li key={`${item.source_title}-${item.claim}`}>
+            <li key={`${displayText(item.source_title, "evidence")}-${claim}-${index}`}>
               <strong>{humanize(requirement)}</strong>
-              <p>{item.claim}</p>
+              <p>{claim}</p>
               <span className={demonstrated ? "status yes" : "status partial"}>{demonstrated ? "Already visible in profile" : "Make this clearer in a project/resume bullet"}</span>
             </li>
           );
@@ -705,12 +723,12 @@ function Panel({ icon, title, children }: { icon: React.ReactNode; title: string
   );
 }
 
-function ResultList({ title, items, intro }: { title: string; items: string[]; intro?: string }) {
+function ResultList({ title, items, intro }: { title: string; items: unknown[]; intro?: string }) {
   return (
     <article className="resultBlock">
       <h3>{title}</h3>
       {intro && <p className="sectionIntro">{intro}</p>}
-      {items.length ? <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul> : <p>No items returned.</p>}
+      {items.length ? <ul>{items.map((item, index) => <li key={`${displayText(item)}-${index}`}>{displayText(item)}</li>)}</ul> : <p>No items returned.</p>}
     </article>
   );
 }
@@ -719,8 +737,18 @@ function profileTextForMatching(profile: CareerProfile): string {
   return JSON.stringify(profile).toLowerCase();
 }
 
-function humanize(value: string): string {
-  return value.replace(/[_-]/g, " ").replace(/\s+/g, " ").trim();
+function humanize(value: unknown): string {
+  return displayText(value).replace(/[_-]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function displayText(value: unknown, fallback = ""): string {
+  if (typeof value === "string") return value.trim() || fallback;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    return displayText(record.title ?? record.name ?? record.skill ?? record.claim ?? record.description, fallback);
+  }
+  return fallback;
 }
 
 function skillMeaning(requirement: string, demonstrated: boolean): string {
