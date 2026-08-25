@@ -80,6 +80,29 @@ const backgroundQuestions = [
 
 const emptyGuidedAnswers = Object.fromEntries(backgroundQuestions.map((question) => [question.id, ""]));
 
+const fallbackSpecializationsByRole: Record<string, SelectOption[]> = {
+  "Operations Analyst": [
+    { value: "operations_analyst__capacity_service_analysis", label: "Capacity / Service Analysis" },
+    { value: "operations_analyst__operations_kpi_design", label: "Operations KPI Design" },
+    { value: "operations_analyst__root_cause_recommendations", label: "Root-Cause Recommendations" },
+    { value: "operations_analyst__workflow_optimization", label: "Workflow Optimization" }
+  ],
+  "Business Analyst": [
+    { value: "business_analyst__requirements_analysis", label: "Requirements Analysis" },
+    { value: "business_analyst__business_intelligence", label: "Business Intelligence" },
+    { value: "business_analyst__process_modeling", label: "Process Modeling" },
+    { value: "business_analyst__process_improvement", label: "Process Improvement" }
+  ],
+  "Project Coordinator": [
+    { value: "project_coordinator__project_delivery", label: "Project Delivery" },
+    { value: "project_coordinator__stakeholder_coordination", label: "Stakeholder Coordination" },
+    { value: "project_coordinator__project_controls", label: "Project Controls" },
+    { value: "project_coordinator__process_improvement", label: "Process Improvement" }
+  ]
+};
+
+const defaultFallbackSpecializations = fallbackSpecializationsByRole["Operations Analyst"];
+
 const fallbackOptions: ProviderOptionsResponse = {
   default_provider_mode: "hybrid-gemini-first",
   intelligent_systems: [
@@ -101,12 +124,7 @@ const fallbackOptions: ProviderOptionsResponse = {
       ]
     }
   ],
-  specializations: [
-    { value: "applied_ai", label: "Applied AI" },
-    { value: "ai_data", label: "AI / Data" },
-    { value: "mlops", label: "MLOps / Model Serving" },
-    { value: "software", label: "Software Engineering" }
-  ]
+  specializations: defaultFallbackSpecializations
 };
 
 type SavedReview = {
@@ -157,7 +175,7 @@ function App() {
   const [goal, setGoal] = useState<CareerGoal>({
     target_role: "Operations Analyst",
     target_sector: "business_operations",
-    target_function: "operations_analyst__data_analytics",
+    target_function: "operations_analyst__capacity_service_analysis",
     horizon_months: 12,
     priorities: ["portfolio", "practical projects"]
   });
@@ -212,7 +230,14 @@ function App() {
       })
       .catch(() => {
         if (!active) return;
-        setSpecializationOptions(fallbackOptions.specializations);
+        const options = fallbackSpecializationsByRole[selectedRole.value] ?? defaultFallbackSpecializations;
+        setSpecializationOptions(options);
+        setGoal((current) => ({
+          ...current,
+          target_function: options.some((option) => option.value === current.target_function)
+            ? current.target_function
+            : options[0].value
+        }));
       });
     return () => {
       active = false;

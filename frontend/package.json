@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && node scripts/prepare-sites-dist.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:taxonomy": "node --test worker/career-taxonomy.test.js"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.1",

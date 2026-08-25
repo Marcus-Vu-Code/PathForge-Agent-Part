@@ -15,7 +15,7 @@ SECTORS = [
     SectorOption(
         value="business_operations",
         label="Business / Operations",
-        description="Operations, project delivery, people operations, logistics, and process improvement.",
+        description="Operations, project and program delivery, human resources, supply chain, administration, and consulting.",
         roles=[
             role("Operations Analyst"),
             role("Business Analyst"),
@@ -65,8 +65,8 @@ SECTORS = [
     ),
     SectorOption(
         value="skilled_trades_construction",
-        label="Skilled Trades / Construction",
-        description="Construction, maintenance, field service, manufacturing trades, and technical operations.",
+        label="Skilled Trades / Construction / Manufacturing",
+        description="Construction, maintenance, field service, manufacturing, safety, facilities, and technical operations.",
         roles=[
             role("Electrician Apprentice"),
             role("HVAC Technician"),
@@ -82,8 +82,8 @@ SECTORS = [
     ),
     SectorOption(
         value="public_service_government",
-        label="Public Service / Government",
-        description="Civic service, government operations, emergency management, policy support, and nonprofits.",
+        label="Public Service / Government / Nonprofit",
+        description="Government operations, civic programs, emergency management, policy, community services, and nonprofits.",
         roles=[
             role("Policy Analyst"),
             role("City Planner"),
@@ -133,8 +133,8 @@ SECTORS = [
     ),
     SectorOption(
         value="sales_marketing_customer",
-        label="Sales / Marketing / Customer",
-        description="Revenue, growth, customer success, account management, and market communication.",
+        label="Sales / Marketing / Customer Success",
+        description="Sales, partnerships, growth, customer success, support, community, and market communication.",
         roles=[
             role("Sales Development Representative"),
             role("Account Manager"),
@@ -167,8 +167,8 @@ SECTORS = [
     ),
     SectorOption(
         value="science_engineering_environment",
-        label="Science / Engineering / Environment",
-        description="Research, engineering, lab work, environmental analysis, and technical problem solving.",
+        label="Science / Engineering / Technology",
+        description="Scientific research, engineering, environmental analysis, data, software, robotics, and AI systems.",
         roles=[
             role("Research Assistant"),
             role("Lab Technician"),
@@ -224,11 +224,38 @@ ROLE_KEYWORD_REQUIREMENTS = {
 SpecializationTemplate = tuple[str, str, str]
 
 
+GENERIC_ROLE_KEYS = {
+    "analyst",
+    "assistant",
+    "coordinator",
+    "designer",
+    "engineer",
+    "manager",
+    "specialist",
+    "technician",
+}
+
+
 ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
     "operations": [
         ("workflow_optimization", "Workflow Optimization", "Improve throughput, handoffs, bottlenecks, and operating rhythms."),
         ("operations_reporting", "Operations Reporting", "Use dashboards and recurring metrics to guide operational decisions."),
         ("vendor_process_coordination", "Vendor / Process Coordination", "Coordinate people, vendors, timelines, documentation, and service quality."),
+    ],
+    "operations analyst": [
+        ("capacity_service_analysis", "Capacity / Service Analysis", "Analyze workload, capacity, service levels, and operating constraints."),
+        ("operations_kpi_design", "Operations KPI Design", "Define useful measures for throughput, quality, cost, timeliness, and reliability."),
+        ("root_cause_recommendations", "Root-Cause Recommendations", "Investigate operating problems and turn findings into measurable recommendations."),
+    ],
+    "operations manager": [
+        ("service_delivery_management", "Service Delivery Management", "Lead daily execution, escalations, quality, and customer or internal service outcomes."),
+        ("capacity_resource_planning", "Capacity / Resource Planning", "Align staffing, vendors, schedules, and resources with demand."),
+        ("operational_excellence", "Operational Excellence", "Establish standard work, performance reviews, and sustained improvement systems."),
+    ],
+    "process improvement": [
+        ("process_mapping", "Process Mapping", "Document current-state workflows, handoffs, delays, and control points."),
+        ("lean_continuous_improvement", "Lean / Continuous Improvement", "Reduce waste and variation through measurable improvement cycles."),
+        ("change_adoption", "Change Adoption", "Turn process changes into standard work, training, and sustained team adoption."),
     ],
     "business analyst": [
         ("requirements_analysis", "Requirements Analysis", "Translate stakeholder needs into clear requirements, workflows, and acceptance criteria."),
@@ -350,6 +377,11 @@ ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
         ("participant_engagement", "Participant Engagement", "Support adoption through communication, coaching, and feedback loops."),
         ("wellness_metrics", "Wellness Metrics", "Measure participation, outcomes, satisfaction, and program improvement."),
     ],
+    "health information specialist": [
+        ("health_information_management", "Health Information Management", "Organize accurate clinical information across records, coding, and care workflows."),
+        ("health_data_quality", "Health Data Quality", "Validate completeness, consistency, and appropriate use of health data."),
+        ("privacy_release_records", "Privacy / Release of Records", "Apply privacy rules and authorization procedures to health-information requests."),
+    ],
     "teacher": [
         ("classroom_instruction", "Classroom Instruction", "Plan lessons, facilitate learning, assess progress, and support students."),
         ("curriculum_planning", "Curriculum Planning", "Create standards-aligned units, activities, materials, and assessments."),
@@ -365,6 +397,11 @@ ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
         ("elearning_development", "E-Learning Development", "Create digital learning assets, courses, and interactive training experiences."),
         ("training_evaluation", "Training Evaluation", "Measure learning outcomes, feedback, transfer, and improvement opportunities."),
     ],
+    "learning experience designer": [
+        ("learner_research", "Learner Research", "Study learner goals, contexts, barriers, and feedback to shape effective experiences."),
+        ("learning_journey_design", "Learning Journey Design", "Sequence instruction, practice, feedback, and support across a complete learning journey."),
+        ("learning_prototyping", "Learning Prototyping", "Prototype and test activities, interfaces, and learning materials with users."),
+    ],
     "advisor": [
         ("student_advising", "Student Advising", "Guide students through plans, resources, requirements, and next steps."),
         ("case_management", "Case Management", "Track student needs, interventions, referrals, and outcomes."),
@@ -374,6 +411,11 @@ ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
         ("training_delivery", "Training Delivery", "Facilitate workshops, onboarding, skill sessions, and learner support."),
         ("training_operations", "Training Operations", "Coordinate schedules, materials, attendance, completion, and reporting."),
         ("enablement_content", "Enablement Content", "Create playbooks, guides, exercises, and job aids."),
+    ],
+    "corporate trainer": [
+        ("facilitation_delivery", "Facilitation / Delivery", "Lead practical employee learning through workshops, demonstrations, and coached practice."),
+        ("workplace_enablement", "Workplace Enablement", "Create job aids, onboarding paths, and performance support tied to business needs."),
+        ("training_measurement", "Training Measurement", "Evaluate participation, skill transfer, behavior change, and workplace outcomes."),
     ],
     "curriculum": [
         ("curriculum_development", "Curriculum Development", "Build learning sequences, objectives, materials, and assessments."),
@@ -430,10 +472,20 @@ ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
         ("incident_documentation", "Incident Documentation", "Document incidents, corrective actions, audits, and compliance evidence."),
         ("risk_assessment", "Risk Assessment", "Identify hazards, evaluate risk, and recommend practical controls."),
     ],
+    "maintenance planner": [
+        ("preventive_maintenance_strategy", "Preventive Maintenance Strategy", "Build preventive and predictive maintenance plans around asset criticality."),
+        ("work_planning_scheduling", "Work Planning / Scheduling", "Define job scope, labor, parts, permits, and coordinated maintenance windows."),
+        ("reliability_asset_history", "Reliability / Asset History", "Use failure history and work-order data to improve uptime and maintenance decisions."),
+    ],
     "policy": [
         ("policy_research", "Policy Research", "Research laws, programs, stakeholders, evidence, and policy alternatives."),
         ("policy_evaluation", "Policy Evaluation", "Assess outcomes, tradeoffs, implementation, and public impact."),
         ("briefing_writing", "Briefing Writing", "Write concise memos, summaries, recommendations, and stakeholder briefings."),
+    ],
+    "public administration analyst": [
+        ("government_program_analysis", "Government Program Analysis", "Analyze public-service operations, outcomes, constraints, and improvement options."),
+        ("public_budget_performance", "Public Budget / Performance", "Connect budgets, service measures, and performance reporting for public decisions."),
+        ("administrative_policy_implementation", "Administrative Policy Implementation", "Translate statutes and policy into procedures, controls, and service delivery."),
     ],
     "city planner": [
         ("urban_planning", "Urban Planning", "Support land use, transportation, housing, and community planning work."),
@@ -474,6 +526,11 @@ ROLE_SPECIALIZATION_RULES: dict[str, list[SpecializationTemplate]] = {
         ("visual_identity", "Visual Identity", "Design brand systems, layouts, typography, and reusable visual assets."),
         ("marketing_design", "Marketing Design", "Create campaign assets, social visuals, ads, and collateral."),
         ("portfolio_production", "Portfolio Production", "Build polished case studies, process artifacts, and presentation-ready work."),
+    ],
+    "digital marketing designer": [
+        ("campaign_creative", "Campaign Creative", "Design channel-ready campaign assets aligned to audience, offer, and conversion goals."),
+        ("conversion_design", "Conversion Design", "Improve landing pages, email, ads, and calls to action through structured testing."),
+        ("creative_performance", "Creative Performance", "Use engagement and conversion data to iterate visual concepts and formats."),
     ],
     "ux": [
         ("user_research", "User Research", "Study user needs, behaviors, journeys, pain points, and usability."),
@@ -848,23 +905,35 @@ def generate_specializations(sector: str, target_role: str) -> list[SelectOption
 
 def requirements_for_goal(sector: str | None, target_role: str, specialization: str | None) -> list[str]:
     role_text = target_role.lower()
-    requirements = list(SECTOR_REQUIREMENTS.get(sector or "", []))
+    requirements = list(_specialization_requirements(specialization or ""))
     for keyword, keyword_requirements in ROLE_KEYWORD_REQUIREMENTS.items():
         if keyword in role_text:
             requirements.extend(keyword_requirements)
-    requirements.extend(_specialization_requirements(specialization or ""))
+    requirements.extend(SECTOR_REQUIREMENTS.get(sector or "", []))
     requirements.append("portfolio or experience evidence aligned to the selected role")
-    return _dedupe(requirements)[:8]
+    return _dedupe(requirements)[:12]
 
 
 def _rank_templates(sector: str, role_text: str) -> list[tuple[str, str, str]]:
     ranked: list[tuple[str, str, str]] = []
     exact_templates = ROLE_SPECIALIZATION_RULES.get(role_text, [])
     ranked.extend(exact_templates)
-    for keyword, templates in ROLE_SPECIALIZATION_RULES.items():
-        if keyword != role_text and keyword in role_text:
-            ranked.extend(templates)
+
+    matches = [
+        (keyword, templates)
+        for keyword, templates in ROLE_SPECIALIZATION_RULES.items()
+        if keyword != role_text and keyword in role_text
+    ]
+    domain_matches = [match for match in matches if match[0] not in GENERIC_ROLE_KEYS]
+    family_matches = [match for match in matches if match[0] in GENERIC_ROLE_KEYS]
+
+    # Prefer the work domain over a broad title family. For example, clinical
+    # research is more informative than coordinator when both match a role.
+    for _, templates in sorted(domain_matches, key=lambda match: len(match[0]), reverse=True):
+        ranked.extend(templates)
     ranked.extend(SECTOR_SPECIALIZATION_RULES.get(sector, []))
+    for _, templates in family_matches:
+        ranked.extend(templates)
     ranked.extend(
         [
             ("career_transition_story", "Career Transition Story", "Package transferable experience into a clear role-specific narrative."),
@@ -883,6 +952,32 @@ def _specialization_requirements(specialization: str) -> list[str]:
         return ["docker", "model serving", "latency profiling", "monitoring", "deployment automation", "api reliability"]
     if specialization == "software":
         return ["api design", "testing", "sql", "system design", "authentication", "backend services"]
+    if "capacity_service_analysis" in specialization:
+        return ["capacity analysis", "service-level analysis", "spreadsheet modeling"]
+    if "operations_kpi_design" in specialization:
+        return ["kpi definition", "dashboard design", "metric governance"]
+    if "root_cause_recommendations" in specialization:
+        return ["root-cause analysis", "recommendation writing", "benefit measurement"]
+    if "service_delivery_management" in specialization:
+        return ["service operations", "escalation management", "quality metrics"]
+    if "capacity_resource_planning" in specialization:
+        return ["capacity planning", "resource allocation", "demand forecasting"]
+    if "operational_excellence" in specialization:
+        return ["standard work", "performance reviews", "continuous improvement"]
+    if "process_mapping" in specialization or "lean_continuous_improvement" in specialization or "change_adoption" in specialization:
+        return ["process mapping", "lean improvement", "change adoption"]
+    if "health_information_management" in specialization or "health_data_quality" in specialization or "privacy_release_records" in specialization:
+        return ["health information systems", "data quality", "patient privacy"]
+    if "learner_research" in specialization or "learning_journey_design" in specialization or "learning_prototyping" in specialization:
+        return ["learner research", "instructional sequencing", "prototype testing"]
+    if "facilitation_delivery" in specialization or "workplace_enablement" in specialization or "training_measurement" in specialization:
+        return ["facilitation", "performance support", "training evaluation"]
+    if "preventive_maintenance_strategy" in specialization or "work_planning_scheduling" in specialization or "reliability_asset_history" in specialization:
+        return ["maintenance planning", "asset reliability", "work-order analysis"]
+    if "government_program_analysis" in specialization or "public_budget_performance" in specialization or "administrative_policy_implementation" in specialization:
+        return ["public program analysis", "performance budgeting", "policy implementation"]
+    if "campaign_creative" in specialization or "conversion_design" in specialization or "creative_performance" in specialization:
+        return ["campaign design", "conversion testing", "creative performance analysis"]
     if "data_analytics" in specialization:
         return ["data analysis", "dashboarding", "metrics interpretation"]
     if "analysis_reporting" in specialization or "data_decision_support" in specialization or "insight_communication" in specialization:

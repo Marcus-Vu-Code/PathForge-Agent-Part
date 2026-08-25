@@ -1,3 +1,5 @@
+import { generateSpecializations, requirementsForGoal, sectors } from "./career-taxonomy.js";
+
 const PROVIDER_DEFAULT = "hybrid-gemini-first";
 const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/";
 
@@ -28,19 +30,6 @@ const knownSkills = [
   "project management",
   "customer support",
   "operations",
-];
-
-const sectors = [
-  sector("business_operations", "Business / Operations", "Operations, project delivery, people operations, logistics, and process improvement.", ["Operations Analyst", "Business Analyst", "Project Coordinator", "Program Manager", "Operations Manager", "Supply Chain Coordinator", "Human Resources Coordinator", "Executive Assistant", "Process Improvement Specialist", "Management Consultant"]),
-  sector("healthcare_wellness", "Healthcare / Wellness", "Clinical support, patient services, health administration, wellness, and public health.", ["Clinical Research Coordinator", "Healthcare Administrator", "Patient Care Coordinator", "Medical Assistant", "Public Health Analyst", "Health Educator", "Behavioral Health Technician", "Pharmacy Technician", "Wellness Program Coordinator", "Health Information Specialist"]),
-  sector("education_training", "Education / Training", "Teaching, tutoring, learning design, student support, and workforce training.", ["Teacher", "Tutor", "Instructional Designer", "Academic Advisor", "Training Coordinator", "Curriculum Developer", "Student Success Coach", "Education Program Manager", "Learning Experience Designer", "Corporate Trainer"]),
-  sector("skilled_trades_construction", "Skilled Trades / Construction", "Construction, maintenance, field service, manufacturing trades, and technical operations.", ["Electrician Apprentice", "HVAC Technician", "Construction Project Coordinator", "Manufacturing Technician", "Quality Control Inspector", "Field Service Technician", "Facilities Coordinator", "CNC Operator", "Safety Coordinator", "Maintenance Planner"]),
-  sector("public_service_government", "Public Service / Government", "Civic service, government operations, emergency management, policy support, and nonprofits.", ["Policy Analyst", "City Planner", "Public Administration Analyst", "Emergency Management Specialist", "Community Outreach Coordinator", "Nonprofit Program Coordinator", "Case Manager", "Grant Writer", "Compliance Specialist", "Legislative Aide"]),
-  sector("arts_media_design", "Arts / Media / Design", "Design, content, communications, production, UX, and creative operations.", ["Graphic Designer", "UX Designer", "Content Strategist", "Video Producer", "Social Media Manager", "Copywriter", "Brand Strategist", "Product Designer", "Digital Marketing Designer", "Game Designer"]),
-  sector("law_policy_compliance", "Law / Policy / Compliance", "Legal support, governance, privacy, regulatory operations, and risk controls.", ["Paralegal", "Legal Assistant", "Compliance Analyst", "Privacy Analyst", "Contract Administrator", "Risk Analyst", "Regulatory Affairs Specialist", "Policy Research Assistant", "Audit Associate", "Trust and Safety Analyst"]),
-  sector("sales_marketing_customer", "Sales / Marketing / Customer", "Revenue, growth, customer success, account management, and market communication.", ["Sales Development Representative", "Account Manager", "Customer Success Manager", "Marketing Coordinator", "Growth Marketing Analyst", "Product Marketing Associate", "Business Development Representative", "Customer Support Specialist", "Market Research Analyst", "Community Manager"]),
-  sector("finance_accounting_real_estate", "Finance / Accounting / Real Estate", "Accounting, financial planning, banking, insurance, real estate, and investment support.", ["Financial Analyst", "Accountant", "Bookkeeper", "Loan Officer", "Insurance Claims Analyst", "Real Estate Analyst", "Portfolio Analyst", "Tax Associate", "Budget Analyst", "Procurement Analyst"]),
-  sector("science_engineering_environment", "Science / Engineering / Environment", "Research, engineering, lab work, environmental analysis, and technical problem solving.", ["Research Assistant", "Lab Technician", "Environmental Analyst", "Mechanical Engineer", "Civil Engineering Technician", "Data Analyst", "Software Engineer", "Quality Engineer", "Robotics Engineer", "AI Engineer"]),
 ];
 
 const worker = {
@@ -134,38 +123,6 @@ function providerOptions(env) {
     sectors,
     specializations: [],
   };
-}
-
-function sector(value, label, description, roles) {
-  return {
-    value,
-    label,
-    description,
-    roles: roles.map((role) => ({ value: role, label: role, specializations: [] })),
-  };
-}
-
-function generateSpecializations(sectorValue, targetRole) {
-  const role = targetRole.toLowerCase();
-  const templates = [];
-  if (role.includes("ai")) {
-    templates.push(["llm_application_development", "LLM Application Development"], ["rag_knowledge_systems", "RAG / Knowledge Systems"], ["ai_agent_workflows", "AI Agent Workflows"], ["model_evaluation", "Model Evaluation"]);
-  }
-  if (role.includes("analyst") || sectorValue.includes("finance") || sectorValue.includes("operations")) {
-    templates.push(["analysis_reporting", "Analysis / Reporting"], ["data_decision_support", "Data-Driven Decision Support"], ["insight_communication", "Insight Communication"]);
-  }
-  if (role.includes("engineer") || role.includes("software")) {
-    templates.push(["technical_implementation", "Technical Implementation"], ["systems_design", "Systems Design"], ["validation_testing", "Validation / Testing"]);
-  }
-  if (role.includes("designer")) {
-    templates.push(["design_execution", "Design Execution"], ["user_audience_research", "User / Audience Research"], ["portfolio_case_studies", "Portfolio Case Studies"]);
-  }
-  templates.push(["career_transition_story", "Career Transition Story"], ["portfolio_experience_evidence", "Portfolio / Experience Evidence"]);
-  return dedupeBy(templates, (item) => item[0]).slice(0, 8).map(([id, label]) => ({
-    value: `${slugify(targetRole)}__${id}`,
-    label,
-    description: `${label} tailored to ${targetRole}.`,
-  }));
 }
 
 async function readUploadedDocument(file) {
@@ -362,18 +319,6 @@ function gatherEvidence(goal) {
     extracted_requirement: requirement,
     confidence: 0.64,
   }));
-}
-
-function requirementsForGoal(goal) {
-  const role = String(goal.target_role || "").toLowerCase();
-  const requirements = ["portfolio or experience evidence aligned to the selected role"];
-  if (role.includes("ai")) requirements.push("python", "llm", "machine learning", "model evaluation", "prompting");
-  if (role.includes("analyst")) requirements.push("analysis", "reporting", "data interpretation", "recommendation writing");
-  if (role.includes("engineer")) requirements.push("technical problem solving", "system design", "testing", "implementation");
-  if (role.includes("designer")) requirements.push("user needs", "prototyping", "portfolio evidence", "design critique");
-  if (String(goal.target_sector || "").includes("operations")) requirements.push("process mapping", "spreadsheet modeling", "stakeholder communication", "project tracking");
-  if (String(goal.target_function || "").includes("data")) requirements.push("data analysis", "dashboarding", "metrics interpretation");
-  return dedupe(requirements).slice(0, 8);
 }
 
 function analyzeGaps(profile, evidence) {
@@ -790,26 +735,12 @@ function profileTerms(profile) {
   return candidateSkills(parts.filter(Boolean).join(" "));
 }
 
-function slugify(value) {
-  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "") || "role";
-}
-
 function titleCase(value) {
   return value.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function dedupe(values) {
   return [...new Set(values.map((value) => String(value).trim()).filter(Boolean))];
-}
-
-function dedupeBy(values, getKey) {
-  const seen = new Set();
-  return values.filter((value) => {
-    const key = getKey(value);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
 }
 
 function json(payload, status = 200) {
