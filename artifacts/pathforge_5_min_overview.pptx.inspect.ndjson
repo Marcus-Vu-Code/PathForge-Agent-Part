@@ -1,0 +1,77 @@
+{"kind":"deck","id":"pr/mp3cng","name":"Deck"}
+{"kind":"layout","layoutId":"7d2cdb36-d2d1-473a-b02d-7e45b290997f","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"e655704b-d3ea-4333-a429-f5cdf6a972c1","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/0uj8ll","slide":1,"title":"PathForge AI","textShapes":7}
+{"kind":"textbox","id":"sh/hwf6dsve","slide":1,"name":"title","text":"PathForge AI","textPreview":"PathForge AI","textChars":12,"textLines":1,"bbox":[41,42,610,86]}
+{"kind":"textbox","id":"sh/u9o7idwn","slide":1,"name":"subtitle","text":"A career-navigation website that turns messy background notes into a practical career plan.","textPreview":"A career-navigation website that turns messy background notes into a practical career plan.","textChars":91,"textLines":1,"bbox":[41,176,560,190]}
+{"kind":"shape","id":"sh/faxobid8","slide":1,"name":"thin-rule","bbox":[41,392,410,1.5]}
+{"kind":"textbox","id":"sh/4z6pone5","slide":1,"name":"frame","text":"Purpose -> Demo -> How it works","textPreview":"Purpose -> Demo -> How it works","textChars":31,"textLines":1,"bbox":[41,424,560,60]}
+{"kind":"shape","id":"sh/p0zqhsva","slide":1,"name":"hero-back","bbox":[658,42,582,588]}
+{"kind":"textbox","id":"sh/2xo7mdwz","slide":1,"name":"hero-word-1","text":"upload","textPreview":"upload","textChars":6,"textLines":1,"bbox":[716,115,420,62]}
+{"kind":"textbox","id":"sh/3yxofidk","slide":1,"name":"hero-word-2","text":"extract","textPreview":"extract","textChars":7,"textLines":1,"bbox":[756,245,420,62]}
+{"kind":"textbox","id":"sh/k3mpc3el","slide":1,"name":"hero-word-3","text":"plan","textPreview":"plan","textChars":4,"textLines":1,"bbox":[818,375,420,62]}
+{"kind":"shape","id":"sh/l4v658v6","slide":1,"name":"thin-rule","bbox":[718,205,382,1.5]}
+{"kind":"shape","id":"sh/947698r2","slide":1,"name":"thin-rule","bbox":[758,335,382,1.5]}
+{"kind":"textbox","id":"sh/83y50nqh","slide":1,"name":"footer-1","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1184,659,55,26]}
+{"kind":"notes","id":"nt/0uj8ll","slide":1,"text":"0:00-0:45. Open with the problem: career planning usually starts with unstructured resumes, transcripts, notes, and vague goals.\nPosition PathForge as a practical translator from background evidence to next actions."}
+{"kind":"slide","id":"sl/6h0njr","slide":2,"title":"The purpose is to make career planning evidence-grounded.","textShapes":6}
+{"kind":"textbox","id":"sh/edo3ul07","slide":2,"name":"title","text":"The purpose is to make career planning evidence-grounded.","textPreview":"The purpose is to make career planning evidence-grounded.","textChars":57,"textLines":1,"bbox":[41,36,1120,105]}
+{"kind":"shape","id":"sh/10zm50zy","slide":2,"name":"left-band","bbox":[41,206,548,334]}
+{"kind":"textbox","id":"sh/0zqlwvid","slide":2,"name":"left-title","text":"What users bring","textPreview":"What users bring","textChars":16,"textLines":1,"bbox":[74,238,470,42]}
+{"kind":"textbox","id":"sh/n2h47ah4","slide":2,"name":"left-list","text":"• Background documents or guided answers\n• Target sector, role, specialization, and timeline\n• Constraints such as time, location, or budget","textPreview":"• Background documents or guided answers | • Target sector, role, specialization, and timeline | • Constraints such as time, location, or...","textChars":140,"textLines":3,"bbox":[74,304,470,170]}
+{"kind":"shape","id":"sh/2183y50j","slide":2,"name":"right-band","bbox":[658,206,548,334]}
+{"kind":"textbox","id":"sh/p4zm90zu","slide":2,"name":"right-title","text":"What they get","textPreview":"What they get","textChars":13,"textLines":1,"bbox":[690,238,470,42]}
+{"kind":"textbox","id":"sh/o3ql0fip","slide":2,"name":"right-list","text":"• A structured profile they can inspect\n• Ranked gaps tied to role evidence\n• Projects and actions that prove readiness","textPreview":"• A structured profile they can inspect | • Ranked gaps tied to role evidence | • Projects and actions that prove readiness","textChars":119,"textLines":3,"bbox":[690,304,470,170]}
+{"kind":"textbox","id":"sh/36dkv61k","slide":2,"name":"footer-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,659,55,26]}
+{"kind":"notes","id":"nt/6h0njr","slide":2,"text":"0:45-1:35. The key idea is not replacing judgment. It makes the reasoning visible and editable.\nEmphasize that low-information inputs still produce a starting plan, but better background evidence creates a better result."}
+{"kind":"slide","id":"sl/cpzkbm","slide":3,"title":"The demo follows one user path from background to plan.","textShapes":14}
+{"kind":"textbox","id":"sh/1ormts3e","slide":3,"name":"title","text":"The demo follows one user path from background to plan.","textPreview":"The demo follows one user path from background to plan.","textChars":55,"textLines":1,"bbox":[41,36,1120,105]}
+{"kind":"textbox","id":"sh/elg3ix4n","slide":3,"name":"step-1-num","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[41,196,52,58]}
+{"kind":"textbox","id":"sh/zm94r2l8","slide":3,"name":"step-1-title","text":"Add background","textPreview":"Add background","textChars":14,"textLines":1,"bbox":[117,200,465,42]}
+{"kind":"textbox","id":"sh/cjylgnmx","slide":3,"name":"step-1-body","text":"Upload a resume or answer guided questions.","textPreview":"Upload a resume or answer guided questions.","textChars":43,"textLines":1,"bbox":[117,254,465,86]}
+{"kind":"shape","id":"sh/dk7mps3i","slide":3,"name":"thin-rule","bbox":[41,356,520,1.5]}
+{"kind":"textbox","id":"sh/qhg3ed4r","slide":3,"name":"step-2-num","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[658,196,52,58]}
+{"kind":"textbox","id":"sh/ripknilc","slide":3,"name":"step-2-title","text":"Extract profile","textPreview":"Extract profile","textChars":15,"textLines":1,"bbox":[734,200,465,42]}
+{"kind":"textbox","id":"sh/wf2lsrm1","slide":3,"name":"step-2-body","text":"Review education, experience, skills, projects, interests, and constraints.","textPreview":"Review education, experience, skills, projects, interests, and constraints.","textChars":75,"textLines":1,"bbox":[734,254,465,86]}
+{"kind":"shape","id":"sh/xgbm1w3m","slide":3,"name":"thin-rule","bbox":[658,356,520,1.5]}
+{"kind":"textbox","id":"sh/p07yd03m","slide":3,"name":"step-3-num","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[41,420,52,58]}
+{"kind":"textbox","id":"sh/ozyhkvm1","slide":3,"name":"step-3-title","text":"Choose a goal","textPreview":"Choose a goal","textChars":13,"textLines":1,"bbox":[117,424,465,42]}
+{"kind":"textbox","id":"sh/nypgbqlg","slide":3,"name":"step-3-body","text":"Pick sector, target role, specialization, and target timeline.","textPreview":"Pick sector, target role, specialization, and target timeline.","textChars":62,"textLines":1,"bbox":[117,478,465,86]}
+{"kind":"shape","id":"sh/2xgzil4b","slide":3,"name":"thin-rule","bbox":[41,580,520,1.5]}
+{"kind":"textbox","id":"sh/1w7y9g3q","slide":3,"name":"step-4-num","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[658,420,52,58]}
+{"kind":"textbox","id":"sh/0vyhgbm5","slide":3,"name":"step-4-title","text":"Run agent","textPreview":"Run agent","textChars":9,"textLines":1,"bbox":[734,424,465,42]}
+{"kind":"textbox","id":"sh/fupg76lk","slide":3,"name":"step-4-body","text":"Generate fit, gaps, projects, next actions, evidence, warnings, and trace.","textPreview":"Generate fit, gaps, projects, next actions, evidence, warnings, and trace.","textChars":74,"textLines":1,"bbox":[734,478,465,86]}
+{"kind":"shape","id":"sh/e9gze14z","slide":3,"name":"thin-rule","bbox":[658,580,520,1.5]}
+{"kind":"textbox","id":"sh/lsbilk3u","slide":3,"name":"footer-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,659,55,26]}
+{"kind":"notes","id":"nt/cpzkbm","slide":3,"text":"1:35-2:45. Live demo script: paste 'Harvard student interested in operations analyst roles' or upload a resume, then show the profile, goal controls, and results.\nCall out that results are inspectable: strengths, gaps, evidence, projects, warnings, and trace."}
+{"kind":"slide","id":"sl/3j1zzr","slide":4,"title":"Under the hood, PathForge separates extraction, tools, reasoning, and verific...","textShapes":17}
+{"kind":"textbox","id":"sh/cny5w7el","slide":4,"name":"title","text":"Under the hood, PathForge separates extraction, tools, reasoning, and verification.","textPreview":"Under the hood, PathForge separates extraction, tools, reasoning, and verification.","textChars":83,"textLines":1,"bbox":[41,36,1120,105]}
+{"kind":"shape","id":"sh/rmp432x0","slide":4,"name":"block-0","bbox":[48,224,200,210]}
+{"kind":"textbox","id":"sh/qlg3uxwf","slide":4,"name":"block-0-title","text":"Intake","textPreview":"Intake","textChars":6,"textLines":1,"bbox":[66,250,164,38]}
+{"kind":"textbox","id":"sh/pknm1sfu","slide":4,"name":"block-0-body","text":"File/text upload becomes readable background text.","textPreview":"File/text upload becomes readable background text.","textChars":50,"textLines":1,"bbox":[66,312,164,96]}
+{"kind":"textbox","id":"sh/4jelsne9","slide":4,"name":"arrow-0","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[253,306,32,40]}
+{"kind":"shape","id":"sh/3i54zixo","slide":4,"name":"block-1","bbox":[286,224,200,210]}
+{"kind":"textbox","id":"sh/2hw3qxw3","slide":4,"name":"block-1-title","text":"Extractor","textPreview":"Extractor","textChars":9,"textLines":1,"bbox":[304,250,164,38]}
+{"kind":"textbox","id":"sh/hgnmxsfy","slide":4,"name":"block-1-body","text":"The selected provider returns a typed profile.","textPreview":"The selected provider returns a typed profile.","textChars":46,"textLines":1,"bbox":[304,312,164,96]}
+{"kind":"textbox","id":"sh/gfeloned","slide":4,"name":"arrow-1","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[491,306,32,40]}
+{"kind":"shape","id":"sh/m18zydwn","slide":4,"name":"block-2","bbox":[524,224,200,210]}
+{"kind":"textbox","id":"sh/n2hg7yd8","slide":4,"name":"block-2-title","text":"Tools","textPreview":"Tools","textChars":5,"textLines":1,"bbox":[542,250,164,38]}
+{"kind":"textbox","id":"sh/83qh03ed","slide":4,"name":"block-2-body","text":"Local checks create evidence, gaps, projects, and actions.","textPreview":"Local checks create evidence, gaps, projects, and actions.","textChars":58,"textLines":1,"bbox":[542,312,164,96]}
+{"kind":"textbox","id":"sh/94zy98vy","slide":4,"name":"arrow-2","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[729,306,32,40]}
+{"kind":"shape","id":"sh/ydofutwb","slide":4,"name":"block-3","bbox":[762,224,200,210]}
+{"kind":"textbox","id":"sh/zyxg3ydw","slide":4,"name":"block-3-title","text":"Reasoner","textPreview":"Reasoner","textChars":8,"textLines":1,"bbox":[780,250,164,38]}
+{"kind":"textbox","id":"sh/0zqxw3eh","slide":4,"name":"block-3-body","text":"Provider synthesizes the final typed career plan.","textPreview":"Provider synthesizes the final typed career plan.","textChars":49,"textLines":1,"bbox":[780,312,164,96]}
+{"kind":"textbox","id":"sh/l0zy58v2","slide":4,"name":"arrow-3","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[967,306,32,40]}
+{"kind":"shape","id":"sh/q9ofq9wf","slide":4,"name":"block-4","bbox":[1000,224,200,210]}
+{"kind":"textbox","id":"sh/baxgzed0","slide":4,"name":"block-4-title","text":"Verifier","textPreview":"Verifier","textChars":8,"textLines":1,"bbox":[1018,250,164,38]}
+{"kind":"textbox","id":"sh/fetw7ats","slide":4,"name":"block-4-body","text":"Trace, caveats, warnings, latency, and fallback metadata stay visible.","textPreview":"Trace, caveats, warnings, latency, and fallback metadata stay visible.","textChars":70,"textLines":1,"bbox":[1018,312,164,96]}
+{"kind":"textbox","id":"sh/edkvypc7","slide":4,"name":"bottom","text":"Provider boundaries keep the app from depending on one model vendor, while typed schemas keep outputs renderable and testable.","textPreview":"Provider boundaries keep the app from depending on one model vendor, while typed schemas keep outputs renderable and testable.","textChars":126,"textLines":1,"bbox":[92,516,1096,72]}
+{"kind":"textbox","id":"sh/1gve9kbi","slide":4,"name":"footer-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,659,55,26]}
+{"kind":"notes","id":"nt/3j1zzr","slide":4,"text":"2:45-4:05. Explain the separation of concerns: document intake, provider-backed extraction, deterministic tools, provider-backed reasoning, and verification trace.\nMention Google API first: hosted mode tries Gemini first, can fall back to OpenAI if configured, and then to the offline demo path."}
+{"kind":"slide","id":"sl/y56639","slide":5,"title":"What to remember","textShapes":5}
+{"kind":"textbox","id":"sh/c7ihonql","slide":5,"name":"top-left","text":"What to remember","textPreview":"What to remember","textChars":16,"textLines":1,"bbox":[41,42,520,60]}
+{"kind":"textbox","id":"sh/r69gvip0","slide":5,"name":"top-right","text":"PathForge AI","textPreview":"PathForge AI","textChars":12,"textLines":1,"bbox":[828,42,410,60]}
+{"kind":"textbox","id":"sh/q5gzmd8f","slide":5,"name":"big","text":"A good career plan should show its evidence, not just its advice.","textPreview":"A good career plan should show its evidence, not just its advice.","textChars":65,"textLines":1,"bbox":[41,272,1030,230]}
+{"kind":"textbox","id":"sh/p47yt87u","slide":5,"name":"close","text":"Close the demo by showing one recommended project, one ranked gap, and one trace/warning line.","textPreview":"Close the demo by showing one recommended project, one ranked gap, and one trace/warning line.","textChars":94,"textLines":1,"bbox":[41,590,980,42]}
+{"kind":"textbox","id":"sh/43yhk3q9","slide":5,"name":"footer-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,659,55,26]}
+{"kind":"notes","id":"nt/y56639","slide":5,"text":"4:05-5:00. Close by returning to purpose: the site is valuable because it turns scattered background evidence into a plan someone can critique and act on.\nOptional final sentence: The plan gets better as the user gives better evidence."}

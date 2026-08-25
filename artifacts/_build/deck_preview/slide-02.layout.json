@@ -1,0 +1,586 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/6h0njr",
+    "id": "6h0njr",
+    "slide": 2,
+    "layoutId": "e655704b-d3ea-4333-a429-f5cdf6a972c1",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7d2cdb36-d2d1-473a-b02d-7e45b290997f",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "e655704b-d3ea-4333-a429-f5cdf6a972c1",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7d2cdb36-d2d1-473a-b02d-7e45b290997f",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7d2cdb36-d2d1-473a-b02d-7e45b290997f",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/edo3ul07",
+      "id": "1",
+      "name": "title",
+      "bbox": [
+        41,
+        36,
+        1120,
+        105
+      ],
+      "geometry": "rect",
+      "text": "The purpose is to make career planning evidence-grounded.",
+      "textPreview": "The purpose is to make career planning evidence-grounded.",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The purpose is to make career planning evidence-grounded."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The purpose is to make career planning evidence-grounded.",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The purpose is to make career planning evidence-grounded.",
+              "fontSize": 40,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/10zm50zy",
+      "id": "2",
+      "name": "left-band",
+      "bbox": [
+        41,
+        206,
+        548,
+        334
+      ],
+      "geometry": "rect",
+      "fillColor": "#EFEFEF",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0zqlwvid",
+      "id": "3",
+      "name": "left-title",
+      "bbox": [
+        74,
+        238,
+        470,
+        42
+      ],
+      "geometry": "rect",
+      "text": "What users bring",
+      "textPreview": "What users bring",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 28,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "What users bring"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "What users bring",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "What users bring",
+              "fontSize": 28,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n2h47ah4",
+      "id": "4",
+      "name": "left-list",
+      "bbox": [
+        74,
+        304,
+        470,
+        170
+      ],
+      "geometry": "rect",
+      "text": "• Background documents or guided answers\n• Target sector, role, specialization, and timeline\n• Constraints such as time, location, or budget",
+      "textPreview": "• Background documents or guided answers | • Target sector, role, specialization, and timeline | • Constraints such as time, location, or...",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• Background documents or guided answers"
+          },
+          {
+            "index": 2,
+            "text": "• Target sector, role, specialization, and timeline"
+          },
+          {
+            "index": 3,
+            "text": "• Constraints such as time, location, or budget"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• Background documents or guided answers",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Background documents or guided answers",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Target sector, role, specialization, and timeline",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Target sector, role, specialization, and timeline",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Constraints such as time, location, or budget",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Constraints such as time, location, or budget",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2183y50j",
+      "id": "5",
+      "name": "right-band",
+      "bbox": [
+        658,
+        206,
+        548,
+        334
+      ],
+      "geometry": "rect",
+      "fillColor": "#EFEFEF",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p4zm90zu",
+      "id": "6",
+      "name": "right-title",
+      "bbox": [
+        690,
+        238,
+        470,
+        42
+      ],
+      "geometry": "rect",
+      "text": "What they get",
+      "textPreview": "What they get",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 28,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "What they get"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "What they get",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "What they get",
+              "fontSize": 28,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3ql0fip",
+      "id": "7",
+      "name": "right-list",
+      "bbox": [
+        690,
+        304,
+        470,
+        170
+      ],
+      "geometry": "rect",
+      "text": "• A structured profile they can inspect\n• Ranked gaps tied to role evidence\n• Projects and actions that prove readiness",
+      "textPreview": "• A structured profile they can inspect | • Ranked gaps tied to role evidence | • Projects and actions that prove readiness",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 23,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "• A structured profile they can inspect"
+          },
+          {
+            "index": 2,
+            "text": "• Ranked gaps tied to role evidence"
+          },
+          {
+            "index": 3,
+            "text": "• Projects and actions that prove readiness"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "• A structured profile they can inspect",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• A structured profile they can inspect",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "• Ranked gaps tied to role evidence",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Ranked gaps tied to role evidence",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "• Projects and actions that prove readiness",
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• Projects and actions that prove readiness",
+              "fontSize": 23,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/36dkv61k",
+      "id": "8",
+      "name": "footer-2",
+      "bbox": [
+        1184,
+        659,
+        55,
+        26
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 13,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "right",
+        "verticalAlignment": "bottom",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "color": "#111111",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "fontSize": 13,
+              "color": "#111111",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

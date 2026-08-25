@@ -97,22 +97,6 @@ button:disabled {
   width: 40px;
 }
 
-.topLinks {
-  align-items: center;
-  display: flex;
-  gap: 8px;
-}
-
-.topLinks a {
-  border: 1px solid #d7e0e2;
-  border-radius: 6px;
-  color: #40504d;
-  font-size: 13px;
-  min-height: 36px;
-  padding: 8px 12px;
-  text-decoration: none;
-}
-
 .hero {
   align-items: stretch;
   background: #ffffff;
@@ -171,32 +155,13 @@ button:disabled {
   margin: 0;
 }
 
-.heroActions {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.buttonLink {
-  align-items: center;
-  background: #0f766e;
-  border-radius: 6px;
-  color: #fff;
-  display: inline-flex;
-  gap: 8px;
-  min-height: 42px;
-  padding: 10px 14px;
-  text-decoration: none;
-}
-
 .inlineStatus {
   align-items: center;
   color: #40504d;
   display: inline-flex;
   font-size: 13px;
   gap: 6px;
+  margin-top: 4px;
 }
 
 .systemCard {
@@ -248,6 +213,61 @@ button:disabled {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tutorial {
+  background: #ffffff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(240px, 0.6fr) minmax(0, 1.4fr);
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.tutorial h2,
+.reviewHeader h2 {
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+
+.tutorial p,
+.reviewHeader p {
+  color: #58635f;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tutorialSteps {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tutorialSteps li {
+  border-left: 3px solid #0f766e;
+  display: grid;
+  gap: 4px;
+  padding-left: 10px;
+}
+
+.tutorialSteps strong {
+  color: #17211c;
+  font-size: 13px;
+}
+
+.tutorialSteps span {
+  color: #46524d;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .panel, .resultBlock {
@@ -460,6 +480,97 @@ input, select {
   padding: 12px 14px;
 }
 
+.reviewSection {
+  background: #fff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 16px;
+}
+
+.reviewHeader {
+  align-items: start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.reviewCount {
+  background: #e9f7f4;
+  border: 1px solid #c8ebe3;
+  border-radius: 999px;
+  color: #0f615b;
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.reviewForm {
+  align-items: end;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(140px, 0.45fr) minmax(150px, 0.45fr) minmax(240px, 1.2fr) auto;
+}
+
+.reviewMessage textarea {
+  min-height: 88px;
+}
+
+.savedNotice {
+  align-items: center;
+  color: #0f766e;
+  display: inline-flex;
+  font-size: 13px;
+  gap: 5px;
+  grid-column: 1 / -1;
+}
+
+.savedReviews {
+  border-top: 1px solid #e6ece7;
+  display: grid;
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.savedReviews h3 {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  gap: 6px;
+  margin: 0;
+}
+
+.savedReviews ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.savedReviews li {
+  background: #f7fafc;
+  border: 1px solid #e6ece7;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+}
+
+.savedReviews p {
+  color: #303b36;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.savedReviews span {
+  color: #66736e;
+  font-size: 12px;
+}
+
 .results {
   display: grid;
   gap: 14px;
@@ -626,7 +737,11 @@ input, select {
 }
 
 @media (max-width: 920px) {
-  .hero, .workflow, .results {
+  .hero, .tutorial, .workflow, .results {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorialSteps, .reviewForm {
     grid-template-columns: 1fr;
   }
 

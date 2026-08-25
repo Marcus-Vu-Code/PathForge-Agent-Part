@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ArrowRight, BrainCircuit, CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, FileUp, Globe2, Loader2, Route, Search, ShieldCheck, Sparkles, UserRound, X } from "lucide-react";
+import { BrainCircuit, CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, FileUp, Globe2, Loader2, MessageSquare, Route, Search, Send, ShieldCheck, Sparkles, Star, UserRound, X } from "lucide-react";
 import {
   createBackgroundPrompt,
   createCareerPlan,
@@ -108,6 +108,17 @@ const fallbackOptions: ProviderOptionsResponse = {
     { value: "software", label: "Software Engineering" }
   ]
 };
+
+type SavedReview = {
+  id: string;
+  name: string;
+  rating: string;
+  message: string;
+  targetRole: string;
+  createdAt: string;
+};
+
+const reviewStorageKey = "pathforge-owner-reviews";
 
 function App() {
   const [background, setBackground] = useState(sampleBackground);
@@ -279,13 +290,9 @@ function App() {
           <span className="brandMark"><Route size={20} /></span>
           <div>
             <h1>PathForge AI</h1>
-            <p>Career-navigation website</p>
+            <p>A Duhvuz career-navigation application</p>
           </div>
         </div>
-        <nav className="topLinks" aria-label="Primary">
-          <a href="#workspace">Workspace</a>
-          <a href="#results">Results</a>
-        </nav>
       </header>
 
       <section className="hero">
@@ -293,13 +300,7 @@ function App() {
           <span className="eyebrow"><Sparkles size={15} /> Google API first</span>
           <h2>Build a practical career plan from messy background notes.</h2>
           <p>PathForge turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
-          <div className="heroActions">
-            <a className="buttonLink" href="#workspace">
-              Start planning
-              <ArrowRight size={16} />
-            </a>
-            <span className="inlineStatus"><ShieldCheck size={16} /> Provider trace preserved</span>
-          </div>
+          <span className="inlineStatus"><ShieldCheck size={16} /> Owned by Duhvuz. Provider trace preserved.</span>
         </div>
         <aside className="systemCard" aria-label="Intelligent system">
           <label className="systemPicker">
@@ -319,6 +320,8 @@ function App() {
           </div>
         </aside>
       </section>
+
+      <Tutorial />
 
       <section className="workflow" id="workspace">
         <Panel icon={<FileText size={18} />} title="Background">
@@ -478,6 +481,8 @@ function App() {
         </Panel>
       </section>
 
+      <ReviewSection targetRole={goal.target_role} />
+
       {error && <div className="error">{error}</div>}
       {result && (
         <section className="results" id="results">
@@ -500,6 +505,119 @@ function App() {
         </section>
       )}
     </main>
+  );
+}
+
+function Tutorial() {
+  return (
+    <section className="tutorial" aria-labelledby="tutorial-title">
+      <div>
+        <h2 id="tutorial-title"><Sparkles size={18} /> How to use PathForge</h2>
+        <p>Work left to right: add background, review the extracted profile, choose a goal, then run the agent.</p>
+      </div>
+      <ol className="tutorialSteps">
+        <li><strong>1. Add background</strong><span>Upload documents, answer the guided questions, or paste notes directly into the background box.</span></li>
+        <li><strong>2. Extract and edit</strong><span>Click Extract Profile, then fix anything in the profile JSON before planning.</span></li>
+        <li><strong>3. Pick the goal</strong><span>Select the sector, target role, specialization, and timeline that match the career move.</span></li>
+        <li><strong>4. Run and review</strong><span>Run the agent, read the evidence, then leave a review so Duhvuz can improve the app.</span></li>
+      </ol>
+    </section>
+  );
+}
+
+function ReviewSection({ targetRole }: { targetRole: string }) {
+  const [reviews, setReviews] = useState<SavedReview[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const stored = window.localStorage.getItem(reviewStorageKey);
+      return stored ? JSON.parse(stored) as SavedReview[] : [];
+    } catch {
+      return [];
+    }
+  });
+  const [reviewName, setReviewName] = useState("");
+  const [reviewRating, setReviewRating] = useState("5");
+  const [reviewMessage, setReviewMessage] = useState("");
+  const [reviewSaved, setReviewSaved] = useState(false);
+
+  function handleSubmitReview(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const message = reviewMessage.trim();
+    if (!message) return;
+
+    const review: SavedReview = {
+      id: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}`,
+      name: reviewName.trim() || "Anonymous",
+      rating: reviewRating,
+      message,
+      targetRole,
+      createdAt: new Date().toISOString()
+    };
+    const nextReviews = [review, ...reviews].slice(0, 30);
+    setReviews(nextReviews);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(reviewStorageKey, JSON.stringify(nextReviews));
+    }
+    setReviewMessage("");
+    setReviewSaved(true);
+  }
+
+  return (
+    <section className="reviewSection" aria-labelledby="review-title">
+      <div className="reviewHeader">
+        <div>
+          <h2 id="review-title"><MessageSquare size={18} /> Review PathForge</h2>
+          <p>Feedback is saved in this browser so Duhvuz can read it later.</p>
+        </div>
+        <span className="reviewCount">{reviews.length} saved</span>
+      </div>
+      <form className="reviewForm" onSubmit={handleSubmitReview}>
+        <label>
+          Name
+          <input value={reviewName} placeholder="Optional" onChange={(event) => setReviewName(event.target.value)} />
+        </label>
+        <label>
+          Rating
+          <select value={reviewRating} onChange={(event) => setReviewRating(event.target.value)}>
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Good</option>
+            <option value="3">3 - Okay</option>
+            <option value="2">2 - Needs work</option>
+            <option value="1">1 - Poor</option>
+          </select>
+        </label>
+        <label className="reviewMessage">
+          Feedback
+          <textarea
+            value={reviewMessage}
+            placeholder="What worked, what confused you, or what should Duhvuz improve?"
+            onChange={(event) => {
+              setReviewMessage(event.target.value);
+              setReviewSaved(false);
+            }}
+          />
+        </label>
+        <button type="submit" disabled={!reviewMessage.trim()}>
+          <Send size={16} />
+          Save Review
+        </button>
+        {reviewSaved ? <span className="savedNotice"><CheckCircle2 size={15} /> Review saved for later.</span> : null}
+      </form>
+      {reviews.length ? (
+        <div className="savedReviews">
+          <h3><Star size={16} /> Saved Reviews</h3>
+          <ul>
+            {reviews.map((review) => (
+              <li key={review.id}>
+                <strong>{review.name} rated {review.rating}/5</strong>
+                <p>{review.message}</p>
+                <span>{new Date(review.createdAt).toLocaleString()} for {review.targetRole}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </section>
   );
 }
 
