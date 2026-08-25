@@ -289,7 +289,7 @@ function App() {
         <div className="brandLockup">
           <span className="brandMark"><Route size={20} /></span>
           <div>
-            <h1>PathForge AI</h1>
+            <h1>Career GPS AI</h1>
             <p>A Duhvuz career-navigation application</p>
           </div>
         </div>
@@ -299,7 +299,7 @@ function App() {
         <div className="heroCopy">
           <span className="eyebrow"><Sparkles size={15} /> Google API first</span>
           <h2>Build a practical career plan from messy background notes.</h2>
-          <p>PathForge turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
+          <p>Career GPS AI turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
           <span className="inlineStatus"><ShieldCheck size={16} /> Owned by Duhvuz. Provider trace preserved.</span>
         </div>
         <aside className="systemCard" aria-label="Intelligent system">
@@ -512,7 +512,7 @@ function Tutorial() {
   return (
     <section className="tutorial" aria-labelledby="tutorial-title">
       <div>
-        <h2 id="tutorial-title"><Sparkles size={18} /> How to use PathForge</h2>
+        <h2 id="tutorial-title"><Sparkles size={18} /> How to use Career GPS AI</h2>
         <p>Work left to right: add background, review the extracted profile, choose a goal, then run the agent.</p>
       </div>
       <ol className="tutorialSteps">
@@ -566,7 +566,7 @@ function ReviewSection({ targetRole }: { targetRole: string }) {
     <section className="reviewSection" aria-labelledby="review-title">
       <div className="reviewHeader">
         <div>
-          <h2 id="review-title"><MessageSquare size={18} /> Review PathForge</h2>
+          <h2 id="review-title"><MessageSquare size={18} /> Review Career GPS AI</h2>
           <p>Feedback is saved in this browser so Duhvuz can read it later.</p>
         </div>
         <span className="reviewCount">{reviews.length} saved</span>
