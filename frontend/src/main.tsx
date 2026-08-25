@@ -120,6 +120,28 @@ type SavedReview = {
 
 const reviewStorageKey = "pathforge-owner-reviews";
 
+type K12LearnerForm = {
+  gradeBand: string;
+  favoriteSubjects: string;
+  interests: string;
+  strengths: string;
+  supportNeeds: string;
+  weeklyTime: string;
+  careerCuriosity: string;
+  projectStyle: string;
+};
+
+const k12LearnerDefaults: K12LearnerForm = {
+  gradeBand: "Middle school",
+  favoriteSubjects: "",
+  interests: "",
+  strengths: "",
+  supportNeeds: "",
+  weeklyTime: "1-2 hours per week",
+  careerCuriosity: "Exploring options",
+  projectStyle: "Hands-on projects"
+};
+
 function App() {
   const [background, setBackground] = useState(sampleBackground);
   const [guidedOpen, setGuidedOpen] = useState(false);
@@ -283,6 +305,20 @@ function App() {
     setError(null);
   }
 
+  function handleUseK12Profile(studentProfile: string, gradeBand: string) {
+    setBackground(studentProfile);
+    setProfile(null);
+    setResult(null);
+    setDocumentSources([]);
+    setDocumentWarnings([]);
+    setError(null);
+    setGoal((current) => ({
+      ...current,
+      horizon_months: gradeBand.includes("Elementary") ? 48 : gradeBand.includes("Middle") ? 36 : 24,
+      priorities: ["school-friendly projects", "foundational skills", "career exploration"]
+    }));
+  }
+
   return (
     <main className="shell">
       <header className="topbar">
@@ -322,6 +358,8 @@ function App() {
       </section>
 
       <Tutorial />
+
+      <K12StudentSection onApplyProfile={handleUseK12Profile} />
 
       <section className="workflow" id="workspace">
         <Panel icon={<FileText size={18} />} title="Background">
@@ -506,6 +544,147 @@ function App() {
       )}
     </main>
   );
+}
+
+function K12StudentSection({ onApplyProfile }: { onApplyProfile: (studentProfile: string, gradeBand: string) => void }) {
+  const [learner, setLearner] = useState<K12LearnerForm>(k12LearnerDefaults);
+  const [generatedProfile, setGeneratedProfile] = useState("");
+  const [applied, setApplied] = useState(false);
+
+  function updateLearner(field: keyof K12LearnerForm, value: string) {
+    setLearner((current) => ({ ...current, [field]: value }));
+    setApplied(false);
+  }
+
+  function handleGenerateProfile() {
+    setGeneratedProfile(buildK12Profile(learner));
+    setApplied(false);
+  }
+
+  function handleApplyProfile() {
+    const profileText = generatedProfile || buildK12Profile(learner);
+    setGeneratedProfile(profileText);
+    onApplyProfile(profileText, learner.gradeBand);
+    setApplied(true);
+  }
+
+  return (
+    <section className="k12Section" aria-labelledby="k12-title">
+      <div className="k12Intro">
+        <span className="eyebrow"><UserRound size={15} /> K-12 pathway</span>
+        <h2 id="k12-title">Student profile builder</h2>
+        <p>Creates a school-aware profile that keeps plans realistic for the student&apos;s grade level, interests, time, and support needs.</p>
+      </div>
+      <div className="k12Form">
+        <label>
+          Grade band
+          <select value={learner.gradeBand} onChange={(event) => updateLearner("gradeBand", event.target.value)}>
+            <option>Elementary school</option>
+            <option>Middle school</option>
+            <option>High school</option>
+          </select>
+        </label>
+        <label>
+          Career curiosity
+          <select value={learner.careerCuriosity} onChange={(event) => updateLearner("careerCuriosity", event.target.value)}>
+            <option>Exploring options</option>
+            <option>STEM and technology</option>
+            <option>Health and helping people</option>
+            <option>Business and leadership</option>
+            <option>Creative arts and media</option>
+            <option>Skilled trades and making things</option>
+          </select>
+        </label>
+        <label>
+          Weekly time
+          <select value={learner.weeklyTime} onChange={(event) => updateLearner("weeklyTime", event.target.value)}>
+            <option>Less than 1 hour per week</option>
+            <option>1-2 hours per week</option>
+            <option>3-5 hours per week</option>
+            <option>More than 5 hours per week</option>
+          </select>
+        </label>
+        <label>
+          Project style
+          <select value={learner.projectStyle} onChange={(event) => updateLearner("projectStyle", event.target.value)}>
+            <option>Hands-on projects</option>
+            <option>Writing and research</option>
+            <option>Team activities</option>
+            <option>Digital portfolio work</option>
+            <option>Community service</option>
+          </select>
+        </label>
+        <label>
+          Favorite subjects
+          <input value={learner.favoriteSubjects} placeholder="Math, art, science, English..." onChange={(event) => updateLearner("favoriteSubjects", event.target.value)} />
+        </label>
+        <label>
+          Interests
+          <input value={learner.interests} placeholder="Games, robotics, sports, music, coding..." onChange={(event) => updateLearner("interests", event.target.value)} />
+        </label>
+        <label>
+          Strengths
+          <input value={learner.strengths} placeholder="Curious, organized, helpful, creative..." onChange={(event) => updateLearner("strengths", event.target.value)} />
+        </label>
+        <label>
+          Support needs
+          <input value={learner.supportNeeds} placeholder="Short steps, visuals, parent help, quiet work..." onChange={(event) => updateLearner("supportNeeds", event.target.value)} />
+        </label>
+      </div>
+      <div className="k12Actions">
+        <button type="button" onClick={handleGenerateProfile}>
+          <Sparkles size={16} />
+          Generate Student Profile
+        </button>
+        <button type="button" className="secondary" onClick={handleApplyProfile}>
+          <FileText size={16} />
+          Use In Planner
+        </button>
+        {applied ? <span className="savedNotice"><CheckCircle2 size={15} /> Student profile applied.</span> : null}
+      </div>
+      <div className="k12Output">
+        <div className="k12ProfilePreview">
+          <h3>Generated Student Profile</h3>
+          <pre>{generatedProfile || buildK12Profile(learner)}</pre>
+        </div>
+        <div className="k12Fit">
+          <h3>Planner setup</h3>
+          <ul>
+            {k12PlannerFit(learner).map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function buildK12Profile(learner: K12LearnerForm): string {
+  return [
+    "K-12 Student Profile",
+    `Grade band: ${learner.gradeBand}`,
+    `Favorite subjects: ${displayText(learner.favoriteSubjects, "Not provided yet")}`,
+    `Interests: ${displayText(learner.interests, "Still exploring interests")}`,
+    `Strengths and abilities: ${displayText(learner.strengths, "Needs strengths identified through activities")}`,
+    `Support needs and preferences: ${displayText(learner.supportNeeds, "Use short, encouraging steps with clear examples")}`,
+    `Available time: ${learner.weeklyTime}`,
+    `Career curiosity: ${learner.careerCuriosity}`,
+    `Best project style: ${learner.projectStyle}`,
+    "Planning guidance: Create age-appropriate career exploration steps. Avoid adult job-search assumptions. Recommend school-safe projects, class choices, clubs, reading, mentorship with trusted adults, and portfolio artifacts suitable for the student's grade level."
+  ].join("\n\n");
+}
+
+function k12PlannerFit(learner: K12LearnerForm): string[] {
+  const timeline = learner.gradeBand.includes("Elementary")
+    ? "Use broad discovery activities and playful skill-building."
+    : learner.gradeBand.includes("Middle")
+      ? "Use short exploration projects, clubs, and early portfolio habits."
+      : "Use course planning, portfolio projects, internships, volunteering, and scholarship readiness.";
+  return [
+    timeline,
+    `Plan around ${learner.weeklyTime.toLowerCase()} of available time.`,
+    `Prioritize ${learner.projectStyle.toLowerCase()} tied to ${learner.careerCuriosity.toLowerCase()}.`,
+    "Keep recommendations school-friendly and easy for a parent, guardian, counselor, or teacher to review."
+  ];
 }
 
 function Tutorial() {

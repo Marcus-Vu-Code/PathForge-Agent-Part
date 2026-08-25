@@ -270,6 +270,94 @@ button:disabled {
   line-height: 1.45;
 }
 
+.k12Section {
+  background: #fff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 18px;
+}
+
+.k12Intro {
+  display: grid;
+  gap: 8px;
+  max-width: 840px;
+}
+
+.k12Intro h2 {
+  color: #13201f;
+  font-size: 24px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.k12Intro p {
+  color: #4a5b58;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.k12Form {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.k12Actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.k12Output {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+}
+
+.k12ProfilePreview,
+.k12Fit {
+  background: #f7fafc;
+  border: 1px solid #e6ece7;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.k12ProfilePreview h3,
+.k12Fit h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.k12ProfilePreview pre {
+  color: #27322d;
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.k12Fit ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.k12Fit li {
+  color: #303b36;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .panel, .resultBlock {
   background: #fff;
   border: 1px solid #dbe5e5;
@@ -737,11 +825,11 @@ input, select {
 }
 
 @media (max-width: 920px) {
-  .hero, .tutorial, .workflow, .results {
+  .hero, .tutorial, .workflow, .k12Output, .results {
     grid-template-columns: 1fr;
   }
 
-  .tutorialSteps, .reviewForm {
+  .tutorialSteps, .k12Form, .reviewForm {
     grid-template-columns: 1fr;
   }
 
