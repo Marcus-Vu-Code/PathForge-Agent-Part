@@ -585,11 +585,11 @@ function App() {
         <div className="brandLockup">
           <span className="brandMark"><Route size={20} /></span>
           <div>
-            <h1>Career GPS AI</h1>
-            <p>A Duhvuz career-navigation application</p>
+            <h1>Path Forger</h1>
+            <p>A Duhvuz career-forging application</p>
           </div>
         </div>
-        <nav className="pageNav" aria-label="Career GPS sections">
+        <nav className="pageNav" aria-label="Path Forger sections">
           {pageNav.map((page) => (
             <button
               key={page.id}
@@ -612,7 +612,7 @@ function App() {
             <div className="heroCopy">
               <span className="eyebrow"><Sparkles size={15} /> Google API first</span>
               <h2>Build a practical career plan from messy background notes.</h2>
-              <p>Career GPS AI turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
+              <p>Path Forger turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
               <span className="inlineStatus"><ShieldCheck size={16} /> Owned by Duhvuz. Provider trace preserved.</span>
             </div>
             <aside className="systemCard" aria-label="Intelligent system">
@@ -634,7 +634,7 @@ function App() {
             </aside>
           </section>
           <Tutorial />
-          <section className="pageCards" aria-label="Career GPS pages">
+          <section className="pageCards" aria-label="Path Forger pages">
             <article>
               <UserRound size={22} />
               <h3>Student profile</h3>
@@ -668,7 +668,7 @@ function App() {
             : activePage === "profile" ? "Review extracted profile"
             : activePage === "goal" ? "Choose the career goal"
             : activePage === "results" ? "Career plan results"
-            : "Review Career GPS AI"
+            : "Review Path Forger"
           }
         >
           {activePage === "student" ? "Create K-12 context before planning, then send it into the background step."
@@ -847,7 +847,7 @@ function Tutorial() {
   return (
     <section className="tutorial" aria-labelledby="tutorial-title">
       <div>
-        <h2 id="tutorial-title"><Sparkles size={18} /> How to use Career GPS AI</h2>
+        <h2 id="tutorial-title"><Sparkles size={18} /> How to use Path Forger</h2>
         <p>Work left to right: add background, review the extracted profile, choose a goal, then run the agent.</p>
       </div>
       <ol className="tutorialSteps">
@@ -901,7 +901,7 @@ function ReviewSection({ targetRole }: { targetRole: string }) {
     <section className="reviewSection" aria-labelledby="review-title">
       <div className="reviewHeader">
         <div>
-          <h2 id="review-title"><MessageSquare size={18} /> Review Career GPS AI</h2>
+      <h2 id="review-title"><MessageSquare size={18} /> Review Path Forger</h2>
           <p>Feedback is saved in this browser so Duhvuz can read it later.</p>
         </div>
         <span className="reviewCount">{reviews.length} saved</span>
