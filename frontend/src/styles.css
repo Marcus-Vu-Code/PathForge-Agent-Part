@@ -69,6 +69,48 @@ button:disabled {
   margin-bottom: 18px;
 }
 
+.pageNav {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.pageNav button {
+  background: #ffffff;
+  border: 1px solid #d5e1df;
+  color: #27322d;
+  gap: 7px;
+  min-height: 42px;
+  padding: 8px 10px;
+}
+
+.pageNav button.active {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+}
+
+.pageNav button small {
+  background: #edf6f4;
+  border-radius: 999px;
+  color: #0f615b;
+  font-size: 11px;
+  font-weight: 700;
+  max-width: 120px;
+  overflow: hidden;
+  padding: 3px 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pageNav button.active small {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
 .topbar h1 {
   font-size: 22px;
   line-height: 1.1;
@@ -109,6 +151,100 @@ button:disabled {
   overflow: hidden;
   padding: 28px;
   position: relative;
+}
+
+.pageIntro {
+  background: #ffffff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 20px;
+}
+
+.pageIntro h2 {
+  color: #13201f;
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.pageIntro p {
+  color: #4a5b58;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.pageCards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pageCards article {
+  background: #ffffff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  min-height: 230px;
+  padding: 18px;
+}
+
+.pageCards h3 {
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pageCards p {
+  color: #4a5b58;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.pageCards button {
+  align-self: end;
+}
+
+.singleColumnPage {
+  display: grid;
+  margin: 0 auto;
+  max-width: 920px;
+}
+
+.pageActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.emptyPage {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dbe5e5;
+  border-radius: 8px;
+  color: #4a5b58;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 28px;
+}
+
+.emptyPage h3 {
+  color: #13201f;
+  font-size: 20px;
+  margin: 0;
+}
+
+.emptyPage p {
+  line-height: 1.5;
+  margin: 0;
 }
 
 .hero::after {
@@ -666,6 +802,10 @@ input, select {
   margin-top: 18px;
 }
 
+.resultsPage {
+  margin-top: 0;
+}
+
 .resultBlock ul {
   margin: 0;
   padding-left: 18px;
@@ -825,7 +965,7 @@ input, select {
 }
 
 @media (max-width: 920px) {
-  .hero, .tutorial, .workflow, .k12Output, .results {
+  .hero, .tutorial, .workflow, .k12Output, .results, .pageCards {
     grid-template-columns: 1fr;
   }
 
@@ -844,6 +984,14 @@ input, select {
   .topbar {
     align-items: stretch;
     display: grid;
+  }
+
+  .pageNav {
+    justify-content: stretch;
+  }
+
+  .pageNav button {
+    justify-content: flex-start;
   }
 
   .systemPicker {

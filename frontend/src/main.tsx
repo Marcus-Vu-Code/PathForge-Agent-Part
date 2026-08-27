@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BrainCircuit, CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, FileUp, Globe2, Loader2, MessageSquare, Route, Search, Send, ShieldCheck, Sparkles, Star, UserRound, X } from "lucide-react";
+import { BrainCircuit, CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck, FileText, FileUp, Globe2, Home, Loader2, MessageSquare, Route, Search, Send, ShieldCheck, Sparkles, Star, UserRound, X } from "lucide-react";
 import {
   createBackgroundPrompt,
   createCareerPlan,
@@ -149,6 +149,8 @@ type K12LearnerForm = {
   projectStyle: string;
 };
 
+type AppPage = "overview" | "student" | "background" | "profile" | "goal" | "results" | "review";
+
 const k12LearnerDefaults: K12LearnerForm = {
   gradeBand: "Middle school",
   favoriteSubjects: "",
@@ -161,6 +163,7 @@ const k12LearnerDefaults: K12LearnerForm = {
 };
 
 function App() {
+  const [activePage, setActivePage] = useState<AppPage>("overview");
   const [background, setBackground] = useState(sampleBackground);
   const [guidedOpen, setGuidedOpen] = useState(false);
   const [guidedStep, setGuidedStep] = useState(0);
@@ -256,6 +259,7 @@ function App() {
       setDocumentSources(response.sources);
       setDocumentWarnings(response.warnings);
       setResult(null);
+      setActivePage("profile");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Document conversion failed");
     } finally {
@@ -270,6 +274,7 @@ function App() {
       const response = await extractProfile(background, selectedProvider);
       setProfile(response.profile);
       setResult(null);
+      setActivePage("profile");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Profile extraction failed");
     } finally {
@@ -284,6 +289,7 @@ function App() {
     try {
       const response = await createCareerPlan(profile, goal, selectedProvider);
       setResult(response);
+      setActivePage("results");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Career-plan run failed");
     } finally {
@@ -342,7 +348,236 @@ function App() {
       horizon_months: gradeBand.includes("Elementary") ? 48 : gradeBand.includes("Middle") ? 36 : 24,
       priorities: ["school-friendly projects", "foundational skills", "career exploration"]
     }));
+    setActivePage("background");
   }
+
+  const pageNav: Array<{ id: AppPage; label: string; icon: React.ReactNode; status?: string }> = [
+    { id: "overview", label: "Overview", icon: <Home size={16} /> },
+    { id: "student", label: "Student", icon: <UserRound size={16} /> },
+    { id: "background", label: "Background", icon: <FileText size={16} />, status: background.trim() ? "Ready" : "Empty" },
+    { id: "profile", label: "Profile", icon: <ClipboardCheck size={16} />, status: profile ? "Ready" : "Needed" },
+    { id: "goal", label: "Goal", icon: <Route size={16} />, status: goal.target_role },
+    { id: "results", label: "Results", icon: <Star size={16} />, status: result ? "Ready" : "Run agent" },
+    { id: "review", label: "Review", icon: <MessageSquare size={16} /> }
+  ];
+
+  const activePageLabel = pageNav.find((page) => page.id === activePage)?.label ?? "Overview";
+  const selectedSpecialization = specializationOptions.find((option) => option.value === goal.target_function);
+
+  const backgroundPanel = (
+    <Panel icon={<FileText size={18} />} title="Background">
+      <div className="documentIntake">
+        <label className="filePicker">
+          <FileUp size={18} />
+          <span>Attach resume, transcripts, datasheet, or notes</span>
+          <input
+            type="file"
+            multiple
+            accept=".txt,.md,.csv,.tsv,.json,.docx,.pdf,.xlsx"
+            onChange={(event) => setAttachedFiles(Array.from(event.target.files ?? []))}
+          />
+        </label>
+        {attachedFiles.length ? (
+          <ul className="fileList">
+            {attachedFiles.map((file) => (
+              <li key={`${file.name}-${file.size}-${file.lastModified}`}>
+                <span>{file.name}</span>
+                <small>{formatBytes(file.size)}</small>
+                <button
+                  className="tinyIconButton"
+                  title={`Remove ${file.name}`}
+                  onClick={() => setAttachedFiles(attachedFiles.filter((candidate) => candidate !== file))}
+                >
+                  <X size={14} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="smallHint">Supported: TXT, MD, CSV, TSV, JSON, DOCX, XLSX, and PDF.</p>
+        )}
+        <button onClick={handleBuildBackgroundPrompt} disabled={!attachedFiles.length || loading}>
+          {loadingAction === "documents" ? <Loader2 className="spin" size={16} /> : <FileUp size={16} />}
+          Build Background Prompt
+        </button>
+      </div>
+      <div className="guidedIntake">
+        <button className="secondary" onClick={() => setGuidedOpen(!guidedOpen)}>
+          <UserRound size={16} />
+          Answer Background Questions
+        </button>
+        {guidedOpen ? (
+          <div className="guidedBuilder">
+            <div className="guidedMeta">
+              <strong>{guidedQuestion.label}</strong>
+              <span>{guidedStep + 1} of {backgroundQuestions.length} | {guidedAnsweredCount} answered</span>
+            </div>
+            <label>
+              {guidedQuestion.prompt}
+              <textarea
+                className="guidedAnswer"
+                value={guidedAnswers[guidedQuestion.id] ?? ""}
+                placeholder={guidedQuestion.placeholder}
+                onChange={(event) => handleGuidedAnswer(event.target.value)}
+              />
+            </label>
+            <div className="guidedControls">
+              <button
+                className="secondary"
+                onClick={() => setGuidedStep(Math.max(0, guidedStep - 1))}
+                disabled={guidedStep === 0}
+              >
+                <ChevronLeft size={16} />
+                Previous
+              </button>
+              <button
+                className="secondary"
+                onClick={() => setGuidedStep(Math.min(backgroundQuestions.length - 1, guidedStep + 1))}
+                disabled={guidedStep === backgroundQuestions.length - 1}
+              >
+                Next
+                <ChevronRight size={16} />
+              </button>
+            </div>
+            <button onClick={handleUseGuidedBackground} disabled={!guidedAnsweredCount || loading}>
+              <FileText size={16} />
+              Use Answers As Background
+            </button>
+          </div>
+        ) : null}
+      </div>
+      <textarea
+        value={background}
+        placeholder={backgroundPlaceholder}
+        onChange={(event) => setBackground(event.target.value)}
+      />
+      {documentSources.length ? <SourceSummary sources={documentSources} /> : null}
+      {documentWarnings.length ? <NoticeList title="Document Review Notes" items={documentWarnings} /> : null}
+      <div className="pageActions">
+        <button onClick={handleExtract} disabled={loading || !background.trim()}>
+          {loadingAction === "extract" ? <Loader2 className="spin" size={16} /> : <Search size={16} />}
+          Extract Profile
+        </button>
+        <button type="button" className="secondary" onClick={() => setActivePage("profile")} disabled={!profile}>
+          <ClipboardCheck size={16} />
+          Review Profile
+        </button>
+      </div>
+    </Panel>
+  );
+
+  const profilePanel = (
+    <Panel icon={<ClipboardCheck size={18} />} title="Profile Review">
+      {profile ? (
+        <textarea
+          className="jsonBox"
+          value={JSON.stringify(profile, null, 2)}
+          onChange={(event) => {
+            try {
+              setProfile(JSON.parse(event.target.value));
+              setError(null);
+            } catch {
+              setError("Profile JSON is not valid yet.");
+            }
+          }}
+        />
+      ) : (
+        <div className="empty">Extract a profile from the Background page to review and edit it here.</div>
+      )}
+      <div className="pageActions">
+        <button type="button" className="secondary" onClick={() => setActivePage("background")}>
+          <ChevronLeft size={16} />
+          Background
+        </button>
+        <button type="button" onClick={() => setActivePage("goal")} disabled={!profile}>
+          <Route size={16} />
+          Set Career Goal
+        </button>
+      </div>
+    </Panel>
+  );
+
+  const goalPanel = (
+    <Panel icon={<Route size={18} />} title="Career Goal">
+      <div className="goalStack">
+        <label>
+          Sector
+          <select value={goal.target_sector ?? ""} onChange={(event) => handleSectorChange(event.target.value)}>
+            {providerOptions.sectors.map((sector) => (
+              <option key={sector.value} value={sector.value}>{sector.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Target role
+          <select value={goal.target_role} onChange={(event) => handleRoleChange(event.target.value)}>
+            {selectedSector.roles.map((role) => (
+              <option key={role.value} value={role.value}>{role.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Specialization
+          <select value={goal.target_function ?? ""} onChange={(event) => setGoal({ ...goal, target_function: event.target.value })}>
+            {specializationOptions.map((specialization) => (
+              <option key={specialization.value} value={specialization.value}>{specialization.label}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Months to reach target role
+          <input
+            type="number"
+            min="1"
+            max="120"
+            value={goal.horizon_months}
+            onChange={(event) => setGoal({ ...goal, horizon_months: Number(event.target.value) })}
+          />
+        </label>
+      </div>
+      <div className="pageActions">
+        <button type="button" className="secondary" onClick={() => setActivePage("profile")}>
+          <ChevronLeft size={16} />
+          Profile
+        </button>
+        <button onClick={handleRun} disabled={!profile || loading}>
+          {loadingAction === "plan" ? <Loader2 className="spin" size={16} /> : <Route size={16} />}
+          Run Agent
+        </button>
+      </div>
+    </Panel>
+  );
+
+  const resultsPanel = result ? (
+    <section className="results resultsPage" id="results">
+      <FeedbackGuide />
+      <SkillEvidenceCheck profile={profile} result={result} />
+      <ResultList title="Recommended Paths" intro="Career directions the agent thinks fit your background and goal." items={result.plan.recommended_paths.map((path) => `${displayText(path.title, "Recommended path")}: ${displayText(path.fit_summary || path.rationale, "Review the supporting evidence and next steps.")}`)} />
+      <ResultList title="Strengths" items={result.plan.strengths} />
+      <GapResults gaps={result.plan.gaps} />
+      <NextActionResults actions={result.plan.next_actions} />
+      <ProjectResults projects={result.plan.project_recommendations} />
+      <EvidenceResults evidence={result.plan.evidence} profile={profile} />
+      <ResultList
+        title="Warnings"
+        items={result.trace.fallback_events
+          .map((event) => `Provider fallback: ${event}`)
+          .concat(result.trace.warnings, result.plan.caveats)}
+      />
+      <button className="secondary traceToggle" onClick={() => setTraceOpen(!traceOpen)}>Trace</button>
+      {traceOpen && <pre className="trace">{JSON.stringify(result.trace, null, 2)}</pre>}
+    </section>
+  ) : (
+    <section className="emptyPage">
+      <Star size={28} />
+      <h3>No plan results yet</h3>
+      <p>Extract a profile, confirm the career goal, and run the agent. Results will appear on this page instead of below every other tool.</p>
+      <button type="button" onClick={() => setActivePage(profile ? "goal" : "background")}>
+        {profile ? <Route size={16} /> : <FileText size={16} />}
+        {profile ? "Go To Goal" : "Start With Background"}
+      </button>
+    </section>
+  );
 
   return (
     <main className="shell">
@@ -354,220 +589,116 @@ function App() {
             <p>A Duhvuz career-navigation application</p>
           </div>
         </div>
+        <nav className="pageNav" aria-label="Career GPS sections">
+          {pageNav.map((page) => (
+            <button
+              key={page.id}
+              type="button"
+              className={page.id === activePage ? "active" : ""}
+              onClick={() => setActivePage(page.id)}
+              aria-current={page.id === activePage ? "page" : undefined}
+            >
+              {page.icon}
+              <span>{page.label}</span>
+              {page.status ? <small>{page.status}</small> : null}
+            </button>
+          ))}
+        </nav>
       </header>
 
-      <section className="hero">
-        <div className="heroCopy">
-          <span className="eyebrow"><Sparkles size={15} /> Google API first</span>
-          <h2>Build a practical career plan from messy background notes.</h2>
-          <p>Career GPS AI turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
-          <span className="inlineStatus"><ShieldCheck size={16} /> Owned by Duhvuz. Provider trace preserved.</span>
-        </div>
-        <aside className="systemCard" aria-label="Intelligent system">
-          <label className="systemPicker">
-            <span><BrainCircuit size={16} /> Intelligent system</span>
-            <select value={selectedProvider} onChange={(event) => setSelectedProvider(event.target.value as ProviderMode)}>
-              {providerOptions.intelligent_systems.map((system) => (
-                <option key={system.provider_mode} value={system.provider_mode} disabled={!system.configured}>
-                  {system.label}{system.configured ? "" : " (needs key)"}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p>{selectedSystem?.description ?? "Select a provider for extraction and reasoning."}</p>
-          <div className="systemSignals">
-            <span><Globe2 size={14} /> Google first</span>
-            <span><CheckCircle2 size={14} /> Offline fallback</span>
-          </div>
-        </aside>
-      </section>
-
-      <Tutorial />
-
-      <K12StudentSection onApplyProfile={handleUseK12Profile} />
-
-      <section className="workflow" id="workspace">
-        <Panel icon={<FileText size={18} />} title="Background">
-          <div className="documentIntake">
-            <label className="filePicker">
-              <FileUp size={18} />
-              <span>Attach resume, transcripts, datasheet, or notes</span>
-              <input
-                type="file"
-                multiple
-                accept=".txt,.md,.csv,.tsv,.json,.docx,.pdf,.xlsx"
-                onChange={(event) => setAttachedFiles(Array.from(event.target.files ?? []))}
-              />
-            </label>
-            {attachedFiles.length ? (
-              <ul className="fileList">
-                {attachedFiles.map((file) => (
-                  <li key={`${file.name}-${file.size}-${file.lastModified}`}>
-                    <span>{file.name}</span>
-                    <small>{formatBytes(file.size)}</small>
-                    <button
-                      className="tinyIconButton"
-                      title={`Remove ${file.name}`}
-                      onClick={() => setAttachedFiles(attachedFiles.filter((candidate) => candidate !== file))}
-                    >
-                      <X size={14} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="smallHint">Supported: TXT, MD, CSV, TSV, JSON, DOCX, XLSX, and PDF.</p>
-            )}
-            <button onClick={handleBuildBackgroundPrompt} disabled={!attachedFiles.length || loading}>
-              {loadingAction === "documents" ? <Loader2 className="spin" size={16} /> : <FileUp size={16} />}
-              Build Background Prompt
-            </button>
-          </div>
-          <div className="guidedIntake">
-            <button className="secondary" onClick={() => setGuidedOpen(!guidedOpen)}>
-              <UserRound size={16} />
-              Answer Background Questions
-            </button>
-            {guidedOpen ? (
-              <div className="guidedBuilder">
-                <div className="guidedMeta">
-                  <strong>{guidedQuestion.label}</strong>
-                  <span>{guidedStep + 1} of {backgroundQuestions.length} | {guidedAnsweredCount} answered</span>
-                </div>
-                <label>
-                  {guidedQuestion.prompt}
-                  <textarea
-                    className="guidedAnswer"
-                    value={guidedAnswers[guidedQuestion.id] ?? ""}
-                    placeholder={guidedQuestion.placeholder}
-                    onChange={(event) => handleGuidedAnswer(event.target.value)}
-                  />
-                </label>
-                <div className="guidedControls">
-                  <button
-                    className="secondary"
-                    onClick={() => setGuidedStep(Math.max(0, guidedStep - 1))}
-                    disabled={guidedStep === 0}
-                  >
-                    <ChevronLeft size={16} />
-                    Previous
-                  </button>
-                  <button
-                    className="secondary"
-                    onClick={() => setGuidedStep(Math.min(backgroundQuestions.length - 1, guidedStep + 1))}
-                    disabled={guidedStep === backgroundQuestions.length - 1}
-                  >
-                    Next
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-                <button onClick={handleUseGuidedBackground} disabled={!guidedAnsweredCount || loading}>
-                  <FileText size={16} />
-                  Use Answers As Background
-                </button>
+      {activePage === "overview" ? (
+        <>
+          <section className="hero">
+            <div className="heroCopy">
+              <span className="eyebrow"><Sparkles size={15} /> Google API first</span>
+              <h2>Build a practical career plan from messy background notes.</h2>
+              <p>Career GPS AI turns resumes, transcripts, project notes, and goals into an evidence-grounded plan with skills to prove, projects to build, and next actions to take.</p>
+              <span className="inlineStatus"><ShieldCheck size={16} /> Owned by Duhvuz. Provider trace preserved.</span>
+            </div>
+            <aside className="systemCard" aria-label="Intelligent system">
+              <label className="systemPicker">
+                <span><BrainCircuit size={16} /> Intelligent system</span>
+                <select value={selectedProvider} onChange={(event) => setSelectedProvider(event.target.value as ProviderMode)}>
+                  {providerOptions.intelligent_systems.map((system) => (
+                    <option key={system.provider_mode} value={system.provider_mode} disabled={!system.configured}>
+                      {system.label}{system.configured ? "" : " (needs key)"}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <p>{selectedSystem?.description ?? "Select a provider for extraction and reasoning."}</p>
+              <div className="systemSignals">
+                <span><Globe2 size={14} /> Google first</span>
+                <span><CheckCircle2 size={14} /> Offline fallback</span>
               </div>
-            ) : null}
-          </div>
-          <textarea
-            value={background}
-            placeholder={backgroundPlaceholder}
-            onChange={(event) => setBackground(event.target.value)}
-          />
-          {documentSources.length ? <SourceSummary sources={documentSources} /> : null}
-          {documentWarnings.length ? <NoticeList title="Document Review Notes" items={documentWarnings} /> : null}
-          <button onClick={handleExtract} disabled={loading || !background.trim()}>
-            {loadingAction === "extract" ? <Loader2 className="spin" size={16} /> : <Search size={16} />}
-            Extract Profile
-          </button>
-        </Panel>
+            </aside>
+          </section>
+          <Tutorial />
+          <section className="pageCards" aria-label="Career GPS pages">
+            <article>
+              <UserRound size={22} />
+              <h3>Student profile</h3>
+              <p>Build a school-aware K-12 profile before sending the student into the planner.</p>
+              <button type="button" className="secondary" onClick={() => setActivePage("student")}>Open Student Page</button>
+            </article>
+            <article>
+              <FileText size={22} />
+              <h3>Background</h3>
+              <p>Upload documents, answer guided prompts, or paste notes without competing page clutter.</p>
+              <button type="button" onClick={() => setActivePage("background")}>Add Background</button>
+            </article>
+            <article>
+              <Route size={22} />
+              <h3>Goal and results</h3>
+              <p>Confirm the role target, run the agent, then review evidence on a dedicated results page.</p>
+              <button type="button" className="secondary" onClick={() => setActivePage(profile ? "goal" : "background")}>
+                {profile ? "Set Goal" : "Start Planner"}
+              </button>
+            </article>
+          </section>
+        </>
+      ) : null}
 
-        <Panel icon={<ClipboardCheck size={18} />} title="Profile Review">
-          {profile ? (
-            <textarea
-              className="jsonBox"
-              value={JSON.stringify(profile, null, 2)}
-              onChange={(event) => {
-                try {
-                  setProfile(JSON.parse(event.target.value));
-                  setError(null);
-                } catch {
-                  setError("Profile JSON is not valid yet.");
-                }
-              }}
-            />
-          ) : (
-            <div className="empty">Extract a profile to review and edit it.</div>
-          )}
-        </Panel>
+      {activePage !== "overview" ? (
+        <PageIntro
+          eyebrow={activePageLabel}
+          title={
+            activePage === "student" ? "Student profile builder"
+            : activePage === "background" ? "Add background"
+            : activePage === "profile" ? "Review extracted profile"
+            : activePage === "goal" ? "Choose the career goal"
+            : activePage === "results" ? "Career plan results"
+            : "Review Career GPS AI"
+          }
+        >
+          {activePage === "student" ? "Create K-12 context before planning, then send it into the background step."
+            : activePage === "background" ? "Collect the learner's notes and extract a structured profile."
+            : activePage === "profile" ? "Edit the extracted JSON before the plan is generated."
+            : activePage === "goal" ? `${goal.target_role} ${selectedSpecialization ? `with ${selectedSpecialization.label}` : ""} over ${goal.horizon_months} months.`
+            : activePage === "results" ? "Review the plan, evidence, gaps, next actions, and trace in one focused view."
+            : "Leave feedback without burying the form below the planner."}
+        </PageIntro>
+      ) : null}
 
-        <Panel icon={<Route size={18} />} title="Career Goal">
-          <div className="goalStack">
-            <label>
-              Sector
-              <select value={goal.target_sector ?? ""} onChange={(event) => handleSectorChange(event.target.value)}>
-                {providerOptions.sectors.map((sector) => (
-                  <option key={sector.value} value={sector.value}>{sector.label}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Target role
-              <select value={goal.target_role} onChange={(event) => handleRoleChange(event.target.value)}>
-                {selectedSector.roles.map((role) => (
-                  <option key={role.value} value={role.value}>{role.label}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Specialization
-              <select value={goal.target_function ?? ""} onChange={(event) => setGoal({ ...goal, target_function: event.target.value })}>
-                {specializationOptions.map((specialization) => (
-                  <option key={specialization.value} value={specialization.value}>{specialization.label}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Months to reach target role
-              <input
-                type="number"
-                min="1"
-                max="120"
-                value={goal.horizon_months}
-                onChange={(event) => setGoal({ ...goal, horizon_months: Number(event.target.value) })}
-              />
-            </label>
-          </div>
-          <button onClick={handleRun} disabled={!profile || loading}>
-            {loadingAction === "plan" ? <Loader2 className="spin" size={16} /> : <Route size={16} />}
-            Run Agent
-          </button>
-        </Panel>
-      </section>
-
-      <ReviewSection targetRole={goal.target_role} />
+      {activePage === "student" ? <K12StudentSection onApplyProfile={handleUseK12Profile} /> : null}
+      {activePage === "background" ? <section className="singleColumnPage">{backgroundPanel}</section> : null}
+      {activePage === "profile" ? <section className="singleColumnPage">{profilePanel}</section> : null}
+      {activePage === "goal" ? <section className="singleColumnPage">{goalPanel}</section> : null}
+      {activePage === "results" ? resultsPanel : null}
+      {activePage === "review" ? <ReviewSection targetRole={goal.target_role} /> : null}
 
       {error && <div className="error">{error}</div>}
-      {result && (
-        <section className="results" id="results">
-          <FeedbackGuide />
-          <SkillEvidenceCheck profile={profile} result={result} />
-          <ResultList title="Recommended Paths" intro="Career directions the agent thinks fit your background and goal." items={result.plan.recommended_paths.map((path) => `${displayText(path.title, "Recommended path")}: ${displayText(path.fit_summary || path.rationale, "Review the supporting evidence and next steps.")}`)} />
-          <ResultList title="Strengths" items={result.plan.strengths} />
-          <GapResults gaps={result.plan.gaps} />
-          <NextActionResults actions={result.plan.next_actions} />
-          <ProjectResults projects={result.plan.project_recommendations} />
-          <EvidenceResults evidence={result.plan.evidence} profile={profile} />
-          <ResultList
-            title="Warnings"
-            items={result.trace.fallback_events
-              .map((event) => `Provider fallback: ${event}`)
-              .concat(result.trace.warnings, result.plan.caveats)}
-          />
-          <button className="secondary traceToggle" onClick={() => setTraceOpen(!traceOpen)}>Trace</button>
-          {traceOpen && <pre className="trace">{JSON.stringify(result.trace, null, 2)}</pre>}
-        </section>
-      )}
     </main>
+  );
+}
+
+function PageIntro({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
+  return (
+    <section className="pageIntro">
+      <span className="eyebrow"><Sparkles size={15} /> {eyebrow}</span>
+      <h2>{title}</h2>
+      <p>{children}</p>
+    </section>
   );
 }
 
