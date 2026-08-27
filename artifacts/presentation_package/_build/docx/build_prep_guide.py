@@ -10,7 +10,7 @@ from docx.shared import Inches, Pt, RGBColor
 
 
 ROOT = Path(r"C:\Users\marcu\PathForge-Agent-Part")
-OUT = ROOT / "artifacts" / "presentation_package" / "Career_GPS_AI_Presentation_Prep_Guide.docx"
+OUT = ROOT / "artifacts" / "presentation_package" / "Path_Forger_Presentation_Prep_Guide.docx"
 
 INK = RGBColor(17, 17, 17)
 MUTED = RGBColor(86, 93, 102)
@@ -222,7 +222,7 @@ def configure_document(doc):
 
     header = section.header
     hp = header.paragraphs[0]
-    hp.text = "CAREER GPS AI  |  PRESENTATION PREP"
+    hp.text = "PATH FORGER  |  PRESENTATION PREP"
     hp.alignment = WD_ALIGN_PARAGRAPH.LEFT
     for run in hp.runs:
         set_run_font(run, size=8.5, bold=True, color=MUTED)
@@ -241,7 +241,7 @@ def build_cover(doc):
 
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(10)
-    r = p.add_run("Career GPS AI")
+    r = p.add_run("Path Forger")
     set_run_font(r, size=30, bold=True, color=INK)
 
     p = doc.add_paragraph()
@@ -249,7 +249,7 @@ def build_cover(doc):
     r = p.add_run("PathForge capstone - AI Summer Showdown")
     set_run_font(r, size=15, color=MUTED)
 
-    add_callout(doc, "Five-minute thesis", "A career plan should show its evidence, not just its advice.", LIGHT_BLUE, BLUE)
+    add_callout(doc, "Seven-minute format", "About 45 seconds of setup, five minutes of live demo, then a concise close and Q&A.", LIGHT_BLUE, BLUE)
 
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(28)
@@ -275,7 +275,7 @@ def build_cover(doc):
 
 def build_strategy(doc):
     add_heading(doc, "1. What the presentation must accomplish", 1)
-    p = doc.add_paragraph("By the end of five minutes, peer and mentor evaluators should believe that Career GPS AI is useful, technically thoughtful, and meaningfully different because it makes career recommendations evidence-grounded and inspectable.")
+    p = doc.add_paragraph("By the end of seven minutes, peer and mentor evaluators should believe that Path Forger is useful, technically thoughtful, and meaningfully different because it turns messy background evidence into an inspectable career plan.")
     p.paragraph_format.space_after = Pt(8)
     add_callout(doc, "Presentation rule", "Do not spend the demo proving every feature. Prove one complete user journey and one trustworthy recommendation.")
 
@@ -288,7 +288,7 @@ def build_strategy(doc):
         ("Originality", "25%", "A novel problem or unexpected approach", "Evidence-first career planning; editable profile; visible trace"),
         ("AI & Tech Prowess", "30%", "Strategic 2+ agent workflow, direct LLM integration, clean architecture", "Claude Code + Codex roles; provider protocols; schemas; verifier; fallbacks"),
         ("Usefulness", "25%", "A genuine, high-impact, production-oriented solution", "Real inputs; role-specific gaps; projects and actions; safe offline demo"),
-        ("Presentation", "20%", "Clear, engaging, well-paced, flawless live demo", "Six-slide arc; 90-second demo; rehearsed fallback; memorable close"),
+        ("Presentation", "20%", "Clear, engaging, well-paced, flawless live demo", "Short setup; five-minute guided demo; rehearsed fallback; concise Q&A"),
     ]
     for row in rows:
         cells = table.add_row().cells
@@ -300,24 +300,23 @@ def build_strategy(doc):
     add_heading(doc, "The three sentences to memorize", 2)
     for line in (
         "Career advice is easy to generate; evidence is harder.",
-        "Career GPS AI shows the profile, gaps, projects, actions, evidence, and warnings behind a plan.",
+        "Path Forger shows the profile, gaps, projects, actions, evidence, and warnings behind a plan.",
         "A good career plan should show its evidence, not just its advice.",
     ):
         add_number(doc, line)
 
 
 def build_run_of_show(doc):
-    add_heading(doc, "2. Five-minute run of show", 1)
+    add_heading(doc, "2. Seven-minute run of show", 1)
     table = doc.add_table(rows=1, cols=4)
     for i, value in enumerate(("Slide", "Time", "Job", "Proof point")):
         table.cell(0, i).text = value
     rows = [
-        ("1", "0:00-0:35", "Open with the trust problem", "Messy evidence becomes an inspectable plan"),
-        ("2", "0:35-1:10", "Define the product difference", "Facts, evidence, gaps, projects, warnings"),
-        ("3", "1:10-2:40", "Run the live demo", "Input -> goal -> inspect output and trace"),
-        ("4", "2:40-3:30", "Explain the architecture", "Extraction -> tools -> reasoner/verifier"),
-        ("5", "3:30-4:25", "Prove AI and technical depth", "Claude + Codex; Gemini/OpenAI/Qwen; schemas"),
-        ("6", "4:25-5:00", "Resolve the opening", "Evidence, not just advice"),
+        ("1", "0:00-0:25", "Open with the trust problem", "Messy evidence becomes an inspectable plan"),
+        ("2", "0:25-0:45", "Tell evaluators what to watch", "Editable facts, ranked gaps/projects, visible trace"),
+        ("3", "0:45-5:45", "Run the live demo", "Overview -> student/background -> profile -> goal -> results -> review"),
+        ("4", "5:45-7:00", "Close and take Q&A", "Evidence, not just advice"),
+        ("5-6", "Q&A only", "Use backup slides if asked", "Architecture, providers, AI workflow, evaluation"),
     ]
     for row in rows:
         cells = table.add_row().cells
@@ -327,11 +326,11 @@ def build_run_of_show(doc):
     format_table(table, LIGHT_TEAL, 9.3)
 
     add_heading(doc, "Pacing checkpoints", 2)
-    add_bullet(doc, "At 1:10, you should begin clicking in the app.")
-    add_bullet(doc, "At 2:40, stop the demo even if you could show more.")
-    add_bullet(doc, "At 3:30, explicitly name both development agents.")
-    add_bullet(doc, "At 4:25, start the final slide and slow down.")
-    add_bullet(doc, "At 4:55, finish the final sentence and stop speaking.")
+    add_bullet(doc, "At 0:45, switch from the deck to the app.")
+    add_bullet(doc, "At 2:15, the editable profile should be visible.")
+    add_bullet(doc, "At 3:15, the goal should be confirmed and the agent should be running.")
+    add_bullet(doc, "At 4:45, you should be inspecting results and trace.")
+    add_bullet(doc, "At 5:45, return to slide 4 and invite questions.")
 
 
 def add_script_section(doc, slide_no, title, timing, script, cues):
@@ -352,35 +351,28 @@ def add_script_section(doc, slide_no, title, timing, script, cues):
 def build_script(doc):
     add_heading(doc, "3. Full speaking script", 1)
     add_script_section(
-        doc, 1, "Career GPS AI", "0:00-0:35",
-        "Career advice is everywhere, but most of it starts with assumptions. Career GPS AI starts with evidence. It takes the messy material people already have - resumes, transcripts, project notes, or guided answers - and turns it into a career plan they can inspect and act on.",
+        doc, 1, "Path Forger", "0:00-0:25",
+        "Career advice is everywhere, but most of it starts with assumptions. Path Forger starts with evidence. It turns resumes, transcripts, project notes, or guided answers into a career plan people can inspect and act on.",
         ["Pause after 'starts with evidence.'", "Do not explain the architecture yet."],
     )
     add_script_section(
-        doc, 2, "Evidence is harder", "0:35-1:10",
-        "The problem is not a lack of AI-generated advice. The problem is trust. Users need to see what the system learned from their background, what is missing for a target role, and what they can build next to prove readiness. Career GPS AI makes that chain inspectable instead of hiding it behind one answer.",
+        doc, 2, "Evidence is harder", "0:25-0:45",
+        "The problem is not a lack of AI advice. The problem is trust. During the demo, watch for three things: an editable profile, role-specific gaps and projects, and the evidence or warning behind the plan.",
         ["Point once to the problem side and once to the product side.", "Transition directly into the app: 'Let me show you the loop.'"],
     )
     add_script_section(
-        doc, 3, "Live demo", "1:10-2:40",
-        "I will use a short synthetic background so no private resume data is exposed. First I add evidence. The system extracts a profile that I can review and edit. Then I choose a target direction and run the agent. The output gives me a recommended path, the most important gap, a project that can prove readiness, and the evidence or warning behind that recommendation.",
-        ["Click while speaking; do not narrate loading indicators.", "Show four outputs only: path, top gap, project, trace/warning.", "End with: 'Now here is why this is more dependable than a single prompt.'"],
+        doc, 3, "Live demo", "0:45-5:45",
+        "I will use synthetic student background information so no private resume data is exposed. Path Forger uses focused pages for student context, background, profile review, goal selection, results, and feedback. I will build the context, review the extracted facts, choose a target, run the agent, and inspect the recommended path, top gap, project, evidence, warning, and provider trace.",
+        ["Narrate decisions, not every click or loading indicator.", "Show only the strongest example in each results section.", "End with: 'That is the complete evidence-to-action loop.'"],
     )
     add_script_section(
-        doc, 4, "Architecture", "2:40-3:30",
-        "The application does not ask one model to do everything. First, an extractor creates a typed profile. Second, five deterministic tools calculate evidence, gaps, projects, and actions. Third, a reasoner synthesizes the plan, and a verifier preserves warnings, caveats, latency, fallback events, and routing trace. Because extraction and reasoning are protocols, the app can use Gemini, OpenAI, local Qwen, a partner HTTP model service, or the offline demo without changing its core logic.",
-        ["Use the three columns as your speaking rhythm.", "Do not list every API route or test file."],
+        doc, 4, "Questions", "5:45-7:00",
+        "Path Forger shows the profile, evidence, gaps, projects, actions, warnings, and trace behind a plan. A good career plan should show its evidence, not just its advice. I am happy to answer questions about the user flow, architecture, providers, or evaluation.",
+        ["Slow down on the thesis sentence.", "Use slides 5 and 6 only when a question calls for technical detail."],
     )
-    add_script_section(
-        doc, 5, "Two kinds of AI", "3:30-4:25",
-        "The capstone required two development agents, so I separated their jobs. Claude Code supported architecture and review. OpenAI Codex supported focused implementation, debugging, tests, and documentation. I stayed responsible for product decisions and what shipped. Inside the app, the direct LLM integration is provider-neutral. Gemini, OpenAI, and Qwen all have to return the same typed structures, which lets the app validate outputs and preserve trace fields instead of trusting free-form text.",
-        ["Name both agents clearly.", "Before presenting, change this wording if your actual agent split was different."],
-    )
-    add_script_section(
-        doc, 6, "What to remember", "4:25-5:00",
-        "Career GPS AI is useful because it does more than produce an answer. It shows the profile it extracted, the evidence it used, the gaps it found, and the projects and actions that can close those gaps. A good career plan should show its evidence, not just its advice. That is the difference between a chatbot response and a plan someone can actually critique, improve, and follow.",
-        ["Slow down on the thesis sentence.", "Stop after the final sentence, look at the evaluators, and invite questions."],
-    )
+    add_heading(doc, "Backup slides 5-6", 2)
+    add_bullet(doc, "Architecture answer: typed extraction -> deterministic tools -> reasoner and verifier; protocols keep providers swappable.")
+    add_bullet(doc, "AI workflow answer: Claude Code supported architecture/review; Codex supported implementation/tests/docs; the human approved what shipped.")
 
 
 def build_demo_runbook(doc):
@@ -388,9 +380,9 @@ def build_demo_runbook(doc):
     add_heading(doc, "Before entering the room", 2)
     checks = [
         "Open the final PPTX and confirm speaker notes are visible on the presenter display.",
-        "Open Career GPS AI in a second window and set browser zoom to a readable level.",
+        "Open Path Forger in a second window and set browser zoom to a readable level.",
         "Select a configured hosted provider. Confirm the offline/fake provider is available as fallback.",
-        "Clear old results and scroll to the Background section.",
+        "Clear old results and begin on the Overview page.",
         "Copy the synthetic demo background below to the clipboard.",
         "Close notifications, chat apps, unrelated tabs, and anything containing private information.",
         "Keep the laptop plugged in and disable sleep for the presentation window.",
@@ -403,29 +395,40 @@ def build_demo_runbook(doc):
 
     add_heading(doc, "Exact click path", 2)
     steps = [
-        "Paste the synthetic background into Background.",
+        "Open Student and show the K-12 profile builder in one short pass.",
+        "Apply the student profile, then open Background and paste the synthetic example.",
         "Click Extract Profile; point out that the JSON/profile is reviewable and editable.",
         "Choose Technology, then Data Analyst or another currently configured role.",
         "Select a specialization and realistic time horizon.",
         "Click Run Agent.",
-        "Show one recommended path, the top-ranked gap, one project recommendation, and Trace or Warnings.",
-        "Return to the deck immediately; do not keep scrolling through every result.",
+        "Show one recommended path, the top-ranked gap, one project recommendation, Evidence or Warnings, and Trace.",
+        "Open Review briefly, then return to slide 4 by 5:45.",
     ]
     for step in steps:
         add_number(doc, step)
 
     add_heading(doc, "Fallback ladder", 2)
     add_bullet(doc, "Level 1 - Hosted provider is slow: switch to the offline/fake provider and rerun the same input.", "Level 1")
-    add_bullet(doc, "Level 2 - App cannot rerun: use a pre-generated result already loaded in the browser and say it is the deterministic demo path.", "Level 2")
-    add_bullet(doc, "Level 3 - Browser fails: stay on slide 3 and verbally walk through the three steps in 35 seconds, then continue to architecture.", "Level 3")
-    add_callout(doc, "Never apologize at length", "State the fallback once, continue confidently, and preserve the five-minute pacing.", LIGHT_TEAL, TEAL)
+    add_bullet(doc, "Level 2 - App cannot rerun: use the real screenshots embedded on slide 3 and narrate Background -> Profile -> Results.", "Level 2")
+    add_bullet(doc, "Level 3 - Browser fails: stay on slide 3, describe the six-page journey in 60 seconds, then go to Q&A.", "Level 3")
+    add_callout(doc, "Never apologize at length", "State the fallback once, continue confidently, and preserve the seven-minute limit.", LIGHT_TEAL, TEAL)
+
+    add_heading(doc, "Screenshot backup sequence", 2)
+    for item in (
+        "Main page.png - establish the page-based workflow and provider choice.",
+        "Resume uploaded and parse to description.png - show document intake and the readable background prompt.",
+        "parse to json.png - prove that extracted facts are visible and editable.",
+        "Career goals set.png - confirm sector, AI Engineer target, Model Fine-Tuning specialization, and 12-month horizon.",
+        "Agent output.png - show requirements, recommended paths, evidence language, and the focused Results view.",
+    ):
+        add_bullet(doc, item)
 
 
 def build_qa(doc):
     add_heading(doc, "5. Likely evaluator questions", 1)
     add_heading(doc, "Concise answer bank", 2)
     questions = [
-        ("What makes this different from asking ChatGPT for career advice?", "The user can inspect and edit the extracted profile, see role evidence and ranked gaps, and review warnings and trace metadata. The architecture also separates deterministic checks from LLM synthesis."),
+        ("What makes Path Forger different from asking ChatGPT for career advice?", "The user can inspect and edit the extracted profile, see role evidence and ranked gaps, and review warnings and trace metadata. The architecture also separates deterministic checks from LLM synthesis."),
         ("Where is the direct LLM API integration?", "The BackgroundExtractor and CareerReasoner provider implementations call Gemini/OpenAI-compatible or OpenAI APIs and return schema-bound JSON. Qwen and a local HTTP contract are supported behind the same interfaces."),
         ("How did you use two AI agents?", "Claude Code supported architecture and review; OpenAI Codex supported implementation, debugging, tests, and documentation. Human review controlled product decisions and acceptance."),
         ("How do you prevent hallucinated skills?", "The extraction prompt requires facts from the submitted artifact only. Deterministic evidence checks and the verifier surface unsupported claims as warnings or caveats."),
@@ -445,8 +448,8 @@ def build_final_checklist(doc):
     add_heading(doc, "6. Final readiness checklist", 1)
     sections = {
         "Content and honesty": [
-            "Confirm the project title you will submit: Career GPS AI or PathForge AI; use one name consistently.",
-            "Confirm the development-agent roles on slide 5 match what you actually did.",
+            "Use the current product name, Path Forger, consistently in the deck, intro, demo, and repository documentation.",
+            "Confirm the development-agent roles on backup slide 6 match what you actually did.",
             "Do not imply that fake-provider evaluation measures real model accuracy.",
             "Use only synthetic or permitted documents in the demo.",
         ],
@@ -458,11 +461,11 @@ def build_final_checklist(doc):
             "Final PPTX opens correctly and includes speaker notes.",
         ],
         "Rehearsal": [
-            "Run the entire talk twice with a timer.",
+            "Run the entire seven-minute format twice with a timer.",
             "Run the demo once on the exact network and machine you will use.",
             "Practice the offline fallback once so it feels normal.",
             "Record one rehearsal and remove filler words or repeated explanations.",
-            "Finish between 4:45 and 5:00 without rushing the close.",
+            "Finish the demo by 5:45 and leave the remaining time for a close and Q&A.",
         ],
         "Technical preflight": [
             "Run `python -m pytest backend/tests -q`.",

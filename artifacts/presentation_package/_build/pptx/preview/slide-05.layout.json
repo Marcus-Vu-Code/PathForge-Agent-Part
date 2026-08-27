@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/ls80yk",
-    "id": "ls80yk",
+    "aid": "sl/sk2rrg",
+    "id": "sk2rrg",
     "slide": 5,
-    "layoutId": "02fad801-441d-4303-a4b7-88cdd9b48015",
+    "layoutId": "ef0fc100-1766-4760-98cd-f65623f3431b",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+    "masterLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
     "masterLayoutName": "Master",
     "backgroundColor": "#FFFFFF",
     "frame": {
@@ -45,15 +45,15 @@
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "02fad801-441d-4303-a4b7-88cdd9b48015",
+      "id": "ef0fc100-1766-4760-98cd-f65623f3431b",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "parentLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "id": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -64,93 +64,25 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/pkvit8fa",
+      "aid": "sh/1onmt4by",
       "id": "1",
       "name": "title",
       "bbox": [
         41,
         36,
         1197,
-        70
+        100
       ],
       "geometry": "rect",
-      "text": "Two kinds of AI made the project stronger.",
-      "textPreview": "Two kinds of AI made the project stronger.",
-      "resolvedFontSize": 43,
+      "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
+      "textPreview": "Reliability comes from separating facts, tools, reasoning, and verification.",
+      "resolvedFontSize": 40,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 43,
+        "fontSize": 40,
         "typeface": "Arial",
         "color": "#111111",
         "bold": true,
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "wrap": "square",
-        "insets": {
-          "top": 4.8,
-          "right": 9.6,
-          "bottom": 4.8,
-          "left": 9.6
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "Two kinds of AI made the project stronger."
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "Two kinds of AI made the project stronger.",
-          "resolvedTextStyle": {
-            "fontSize": 43,
-            "typeface": "Arial",
-            "color": "#111111",
-            "bold": true,
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "Two kinds of AI made the project stronger.",
-              "fontSize": 43,
-              "typeface": "Arial",
-              "color": "#111111",
-              "bold": true,
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineWidth": 0
-    },
-    {
-      "order": 2,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/2h4zydgj",
-      "id": "2",
-      "name": "lead",
-      "bbox": [
-        42,
-        126,
-        1160,
-        126
-      ],
-      "geometry": "rect",
-      "text": "Development agents helped plan, implement, review, and test the system. Runtime models power the user experience behind stable protocols and schemas.",
-      "textPreview": "Development agents helped plan, implement, review, and test the system. Runtime models power the user experience behind stable protocols ...",
-      "resolvedFontSize": 23,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 23,
-        "typeface": "Arial",
-        "color": "#565D66",
         "alignment": "left",
         "verticalAlignment": "top",
         "wrap": "square",
@@ -166,31 +98,33 @@
         "lines": [
           {
             "index": 1,
-            "text": "Development agents helped plan, implement, review, and test the system. Runtime models power the user"
+            "text": "Reliability comes from separating facts, tools, reasoning, and"
           },
           {
             "index": 2,
-            "text": "experience behind stable protocols and schemas."
+            "text": "verification."
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Development agents helped plan, implement, review, and test the system. Runtime models power the user experience behind stable protocols and schemas.",
+          "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
           "resolvedTextStyle": {
-            "fontSize": 23,
+            "fontSize": 40,
             "typeface": "Arial",
-            "color": "#565D66",
+            "color": "#111111",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "Development agents helped plan, implement, review, and test the system. Runtime models power the user experience behind stable protocols and schemas.",
-              "fontSize": 23,
+              "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
+              "fontSize": 40,
               "typeface": "Arial",
-              "color": "#565D66",
+              "color": "#111111",
+              "bold": true,
               "alignment": "left"
             }
           ],
@@ -200,17 +134,17 @@
       "lineWidth": 0
     },
     {
-      "order": 3,
+      "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/nid0ryx4",
-      "id": "3",
-      "name": "dev-panel",
+      "aid": "sh/elc3y9sn",
+      "id": "2",
+      "name": "arch-card-0",
       "bbox": [
-        42,
-        326,
-        581,
-        150
+        41,
+        147,
+        375,
+        398
       ],
       "geometry": "roundRect",
       "fillColor": "#F2F2F2",
@@ -218,25 +152,25 @@
       "lineWidth": 1
     },
     {
-      "order": 4,
+      "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/c76h4nyl",
-      "id": "4",
-      "name": "dev-title",
+      "aid": "sh/fml4ret8",
+      "id": "3",
+      "name": "arch-title-0",
       "bbox": [
         73,
-        354,
-        520,
-        42
+        188,
+        311,
+        76
       ],
       "geometry": "rect",
-      "text": "Development workflow",
-      "textPreview": "Development workflow",
-      "resolvedFontSize": 29,
+      "text": "Typed extraction",
+      "textPreview": "Typed extraction",
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 29,
+        "fontSize": 28,
         "typeface": "Arial",
         "color": "#111111",
         "bold": true,
@@ -255,16 +189,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "Development workflow"
+            "text": "Typed extraction"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Development workflow",
+          "text": "Typed extraction",
           "resolvedTextStyle": {
-            "fontSize": 29,
+            "fontSize": 28,
             "typeface": "Arial",
             "color": "#111111",
             "bold": true,
@@ -273,11 +207,93 @@
           "runs": [
             {
               "index": 1,
-              "text": "Development workflow",
-              "fontSize": 29,
+              "text": "Typed extraction",
+              "fontSize": 28,
               "typeface": "Arial",
               "color": "#111111",
               "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/orel4jap",
+      "id": "4",
+      "name": "arch-body-0",
+      "bbox": [
+        73,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+      "textPreview": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A provider turns documents or"
+          },
+          {
+            "index": 2,
+            "text": "guided answers into a"
+          },
+          {
+            "index": 3,
+            "text": "reviewable profile with evidence"
+          },
+          {
+            "index": 4,
+            "text": "spans, confidence, and"
+          },
+          {
+            "index": 5,
+            "text": "warnings."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
               "alignment": "left"
             }
           ],
@@ -290,158 +306,42 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/x8fixsf6",
+      "aid": "sh/pcnmxora",
       "id": "5",
-      "name": "dev-body",
+      "name": "arch-card-1",
       "bbox": [
-        73,
-        506,
-        520,
-        114
+        452,
+        147,
+        375,
+        398
       ],
-      "geometry": "rect",
-      "text": "Claude Code: architecture + review\nOpenAI Codex: implementation + tests\nHuman: product decisions + acceptance",
-      "textPreview": "Claude Code: architecture + review | OpenAI Codex: implementation + tests | Human: product decisions + acceptance",
-      "resolvedFontSize": 20,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 20,
-        "typeface": "Arial",
-        "color": "#111111",
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "wrap": "square",
-        "insets": {
-          "top": 4.8,
-          "right": 9.6,
-          "bottom": 4.8,
-          "left": 9.6
-        }
-      },
-      "textLayout": {
-        "lineCount": 3,
-        "lines": [
-          {
-            "index": 1,
-            "text": "Claude Code: architecture + review"
-          },
-          {
-            "index": 2,
-            "text": "OpenAI Codex: implementation + tests"
-          },
-          {
-            "index": 3,
-            "text": "Human: product decisions + acceptance"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "Claude Code: architecture + review",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Arial",
-            "color": "#111111",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "Claude Code: architecture + review",
-              "fontSize": 20,
-              "typeface": "Arial",
-              "color": "#111111",
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        },
-        {
-          "index": 2,
-          "text": "OpenAI Codex: implementation + tests",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Arial",
-            "color": "#111111",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "OpenAI Codex: implementation + tests",
-              "fontSize": 20,
-              "typeface": "Arial",
-              "color": "#111111",
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        },
-        {
-          "index": 3,
-          "text": "Human: product decisions + acceptance",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Arial",
-            "color": "#111111",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "Human: product decisions + acceptance",
-              "fontSize": 20,
-              "typeface": "Arial",
-              "color": "#111111",
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineWidth": 0
+      "geometry": "roundRect",
+      "fillColor": "#E9F7F4",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
     },
     {
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/a54z2dgv",
+      "aid": "sh/2pw329sj",
       "id": "6",
-      "name": "runtime-panel",
+      "name": "arch-title-1",
       "bbox": [
-        657,
-        326,
-        581,
-        150
-      ],
-      "geometry": "roundRect",
-      "fillColor": "#EAF5FB",
-      "lineColor": "#C7DFF2",
-      "lineWidth": 1
-    },
-    {
-      "order": 7,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/b6d0vixg",
-      "id": "7",
-      "name": "runtime-title",
-      "bbox": [
-        688,
-        354,
-        520,
-        42
+        484,
+        188,
+        311,
+        76
       ],
       "geometry": "rect",
-      "text": "Runtime intelligence",
-      "textPreview": "Runtime intelligence",
-      "resolvedFontSize": 29,
+      "text": "Deterministic tools",
+      "textPreview": "Deterministic tools",
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 29,
+        "fontSize": 28,
         "typeface": "Arial",
-        "color": "#3D8DFF",
+        "color": "#0F766E",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -458,29 +358,111 @@
         "lines": [
           {
             "index": 1,
-            "text": "Runtime intelligence"
+            "text": "Deterministic tools"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Runtime intelligence",
+          "text": "Deterministic tools",
           "resolvedTextStyle": {
-            "fontSize": 29,
+            "fontSize": 28,
             "typeface": "Arial",
-            "color": "#3D8DFF",
+            "color": "#0F766E",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "Runtime intelligence",
-              "fontSize": 29,
+              "text": "Deterministic tools",
+              "fontSize": 28,
               "typeface": "Arial",
-              "color": "#3D8DFF",
+              "color": "#0F766E",
               "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nq54ve94",
+      "id": "7",
+      "name": "arch-body-1",
+      "bbox": [
+        484,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+      "textPreview": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Five local tools calculate role"
+          },
+          {
+            "index": 2,
+            "text": "evidence, skill gaps, project"
+          },
+          {
+            "index": 3,
+            "text": "ideas, next actions, and"
+          },
+          {
+            "index": 4,
+            "text": "supporting evidence before"
+          },
+          {
+            "index": 5,
+            "text": "synthesis."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
               "alignment": "left"
             }
           ],
@@ -493,24 +475,43 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/kb6h8nyx",
+      "aid": "sh/cfy58jal",
       "id": "8",
-      "name": "runtime-body",
+      "name": "arch-card-2",
       "bbox": [
-        688,
-        506,
-        520,
-        114
+        865,
+        147,
+        375,
+        398
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xg7m1or6",
+      "id": "9",
+      "name": "arch-title-2",
+      "bbox": [
+        897,
+        188,
+        311,
+        76
       ],
       "geometry": "rect",
-      "text": "Gemini / OpenAI / Qwen behind protocols\nSchema-bound JSON\nEvidence, warnings, trace + fallback",
-      "textPreview": "Gemini / OpenAI / Qwen behind protocols | Schema-bound JSON | Evidence, warnings, trace + fallback",
-      "resolvedFontSize": 20,
+      "text": "Reasoner + verifier",
+      "textPreview": "Reasoner + verifier",
+      "resolvedFontSize": 28,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 20,
+        "fontSize": 28,
         "typeface": "Arial",
         "color": "#111111",
+        "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
         "wrap": "square",
@@ -522,81 +523,33 @@
         }
       },
       "textLayout": {
-        "lineCount": 3,
+        "lineCount": 1,
         "lines": [
           {
             "index": 1,
-            "text": "Gemini / OpenAI / Qwen behind protocols"
-          },
-          {
-            "index": 2,
-            "text": "Schema-bound JSON"
-          },
-          {
-            "index": 3,
-            "text": "Evidence, warnings, trace + fallback"
+            "text": "Reasoner + verifier"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Gemini / OpenAI / Qwen behind protocols",
+          "text": "Reasoner + verifier",
           "resolvedTextStyle": {
-            "fontSize": 20,
+            "fontSize": 28,
             "typeface": "Arial",
             "color": "#111111",
+            "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "Gemini / OpenAI / Qwen behind protocols",
-              "fontSize": 20,
+              "text": "Reasoner + verifier",
+              "fontSize": 28,
               "typeface": "Arial",
               "color": "#111111",
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        },
-        {
-          "index": 2,
-          "text": "Schema-bound JSON",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Arial",
-            "color": "#111111",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "Schema-bound JSON",
-              "fontSize": 20,
-              "typeface": "Arial",
-              "color": "#111111",
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        },
-        {
-          "index": 3,
-          "text": "Evidence, warnings, trace + fallback",
-          "resolvedTextStyle": {
-            "fontSize": 20,
-            "typeface": "Arial",
-            "color": "#111111",
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "Evidence, warnings, trace + fallback",
-              "fontSize": 20,
-              "typeface": "Arial",
-              "color": "#111111",
+              "bold": true,
               "alignment": "left"
             }
           ],
@@ -606,11 +559,158 @@
       "lineWidth": 0
     },
     {
-      "order": 9,
+      "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/lcfi1sfi",
-      "id": "9",
+      "aid": "sh/ho3yxkbq",
+      "id": "10",
+      "name": "arch-body-2",
+      "bbox": [
+        897,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+      "textPreview": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The LLM produces typed JSON;"
+          },
+          {
+            "index": 2,
+            "text": "verification preserves caveats,"
+          },
+          {
+            "index": 3,
+            "text": "warnings, latency, fallback"
+          },
+          {
+            "index": 4,
+            "text": "events, and routing trace."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gnahofa5",
+      "id": "11",
+      "name": "provider-band",
+      "bbox": [
+        41,
+        584,
+        1120,
+        44
+      ],
+      "geometry": "rect",
+      "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+      "textPreview": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Arial",
+        "color": "#0F766E",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Arial",
+            "color": "#0F766E",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+              "fontSize": 22,
+              "typeface": "Arial",
+              "color": "#0F766E",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fm1gvatk",
+      "id": "12",
       "name": "footer-5",
       "bbox": [
         1184,

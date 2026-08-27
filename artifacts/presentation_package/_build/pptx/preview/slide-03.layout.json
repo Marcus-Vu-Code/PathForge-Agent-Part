@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/s0fspt",
-    "id": "s0fspt",
+    "aid": "sl/h29ua0",
+    "id": "h29ua0",
     "slide": 3,
-    "layoutId": "02fad801-441d-4303-a4b7-88cdd9b48015",
+    "layoutId": "ef0fc100-1766-4760-98cd-f65623f3431b",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+    "masterLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
     "masterLayoutName": "Master",
     "backgroundColor": "#FFFFFF",
     "frame": {
@@ -45,15 +45,15 @@
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "02fad801-441d-4303-a4b7-88cdd9b48015",
+      "id": "ef0fc100-1766-4760-98cd-f65623f3431b",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "parentLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "id": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -64,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/qlsn6p0j",
+      "aid": "sh/lw7ut8z2",
       "id": "1",
       "name": "title",
       "bbox": [
@@ -74,8 +74,8 @@
         86
       ],
       "geometry": "rect",
-      "text": "The live demo proves the complete loop in 90 seconds.",
-      "textPreview": "The live demo proves the complete loop in 90 seconds.",
+      "text": "The live demo follows one user from background to an inspectable plan.",
+      "textPreview": "The live demo follows one user from background to an inspectable plan.",
       "resolvedFontSize": 42,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -94,18 +94,22 @@
         }
       },
       "textLayout": {
-        "lineCount": 1,
+        "lineCount": 2,
         "lines": [
           {
             "index": 1,
-            "text": "The live demo proves the complete loop in 90 seconds."
+            "text": "The live demo follows one user from background to an"
+          },
+          {
+            "index": 2,
+            "text": "inspectable plan."
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "The live demo proves the complete loop in 90 seconds.",
+          "text": "The live demo follows one user from background to an inspectable plan.",
           "resolvedTextStyle": {
             "fontSize": 42,
             "typeface": "Arial",
@@ -116,7 +120,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "The live demo proves the complete loop in 90 seconds.",
+              "text": "The live demo follows one user from background to an inspectable plan.",
               "fontSize": 42,
               "typeface": "Arial",
               "color": "#111111",
@@ -133,50 +137,14 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/do3614zu",
+      "aid": "sh/ytgbidgr",
       "id": "2",
-      "name": "timeline",
-      "bbox": [
-        35,
-        560,
-        1204,
-        1
-      ],
-      "geometry": "rect",
-      "fillColor": "#111111",
-      "lineColor": "#111111",
-      "lineWidth": 0
-    },
-    {
-      "order": 3,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/cnup8zi9",
-      "id": "3",
-      "name": "dot-0",
+      "name": "demo-frame-0",
       "bbox": [
         41,
-        555,
-        11,
-        11
-      ],
-      "geometry": "ellipse",
-      "fillColor": "#111111",
-      "lineColor": "#111111",
-      "lineWidth": 0
-    },
-    {
-      "order": 4,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/zqlo3eh0",
-      "id": "4",
-      "name": "demo-card-0",
-      "bbox": [
-        41,
-        147,
+        157,
         375,
-        380
+        226
       ],
       "geometry": "roundRect",
       "fillColor": "#F2F2F2",
@@ -184,25 +152,119 @@
       "lineWidth": 1
     },
     {
+      "order": 3,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/elkbmxwr",
+      "id": "3",
+      "bbox": [
+        49,
+        165,
+        359,
+        210
+      ],
+      "geometry": "roundRect",
+      "alt": "1. Add evidence: Path Forger application screenshot",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "59b509b1-137b-481d-b9e4-cea23a83d880",
+        "contentType": "image/png",
+        "byteLength": 614240
+      }
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/crytg3yl",
+      "id": "4",
+      "name": "demo-label-0",
+      "bbox": [
+        41,
+        409,
+        220,
+        30
+      ],
+      "geometry": "rect",
+      "text": "BACKGROUND",
+      "textPreview": "BACKGROUND",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#0F766E",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "BACKGROUND"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "BACKGROUND",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#0F766E",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "BACKGROUND",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#0F766E",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/epc7a90f",
+      "aid": "sh/xs7up8z6",
       "id": "5",
       "name": "demo-title-0",
       "bbox": [
-        73,
-        188,
-        311,
-        76
+        41,
+        448,
+        375,
+        46
       ],
       "geometry": "rect",
       "text": "1. Add evidence",
       "textPreview": "1. Add evidence",
-      "resolvedFontSize": 28,
+      "resolvedFontSize": 27,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 28,
+        "fontSize": 27,
         "typeface": "Arial",
         "color": "#111111",
         "bold": true,
@@ -230,7 +292,7 @@
           "index": 1,
           "text": "1. Add evidence",
           "resolvedTextStyle": {
-            "fontSize": 28,
+            "fontSize": 27,
             "typeface": "Arial",
             "color": "#111111",
             "bold": true,
@@ -240,7 +302,7 @@
             {
               "index": 1,
               "text": "1. Add evidence",
-              "fontSize": 28,
+              "fontSize": 27,
               "typeface": "Arial",
               "color": "#111111",
               "bold": true,
@@ -256,22 +318,22 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/1s3654z6",
+      "aid": "sh/apwbetgf",
       "id": "6",
       "name": "demo-body-0",
       "bbox": [
-        73,
-        292,
-        311,
-        172
+        41,
+        511,
+        375,
+        88
       ],
       "geometry": "rect",
-      "text": "Upload a resume or transcript - or answer guided questions when no document is available.",
-      "textPreview": "Upload a resume or transcript - or answer guided questions when no document is available.",
-      "resolvedFontSize": 21,
+      "text": "Upload or guided context becomes a readable background prompt.",
+      "textPreview": "Upload or guided context becomes a readable background prompt.",
+      "resolvedFontSize": 18,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
+        "fontSize": 18,
         "typeface": "Arial",
         "color": "#565D66",
         "alignment": "left",
@@ -285,32 +347,24 @@
         }
       },
       "textLayout": {
-        "lineCount": 4,
+        "lineCount": 2,
         "lines": [
           {
             "index": 1,
-            "text": "Upload a resume or transcript -"
+            "text": "Upload or guided context becomes a"
           },
           {
             "index": 2,
-            "text": "or answer guided questions"
-          },
-          {
-            "index": 3,
-            "text": "when no document is"
-          },
-          {
-            "index": 4,
-            "text": "available."
+            "text": "readable background prompt."
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Upload a resume or transcript - or answer guided questions when no document is available.",
+          "text": "Upload or guided context becomes a readable background prompt.",
           "resolvedTextStyle": {
-            "fontSize": 21,
+            "fontSize": 18,
             "typeface": "Arial",
             "color": "#565D66",
             "alignment": "left"
@@ -318,8 +372,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "Upload a resume or transcript - or answer guided questions when no document is available.",
-              "fontSize": 21,
+              "text": "Upload or guided context becomes a readable background prompt.",
+              "fontSize": 18,
               "typeface": "Arial",
               "color": "#565D66",
               "alignment": "left"
@@ -334,24 +388,67 @@
       "order": 7,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/0rupcjil",
+      "aid": "sh/bqpcnyh0",
       "id": "7",
-      "name": "demo-label-0",
+      "name": "demo-frame-1",
       "bbox": [
-        41,
-        588,
-        272,
-        42
+        452,
+        157,
+        375,
+        226
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/5wrupsvu",
+      "id": "8",
+      "bbox": [
+        460,
+        165,
+        359,
+        210
+      ],
+      "geometry": "roundRect",
+      "alt": "2. Review facts: Path Forger application screenshot",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "07a97167-077c-4ef4-92ac-d62aeebcbbed",
+        "contentType": "image/png",
+        "byteLength": 491412
+      }
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/horu1sza",
+      "id": "9",
+      "name": "demo-label-1",
+      "bbox": [
+        452,
+        409,
+        220,
+        30
       ],
       "geometry": "rect",
-      "text": "INPUT",
-      "textPreview": "INPUT",
-      "resolvedFontSize": 24,
+      "text": "PROFILE",
+      "textPreview": "PROFILE",
+      "resolvedFontSize": 17,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 24,
+        "fontSize": 17,
         "typeface": "Arial",
-        "color": "#111111",
+        "color": "#0F766E",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -368,28 +465,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "INPUT"
+            "text": "PROFILE"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "INPUT",
+          "text": "PROFILE",
           "resolvedTextStyle": {
-            "fontSize": 24,
+            "fontSize": 17,
             "typeface": "Arial",
-            "color": "#111111",
+            "color": "#0F766E",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "INPUT",
-              "fontSize": 24,
+              "text": "PROFILE",
+              "fontSize": 17,
               "typeface": "Arial",
-              "color": "#111111",
+              "color": "#0F766E",
               "bold": true,
               "alignment": "left"
             }
@@ -400,61 +497,25 @@
       "lineWidth": 0
     },
     {
-      "order": 8,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/fuho7a1w",
-      "id": "8",
-      "name": "dot-1",
-      "bbox": [
-        452,
-        555,
-        11,
-        11
-      ],
-      "geometry": "ellipse",
-      "fillColor": "#111111",
-      "lineColor": "#111111",
-      "lineWidth": 0
-    },
-    {
-      "order": 9,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/ut8ny50b",
-      "id": "9",
-      "name": "demo-card-1",
-      "bbox": [
-        452,
-        147,
-        375,
-        380
-      ],
-      "geometry": "roundRect",
-      "fillColor": "#F2F2F2",
-      "lineColor": "#B8BCC4",
-      "lineWidth": 1
-    },
-    {
       "order": 10,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/of2dwbmh",
+      "aid": "sh/x4ba1sr2",
       "id": "10",
       "name": "demo-title-1",
       "bbox": [
-        484,
-        188,
-        311,
-        76
+        452,
+        448,
+        375,
+        46
       ],
       "geometry": "rect",
-      "text": "2. Choose direction",
-      "textPreview": "2. Choose direction",
-      "resolvedFontSize": 28,
+      "text": "2. Review facts",
+      "textPreview": "2. Review facts",
+      "resolvedFontSize": 27,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 28,
+        "fontSize": 27,
         "typeface": "Arial",
         "color": "#111111",
         "bold": true,
@@ -473,16 +534,16 @@
         "lines": [
           {
             "index": 1,
-            "text": "2. Choose direction"
+            "text": "2. Review facts"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "2. Choose direction",
+          "text": "2. Review facts",
           "resolvedTextStyle": {
-            "fontSize": 28,
+            "fontSize": 27,
             "typeface": "Arial",
             "color": "#111111",
             "bold": true,
@@ -491,8 +552,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "2. Choose direction",
-              "fontSize": 28,
+              "text": "2. Review facts",
+              "fontSize": 27,
               "typeface": "Arial",
               "color": "#111111",
               "bold": true,
@@ -508,22 +569,22 @@
       "order": 11,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/pgbepgn2",
+      "aid": "sh/w32tsnah",
       "id": "11",
       "name": "demo-body-1",
       "bbox": [
-        484,
-        292,
-        311,
-        172
+        452,
+        511,
+        375,
+        88
       ],
       "geometry": "rect",
-      "text": "Review the extracted profile, then select a sector, target role, specialization, and timeline.",
-      "textPreview": "Review the extracted profile, then select a sector, target role, specialization, and timeline.",
-      "resolvedFontSize": 21,
+      "text": "The extracted JSON stays editable before the plan is generated.",
+      "textPreview": "The extracted JSON stays editable before the plan is generated.",
+      "resolvedFontSize": 18,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
+        "fontSize": 18,
         "typeface": "Arial",
         "color": "#565D66",
         "alignment": "left",
@@ -537,32 +598,24 @@
         }
       },
       "textLayout": {
-        "lineCount": 4,
+        "lineCount": 2,
         "lines": [
           {
             "index": 1,
-            "text": "Review the extracted profile,"
+            "text": "The extracted JSON stays editable before"
           },
           {
             "index": 2,
-            "text": "then select a sector, target"
-          },
-          {
-            "index": 3,
-            "text": "role, specialization, and"
-          },
-          {
-            "index": 4,
-            "text": "timeline."
+            "text": "the plan is generated."
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Review the extracted profile, then select a sector, target role, specialization, and timeline.",
+          "text": "The extracted JSON stays editable before the plan is generated.",
           "resolvedTextStyle": {
-            "fontSize": 21,
+            "fontSize": 18,
             "typeface": "Arial",
             "color": "#565D66",
             "alignment": "left"
@@ -570,8 +623,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "Review the extracted profile, then select a sector, target role, specialization, and timeline.",
-              "fontSize": 21,
+              "text": "The extracted JSON stays editable before the plan is generated.",
+              "fontSize": 18,
               "typeface": "Arial",
               "color": "#565D66",
               "alignment": "left"
@@ -586,24 +639,67 @@
       "order": 12,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2d0vu14r",
+      "aid": "sh/b2tszi9c",
       "id": "12",
-      "name": "demo-label-1",
+      "name": "demo-frame-2",
       "bbox": [
-        452,
-        588,
-        272,
-        42
+        865,
+        157,
+        375,
+        226
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#EAF5FB",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/tofqxcne",
+      "id": "13",
+      "bbox": [
+        873,
+        165,
+        359,
+        210
+      ],
+      "geometry": "roundRect",
+      "alt": "3. Inspect the plan: Path Forger application screenshot",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "753fe4b0-8ee6-45fe-958f-3bdca4ac3ff3",
+        "contentType": "image/png",
+        "byteLength": 483076
+      }
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/90baxsr6",
+      "id": "14",
+      "name": "demo-label-2",
+      "bbox": [
+        865,
+        409,
+        220,
+        30
       ],
       "geometry": "rect",
-      "text": "GOAL",
-      "textPreview": "GOAL",
-      "resolvedFontSize": 24,
+      "text": "RESULTS",
+      "textPreview": "RESULTS",
+      "resolvedFontSize": 17,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 24,
+        "fontSize": 17,
         "typeface": "Arial",
-        "color": "#111111",
+        "color": "#3D8DFF",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -620,28 +716,28 @@
         "lines": [
           {
             "index": 1,
-            "text": "GOAL"
+            "text": "RESULTS"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "GOAL",
+          "text": "RESULTS",
           "resolvedTextStyle": {
-            "fontSize": 24,
+            "fontSize": 17,
             "typeface": "Arial",
-            "color": "#111111",
+            "color": "#3D8DFF",
             "bold": true,
             "alignment": "left"
           },
           "runs": [
             {
               "index": 1,
-              "text": "GOAL",
-              "fontSize": 24,
+              "text": "RESULTS",
+              "fontSize": 17,
               "typeface": "Arial",
-              "color": "#111111",
+              "color": "#3D8DFF",
               "bold": true,
               "alignment": "left"
             }
@@ -652,63 +748,27 @@
       "lineWidth": 0
     },
     {
-      "order": 13,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/3etwn65w",
-      "id": "13",
-      "name": "dot-2",
-      "bbox": [
-        865,
-        555,
-        11,
-        11
-      ],
-      "geometry": "ellipse",
-      "fillColor": "#111111",
-      "lineColor": "#111111",
-      "lineWidth": 0
-    },
-    {
-      "order": 14,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/cj2d0bmt",
-      "id": "14",
-      "name": "demo-card-2",
-      "bbox": [
-        865,
-        147,
-        375,
-        380
-      ],
-      "geometry": "roundRect",
-      "fillColor": "#EAF5FB",
-      "lineColor": "#B8BCC4",
-      "lineWidth": 1
-    },
-    {
       "order": 15,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/dkbetgne",
+      "aid": "sh/oz2tonal",
       "id": "15",
       "name": "demo-title-2",
       "bbox": [
-        897,
-        188,
-        311,
-        76
+        865,
+        448,
+        375,
+        46
       ],
       "geometry": "rect",
       "text": "3. Inspect the plan",
       "textPreview": "3. Inspect the plan",
-      "resolvedFontSize": 28,
+      "resolvedFontSize": 27,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 28,
+        "fontSize": 27,
         "typeface": "Arial",
-        "color": "#3D8DFF",
+        "color": "#111111",
         "bold": true,
         "alignment": "left",
         "verticalAlignment": "top",
@@ -734,9 +794,9 @@
           "index": 1,
           "text": "3. Inspect the plan",
           "resolvedTextStyle": {
-            "fontSize": 28,
+            "fontSize": 27,
             "typeface": "Arial",
-            "color": "#3D8DFF",
+            "color": "#111111",
             "bold": true,
             "alignment": "left"
           },
@@ -744,9 +804,9 @@
             {
               "index": 1,
               "text": "3. Inspect the plan",
-              "fontSize": 28,
+              "fontSize": 27,
               "typeface": "Arial",
-              "color": "#3D8DFF",
+              "color": "#111111",
               "bold": true,
               "alignment": "left"
             }
@@ -760,22 +820,22 @@
       "order": 16,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/qhkvyl4n",
+      "aid": "sh/nytsvi90",
       "id": "16",
       "name": "demo-body-2",
       "bbox": [
-        897,
-        292,
-        311,
-        172
+        865,
+        511,
+        375,
+        88
       ],
       "geometry": "rect",
-      "text": "Show one recommended path, one ranked gap, one project, and the evidence or warning behind it.",
-      "textPreview": "Show one recommended path, one ranked gap, one project, and the evidence or warning behind it.",
-      "resolvedFontSize": 21,
+      "text": "Results connect requirements, recommended paths, evidence, and trace.",
+      "textPreview": "Results connect requirements, recommended paths, evidence, and trace.",
+      "resolvedFontSize": 18,
       "resolvedTextStyle": {
         "anchor": 1,
-        "fontSize": 21,
+        "fontSize": 18,
         "typeface": "Arial",
         "color": "#565D66",
         "alignment": "left",
@@ -789,32 +849,24 @@
         }
       },
       "textLayout": {
-        "lineCount": 4,
+        "lineCount": 2,
         "lines": [
           {
             "index": 1,
-            "text": "Show one recommended path,"
+            "text": "Results connect requirements,"
           },
           {
             "index": 2,
-            "text": "one ranked gap, one project,"
-          },
-          {
-            "index": 3,
-            "text": "and the evidence or warning"
-          },
-          {
-            "index": 4,
-            "text": "behind it."
+            "text": "recommended paths, evidence, and trace."
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Show one recommended path, one ranked gap, one project, and the evidence or warning behind it.",
+          "text": "Results connect requirements, recommended paths, evidence, and trace.",
           "resolvedTextStyle": {
-            "fontSize": 21,
+            "fontSize": 18,
             "typeface": "Arial",
             "color": "#565D66",
             "alignment": "left"
@@ -822,8 +874,8 @@
           "runs": [
             {
               "index": 1,
-              "text": "Show one recommended path, one ranked gap, one project, and the evidence or warning behind it.",
-              "fontSize": 21,
+              "text": "Results connect requirements, recommended paths, evidence, and trace.",
+              "fontSize": 18,
               "typeface": "Arial",
               "color": "#565D66",
               "alignment": "left"
@@ -838,77 +890,8 @@
       "order": 17,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/bitwr658",
+      "aid": "sh/2x0bmdsf",
       "id": "17",
-      "name": "demo-label-2",
-      "bbox": [
-        865,
-        588,
-        272,
-        42
-      ],
-      "geometry": "rect",
-      "text": "OUTPUT",
-      "textPreview": "OUTPUT",
-      "resolvedFontSize": 24,
-      "resolvedTextStyle": {
-        "anchor": 1,
-        "fontSize": 24,
-        "typeface": "Arial",
-        "color": "#3D8DFF",
-        "bold": true,
-        "alignment": "left",
-        "verticalAlignment": "top",
-        "wrap": "square",
-        "insets": {
-          "top": 4.8,
-          "right": 9.6,
-          "bottom": 4.8,
-          "left": 9.6
-        }
-      },
-      "textLayout": {
-        "lineCount": 1,
-        "lines": [
-          {
-            "index": 1,
-            "text": "OUTPUT"
-          }
-        ]
-      },
-      "paragraphs": [
-        {
-          "index": 1,
-          "text": "OUTPUT",
-          "resolvedTextStyle": {
-            "fontSize": 24,
-            "typeface": "Arial",
-            "color": "#3D8DFF",
-            "bold": true,
-            "alignment": "left"
-          },
-          "runs": [
-            {
-              "index": 1,
-              "text": "OUTPUT",
-              "fontSize": 24,
-              "typeface": "Arial",
-              "color": "#3D8DFF",
-              "bold": true,
-              "alignment": "left"
-            }
-          ],
-          "marginLeft": 0
-        }
-      ],
-      "lineWidth": 0
-    },
-    {
-      "order": 18,
-      "kind": "shape",
-      "scope": "slide",
-      "aid": "sh/snidorm9",
-      "id": "18",
       "name": "footer-3",
       "bbox": [
         1184,

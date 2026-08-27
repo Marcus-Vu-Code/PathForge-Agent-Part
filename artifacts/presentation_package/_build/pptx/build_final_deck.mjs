@@ -4,9 +4,14 @@ import { Presentation, PresentationFile } from "@oai/artifact-tool";
 
 const ROOT = "C:/Users/marcu/PathForge-Agent-Part";
 const BUILD = path.join(ROOT, "artifacts/presentation_package/_build/pptx");
-const OUT = path.join(ROOT, "artifacts/presentation_package/Career_GPS_AI_Final_Presentation.pptx");
+const OUT = path.join(ROOT, "artifacts/presentation_package/Path_Forger_Final_Presentation.pptx");
 const HERO = path.join(ROOT, "artifacts/presentation_package/assets/pathforge_evidence_path_hero.png");
 const PREVIEW = path.join(BUILD, "preview");
+const SCREENSHOTS = {
+  background: "C:/Users/marcu/Screenshots/Path Forger (AGS.Tech)/Resume uploaded and parse to description.png",
+  profile: "C:/Users/marcu/Screenshots/Path Forger (AGS.Tech)/parse to json.png",
+  results: "C:/Users/marcu/Screenshots/Path Forger (AGS.Tech)/Agent output.png",
+};
 
 const C = {
   ink: "#111111",
@@ -106,7 +111,7 @@ async function addCover(presentation) {
     bold: true,
     color: C.teal,
   });
-  addText(slide, "cover-title", "Career GPS AI", { left: 41, top: 104, width: 570, height: 86 }, {
+  addText(slide, "cover-title", "Path Forger", { left: 41, top: 104, width: 570, height: 86 }, {
     fontSize: 62,
     bold: true,
   });
@@ -130,14 +135,14 @@ async function addCover(presentation) {
     position: { left: 658, top: 42, width: 582, height: 588 },
   });
   addFooter(slide, 1);
-  setNotes(slide, `0:00-0:35
+  setNotes(slide, `0:00-0:25
 
 Opening script:
-"Career advice is everywhere, but most of it starts with assumptions. Career GPS AI starts with evidence. It takes the messy material people already have - resumes, transcripts, project notes, or guided answers - and turns it into a career plan they can inspect and act on."
+"Career advice is everywhere, but most of it starts with assumptions. Path Forger starts with evidence. It turns resumes, transcripts, project notes, or guided answers into a career plan people can inspect and act on."
 
 Delivery cue: Pause after "starts with evidence." Do not explain the architecture yet.`, [
-    "intern_capstone_project_final.pdf - required five-minute pitch and final deliverables",
-    "frontend/src/main.tsx - current Career GPS AI product positioning",
+    "Updated demo instructions - seven minutes total, approximately five minutes for the live demo, remaining time for Q&A",
+    "frontend/src/main.tsx - current Path Forger product positioning",
     "Generated cover visual: original AI-generated asset created for this deck",
   ]);
 }
@@ -149,7 +154,7 @@ function addProblemSolution(presentation) {
     fontSize: 43,
     bold: true,
   });
-  addText(slide, "lead", "Most tools stop at generic suggestions. Career GPS AI keeps the user's facts, the reasoning trail, and the next proof-building steps visible.", { left: 42, top: 126, width: 1160, height: 126 }, {
+  addText(slide, "lead", "Most tools stop at generic suggestions. Path Forger keeps the user's facts, the reasoning trail, and the next proof-building steps visible.", { left: 42, top: 126, width: 1160, height: 126 }, {
     fontSize: 23,
     color: C.muted,
   });
@@ -162,9 +167,9 @@ function addProblemSolution(presentation) {
   addText(slide, "solution-title", "The product", { left: 688, top: 354, width: 520, height: 42 }, { fontSize: 30, bold: true, color: C.teal });
   addText(slide, "solution-body", "Inspectable profile\nRanked skill gaps\nProjects, actions, evidence, and warnings", { left: 688, top: 506, width: 520, height: 114 }, { fontSize: 21 });
   addFooter(slide, 2);
-  setNotes(slide, `0:35-1:10
+  setNotes(slide, `0:25-0:45
 
-"The problem is not a lack of AI-generated advice. The problem is trust. Users need to see what the system learned from their background, what is missing for a target role, and what they can build next to prove readiness. Career GPS AI makes that chain inspectable instead of hiding it behind one answer."
+"The problem is not a lack of AI-generated advice. The problem is trust. During the demo, watch for three things: an editable profile, role-specific gaps and projects, and the evidence or warning behind the plan."
 
 Scoring emphasis: originality and usefulness.`, [
     "Intern_Capstone_Scoring_Sheet.pdf - originality and usefulness criteria",
@@ -173,10 +178,10 @@ Scoring emphasis: originality and usefulness.`, [
   ]);
 }
 
-function addDemo(presentation) {
+async function addDemo(presentation) {
   const slide = presentation.slides.add();
   slide.background.fill = C.white;
-  addText(slide, "title", "The live demo proves the complete loop in 90 seconds.", { left: 41, top: 36, width: 1197, height: 86 }, {
+  addText(slide, "title", "The live demo follows one user from background to an inspectable plan.", { left: 41, top: 36, width: 1197, height: 86 }, {
     fontSize: 42,
     bold: true,
   });
@@ -184,47 +189,61 @@ function addDemo(presentation) {
     {
       left: 41,
       title: "1. Add evidence",
-      body: "Upload a resume or transcript - or answer guided questions when no document is available.",
-      label: "INPUT",
+      body: "Upload or guided context becomes a readable background prompt.",
+      label: "BACKGROUND",
+      screenshot: SCREENSHOTS.background,
     },
     {
       left: 452,
-      title: "2. Choose direction",
-      body: "Review the extracted profile, then select a sector, target role, specialization, and timeline.",
-      label: "GOAL",
+      title: "2. Review facts",
+      body: "The extracted JSON stays editable before the plan is generated.",
+      label: "PROFILE",
+      screenshot: SCREENSHOTS.profile,
     },
     {
       left: 865,
       title: "3. Inspect the plan",
-      body: "Show one recommended path, one ranked gap, one project, and the evidence or warning behind it.",
-      label: "OUTPUT",
+      body: "Results connect requirements, recommended paths, evidence, and trace.",
+      label: "RESULTS",
+      screenshot: SCREENSHOTS.results,
     },
   ];
-  addRule(slide, "timeline", 35, 560, 1204, C.ink, 1);
-  cards.forEach((card, i) => {
-    slide.shapes.add({ geometry: "ellipse", name: `dot-${i}`, position: { left: card.left, top: 555, width: 11, height: 11 }, fill: C.ink, line: { style: "solid", fill: C.ink, width: 0 } });
-    addPanel(slide, `demo-card-${i}`, { left: card.left, top: 147, width: 375, height: 380 }, i === 2 ? C.panelBlue : C.panel);
-    addText(slide, `demo-title-${i}`, card.title, { left: card.left + 32, top: 188, width: 311, height: 76 }, { fontSize: 28, bold: true, color: i === 2 ? C.accent : C.ink });
-    addText(slide, `demo-body-${i}`, card.body, { left: card.left + 32, top: 292, width: 311, height: 172 }, { fontSize: 21, color: C.muted });
-    addText(slide, `demo-label-${i}`, card.label, { left: card.left, top: 588, width: 272, height: 42 }, { fontSize: 24, bold: true, color: i === 2 ? C.accent : C.ink });
-  });
+  for (const [i, card] of cards.entries()) {
+    addPanel(slide, `demo-frame-${i}`, { left: card.left, top: 157, width: 375, height: 226 }, i === 2 ? C.panelBlue : C.panel);
+    const bytes = await fs.readFile(card.screenshot);
+    slide.images.add({
+      blob: bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+      contentType: "image/png",
+      alt: `${card.title}: Path Forger application screenshot`,
+      fit: "cover",
+      geometry: "roundRect",
+      position: { left: card.left + 8, top: 165, width: 359, height: 210 },
+    });
+    addText(slide, `demo-label-${i}`, card.label, { left: card.left, top: 409, width: 220, height: 30 }, { fontSize: 17, bold: true, color: i === 2 ? C.accent : C.teal });
+    addText(slide, `demo-title-${i}`, card.title, { left: card.left, top: 448, width: 375, height: 46 }, { fontSize: 27, bold: true, color: C.ink });
+    addText(slide, `demo-body-${i}`, card.body, { left: card.left, top: 511, width: 375, height: 88 }, { fontSize: 18, color: C.muted });
+  }
   addFooter(slide, 3);
-  setNotes(slide, `1:10-2:40 - LIVE DEMO
+  setNotes(slide, `0:45-5:45 - LIVE DEMO
 
 Use a short synthetic background, not a real resume.
 
-1. In Background, paste: "High school senior. Built a Python budgeting app and a robotics team website. Enjoys data, design, and helping classmates. Wants a remote-friendly technology career."
-2. Click Extract Profile. Say: "The profile is editable before the agent reasons from it."
-3. Choose Technology -> Data Analyst (or another configured role) and a realistic timeline.
-4. Click Run Agent.
-5. Show exactly four things: one path, the top gap, one project recommendation, and Trace or Warnings.
+1. Start on Overview and point out the focused page navigation: Student, Background, Profile, Goal, Results, and Review.
+2. Open Student and show how a K-12 learner can create usable context without a resume.
+3. In Background, paste: "High school senior. Built a Python budgeting app and a robotics team website. Enjoys data, design, and helping classmates. Wants a remote-friendly technology career."
+4. Click Extract Profile. Say: "The profile is editable before the agent reasons from it."
+5. Choose Technology -> Data Analyst (or another configured role), a specialization, and a realistic timeline.
+6. Click Run Agent. The app routes directly to the dedicated Results page.
+7. Show exactly five things: recommended path, top gap, one project, evidence or warning, and provider trace.
+8. Open Review briefly to show the feedback loop, then return to slide 4.
 
-Bridge: "Now that you have seen the user experience, here is why the output is more dependable than a single prompt."
+Bridge: "That is the complete loop: context, reviewed facts, a goal, an evidence-grounded plan, and a feedback path."
 
 Fallback if the live API is slow: switch to the configured offline demo provider and repeat the same flow.`, [
-    "frontend/src/main.tsx - current input, goal, output, provider, and trace controls",
+    "frontend/src/main.tsx - page-based workflow, K-12 builder, input, goal, results, review, provider, and trace controls",
     "README.md - fake/offline provider mode and supported provider modes",
     "intern_capstone_project_final.pdf - presentation requires a working-app demo",
+    "User-provided Path Forger screenshots - Background, Profile, and Results pages",
   ]);
 }
 
@@ -265,8 +284,8 @@ function addArchitecture(presentation) {
     bold: true,
     color: C.teal,
   });
-  addFooter(slide, 4);
-  setNotes(slide, `2:40-3:30
+  addFooter(slide, 5);
+  setNotes(slide, `Q&A BACKUP - open only if asked about architecture or reliability.
 
 "The application does not ask one model to do everything. First, an extractor creates a typed profile. Second, deterministic tools calculate evidence, gaps, projects, and actions. Third, a reasoner synthesizes the plan, and a verifier checks what should be shown as a warning or caveat."
 
@@ -299,8 +318,8 @@ function addAiProwess(presentation) {
   addPanel(slide, "runtime-panel", { left: 657, top: 326, width: 581, height: 150 }, C.panelBlue, "#C7DFF2");
   addText(slide, "runtime-title", "Runtime intelligence", { left: 688, top: 354, width: 520, height: 42 }, { fontSize: 29, bold: true, color: C.accent });
   addText(slide, "runtime-body", "Gemini / OpenAI / Qwen behind protocols\nSchema-bound JSON\nEvidence, warnings, trace + fallback", { left: 688, top: 506, width: 520, height: 114 }, { fontSize: 20 });
-  addFooter(slide, 5);
-  setNotes(slide, `3:30-4:25
+  addFooter(slide, 6);
+  setNotes(slide, `Q&A BACKUP - open only if asked about AI usage, testing, or provider choices.
 
 "The capstone required two development agents, so I separated their jobs. Claude Code was used for architecture and review. OpenAI Codex was used for focused implementation, debugging, tests, and documentation. I stayed responsible for the product decisions and what actually shipped."
 
@@ -319,7 +338,7 @@ Important: If your actual agent split differed, update this slide and AI_PROMPTS
 function addClose(presentation) {
   const slide = presentation.slides.add();
   slide.background.fill = C.white;
-  addText(slide, "close-kicker", "WHAT TO REMEMBER", { left: 41, top: 42, width: 330, height: 48 }, {
+  addText(slide, "close-kicker", "QUESTIONS", { left: 41, top: 42, width: 330, height: 48 }, {
     fontSize: 24,
     bold: true,
     color: C.teal,
@@ -333,16 +352,16 @@ function addClose(presentation) {
     fontSize: 28,
     color: C.muted,
   });
-  addText(slide, "close-brand", "Career GPS AI", { left: 840, top: 525, width: 398, height: 58 }, {
+  addText(slide, "close-brand", "Path Forger", { left: 840, top: 525, width: 398, height: 58 }, {
     fontSize: 30,
     bold: true,
     alignment: "right",
   });
-  addFooter(slide, 6);
-  setNotes(slide, `4:25-5:00
+  addFooter(slide, 4);
+  setNotes(slide, `5:45-7:00 - CLOSE AND Q&A
 
 Closing script:
-"Career GPS AI is useful because it does more than produce an answer. It shows the profile it extracted, the evidence it used, the gaps it found, and the projects and actions that can close those gaps. A good career plan should show its evidence, not just its advice."
+"Path Forger is useful because it does more than produce an answer. It shows the profile it extracted, the evidence it used, the gaps it found, and the projects and actions that can close those gaps. A good career plan should show its evidence, not just its advice."
 
 Final sentence: "That is the difference between a chatbot response and a plan someone can actually critique, improve, and follow."
 
@@ -361,10 +380,10 @@ async function main() {
   const presentation = Presentation.create({ slideSize: { width: 1280, height: 720 } });
   await addCover(presentation);
   addProblemSolution(presentation);
-  addDemo(presentation);
+  await addDemo(presentation);
+  addClose(presentation);
   addArchitecture(presentation);
   addAiProwess(presentation);
-  addClose(presentation);
 
   for (const [index, slide] of presentation.slides.items.entries()) {
     const stem = `slide-${String(index + 1).padStart(2, "0")}`;

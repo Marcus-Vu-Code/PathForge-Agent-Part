@@ -10,7 +10,7 @@ from reportlab.pdfgen import canvas
 
 
 ROOT = Path(r"C:\Users\marcu\PathForge-Agent-Part")
-OUT = ROOT / "artifacts" / "presentation_package" / "Career_GPS_AI_Printable_Note_Cards.pdf"
+OUT = ROOT / "artifacts" / "presentation_package" / "Path_Forger_Printable_Note_Cards.pdf"
 
 PAGE_W, PAGE_H = 5 * inch, 3 * inch
 MARGIN_X = 0.10 * inch
@@ -30,45 +30,45 @@ RULE = colors.HexColor("#B8BCC4")
 CARDS = [
     {
         "slide": "1",
-        "time": "0:00-0:35",
+        "time": "0:00-0:25",
         "title": "Open with evidence",
-        "say": "Career advice is everywhere, but most of it starts with assumptions. Career GPS AI starts with evidence. It turns resumes, transcripts, project notes, or guided answers into a career plan users can inspect and act on.",
+        "say": "Career advice is everywhere, but most of it starts with assumptions. Path Forger starts with evidence. It turns resumes, transcripts, project notes, or guided answers into a career plan people can inspect and act on.",
         "cues": ["Pause after: starts with evidence.", "Do not explain architecture yet."],
     },
     {
         "slide": "2",
-        "time": "0:35-1:10",
-        "title": "Define the difference",
-        "say": "The problem is not a lack of AI advice. The problem is trust. Users need to see what the system learned, what is missing for a target role, and what they can build next to prove readiness.",
-        "cues": ["Point: problem -> product.", "Transition: Let me show you the loop."],
+        "time": "0:25-0:45",
+        "title": "Tell them what to watch",
+        "say": "The problem is trust. During the demo, watch for three things: an editable profile, role-specific gaps and projects, and the evidence or warning behind the plan.",
+        "cues": ["Keep this to 20 seconds.", "Transition: Let me show you the loop."],
     },
     {
         "slide": "3",
-        "time": "1:10-2:40",
-        "title": "Run the 90-second demo",
-        "say": "Use a synthetic background. Extract the editable profile, choose a direction, run the agent, then show exactly one recommended path, one top gap, one project, and one trace or warning.",
-        "cues": ["Do not narrate loading.", "Stop the demo at 2:40.", "Bridge: Why is this dependable?"],
+        "time": "0:45-3:15",
+        "title": "Demo: context to run",
+        "say": "Show Overview and Student briefly. Apply the synthetic student context, review the Background page, extract the editable Profile, then choose Technology, Data Analyst, a specialization, and a realistic timeline. Run the agent.",
+        "cues": ["Narrate decisions, not clicks.", "Profile visible by 2:15.", "Agent running by 3:15."],
+    },
+    {
+        "slide": "3",
+        "time": "3:15-5:45",
+        "title": "Demo: inspect the proof",
+        "say": "On Results, show one recommended path, the top ranked gap, one portfolio project, supporting evidence or warning, and the provider trace. Open Review briefly, then return to slide 4.",
+        "cues": ["Do not read every result.", "Trace visible by 5:15.", "Return to deck at 5:45."],
     },
     {
         "slide": "4",
-        "time": "2:40-3:30",
-        "title": "Explain reliability",
-        "say": "First, typed extraction creates a reviewable profile. Second, five deterministic tools calculate evidence, gaps, projects, and actions. Third, the reasoner and verifier preserve warnings, caveats, latency, fallback events, and routing trace.",
-        "cues": ["Use the three columns as rhythm.", "Provider-neutral: Gemini, OpenAI, Qwen, local, offline."],
+        "time": "5:45-7:00",
+        "title": "Close and take questions",
+        "say": "Path Forger shows the profile, evidence, gaps, projects, actions, warnings, and trace behind a plan. A good career plan should show its evidence, not just its advice. I am happy to answer questions.",
+        "cues": ["Slow down on the thesis.", "Use backup slides only if asked."],
     },
     {
-        "slide": "5",
-        "time": "3:30-4:25",
-        "title": "Prove AI and technical depth",
-        "say": "Claude Code supported architecture and review. OpenAI Codex supported implementation, debugging, tests, and documentation. Runtime models return the same schema-bound structures behind provider protocols. Human decisions controlled what shipped.",
-        "cues": ["Name both agents clearly.", "Verify this matches your real workflow."],
-    },
-    {
-        "slide": "6",
-        "time": "4:25-5:00",
-        "title": "Close on the thesis",
-        "say": "Career GPS AI shows the profile, evidence, gaps, projects, actions, and warnings behind a plan. A good career plan should show its evidence, not just its advice. That is the difference between a chatbot response and a plan someone can critique, improve, and follow.",
-        "cues": ["Slow down on the thesis.", "Stop. Look up. Invite questions."],
+        "slide": "5-6",
+        "time": "Q&A BACKUP",
+        "title": "Technical answer bank",
+        "say": "Architecture: typed extraction, deterministic tools, then reasoner and verifier. Provider-neutral protocols support Gemini, OpenAI, Qwen, local HTTP, and offline demo. AI workflow: Claude Code for architecture/review; Codex for implementation/tests/docs; human approval for what shipped.",
+        "cues": ["Answer the question first.", "Then open only the relevant backup slide."],
     },
 ]
 
@@ -136,8 +136,8 @@ def draw_card(c, card, x, y, w, h, accent):
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     c = canvas.Canvas(str(OUT), pagesize=(PAGE_W, PAGE_H))
-    c.setTitle("Career GPS AI Printable Note Cards")
-    c.setAuthor("Career GPS AI presentation package")
+    c.setTitle("Path Forger Printable Note Cards")
+    c.setAuthor("Path Forger presentation package")
     for page_index, card in enumerate(CARDS):
         draw_card(c, card, MARGIN_X, MARGIN_Y, CARD_W, CARD_H, TEAL if page_index % 2 == 0 else BLUE)
         c.showPage()

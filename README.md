@@ -1,6 +1,6 @@
-# PathForge AI
+# Path Forger
 
-PathForge AI is a career-navigation website that turns a user's background and career goal into a typed, evidence-grounded career plan. It defaults to a Google API first mode that tries Gemini, then OpenAI when configured, then the deterministic offline demo fallback. It also has an HTTP contract for a future local multimodal/MoLE service.
+Path Forger is a page-based career-navigation website that turns a user's background and career goal into a typed, evidence-grounded career plan. The current workflow includes dedicated Overview, Student, Background, Profile, Goal, Results, and Review pages, including a K-12 profile builder for users who do not yet have a conventional resume. It defaults to a Google API first mode that tries Gemini, then OpenAI when configured, then the deterministic offline demo fallback. It also has an HTTP contract for a future local multimodal/MoLE service.
 
 ## Architecture
 
@@ -261,13 +261,13 @@ If this prints `False` or `+cpu`, Qwen is running on CPU even if `nvidia-smi` se
 .\.venv\Scripts\python.exe -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 ```
 
-Qwen can be slow on large documents. By default, PathForge sends only the first 12,000 characters of an uploaded document to Qwen background extraction:
+Qwen can be slow on large documents. By default, Path Forger sends only the first 12,000 characters of an uploaded document to Qwen background extraction:
 
 ```powershell
 $env:QWEN_MAX_INPUT_CHARS="12000"
 ```
 
-PathForge also keeps Qwen background intake fast by default:
+Path Forger also keeps Qwen background intake fast by default:
 
 ```powershell
 $env:QWEN_FAST_BACKGROUND_EXTRACTION="true"
@@ -300,7 +300,7 @@ The runner captures schema success, verifier warnings, evidence coverage, latenc
 
 ## Known Limitations
 
-- PDF parsing is intentionally rejected in the MVP endpoint; paste extracted text or add a vetted parser before accepting real PDFs.
+- PDF parsing uses `pypdf` text extraction and works best with text-based PDFs; scanned PDFs still need OCR before upload.
 - Deterministic role evidence is a fixture in fake/local tests. OpenAI mode can enrich plans with hosted web search citations.
 - Gemini is integrated through Google's OpenAI-compatible endpoint; provider-specific Gemini tools such as Google Search grounding are not wired yet.
 - Qwen local inference depends on local hardware and the installed `transformers`/`torch` stack. The first run downloads model weights from Hugging Face.

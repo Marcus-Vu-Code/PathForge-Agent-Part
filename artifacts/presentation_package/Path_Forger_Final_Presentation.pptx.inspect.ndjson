@@ -1,3 +1,6 @@
+{"kind":"deck","id":"pr/2s2x2j","name":"Deck"}
+{"kind":"layout","layoutId":"1965ab99-5b04-4ae9-a328-2fd2158c8857","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"ef0fc100-1766-4760-98cd-f65623f3431b","name":"Title Slide","type":"title"}
 {"kind":"slide","id":"sl/jvtusz","slide":1,"title":"PATHFORGE CAPSTONE  /  AI SUMMER SHOWDOWN","textShapes":5}
 {"kind":"textbox","id":"sh/g3ax0ve5","slide":1,"name":"cover-kicker","text":"PATHFORGE CAPSTONE  /  AI SUMMER SHOWDOWN","textPreview":"PATHFORGE CAPSTONE  /  AI SUMMER SHOWDOWN","textChars":41,"textLines":1,"bbox":[41,38,570,32]}
 {"kind":"textbox","id":"sh/f21wrqxk","slide":1,"name":"cover-title","text":"Path Forger","textPreview":"Path Forger","textChars":11,"textLines":1,"bbox":[41,104,570,86]}

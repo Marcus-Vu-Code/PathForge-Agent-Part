@@ -1,4 +1,4 @@
-# Career GPS AI (PathForge) - AI Prompt and Agent Log
+# Path Forger - AI Prompt and Agent Log
 
 This file documents how AI was used to develop the capstone and how the finished application calls language models. It is written for project review and presentation use. Do not add API keys, real resumes, transcripts, or private user data.
 
@@ -13,7 +13,7 @@ The agents were used as junior collaborators. Product decisions, architecture ow
 
 ## 2. Runtime LLM integration
 
-Career GPS AI integrates LLMs directly through provider implementations behind two protocols:
+Path Forger integrates LLMs directly through provider implementations behind two protocols:
 
 - `BackgroundExtractor`: converts uploaded or pasted evidence into a typed career profile.
 - `CareerReasoner`: combines the profile, career goal, deterministic tool outputs, and evidence into a typed career plan.
@@ -108,7 +108,7 @@ Review Notes
 
 ## 5. Guided intake questions
 
-The app can build useful background evidence without requiring a resume:
+The page-based app can build useful background evidence without requiring a resume:
 
 1. What are you doing now?
 2. What school, training, courses, certifications, or self-study have you completed?
@@ -118,6 +118,8 @@ The app can build useful background evidence without requiring a resume:
 6. What kind of work, industries, or problems are you interested in?
 7. What should the plan account for?
 8. What else should the agent know about you?
+
+The dedicated Student page also turns K-12 school level, subjects, interests, strengths, support needs, time availability, career curiosity, and project preferences into planner-ready background context. Overview, Student, Background, Profile, Goal, Results, and Review pages keep each stage focused and route the user forward after extraction and planning.
 
 ## 6. Prompt-design decisions
 
@@ -145,4 +147,3 @@ python backend/scripts/evaluate.py --provider fake --output backend/evaluation/r
 - Do not claim a skill unless the profile contains supporting evidence.
 - Treat model output as a draft plan, not a guaranteed career outcome.
 - Keep warnings, caveats, evidence, provider, and fallback trace visible.
-

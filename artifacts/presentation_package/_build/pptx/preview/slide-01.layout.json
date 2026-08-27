@@ -2,13 +2,13 @@
   "schema": "openai.presentation.layout/v4",
   "unit": "px",
   "slide": {
-    "aid": "sl/vnq0kh",
-    "id": "vnq0kh",
+    "aid": "sl/jvtusz",
+    "id": "jvtusz",
     "slide": 1,
-    "layoutId": "02fad801-441d-4303-a4b7-88cdd9b48015",
+    "layoutId": "ef0fc100-1766-4760-98cd-f65623f3431b",
     "layoutName": "Title Slide",
     "layoutType": "title",
-    "masterLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+    "masterLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
     "masterLayoutName": "Master",
     "backgroundColor": "#FFFFFF",
     "frame": {
@@ -45,15 +45,15 @@
   "inheritedLayers": [
     {
       "scope": "layout",
-      "id": "02fad801-441d-4303-a4b7-88cdd9b48015",
+      "id": "ef0fc100-1766-4760-98cd-f65623f3431b",
       "name": "Title Slide",
       "type": "title",
-      "parentLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "parentLayoutId": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "elements": []
     },
     {
       "scope": "master",
-      "id": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "id": "1965ab99-5b04-4ae9-a328-2fd2158c8857",
       "name": "Master",
       "type": "master",
       "elements": []
@@ -64,7 +64,7 @@
       "order": 1,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/4f2pwna5",
+      "aid": "sh/g3ax0ve5",
       "id": "1",
       "name": "cover-kicker",
       "bbox": [
@@ -133,7 +133,7 @@
       "order": 2,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/3e9o32tk",
+      "aid": "sh/f21wrqxk",
       "id": "2",
       "name": "cover-title",
       "bbox": [
@@ -143,8 +143,8 @@
         86
       ],
       "geometry": "rect",
-      "text": "Career GPS AI",
-      "textPreview": "Career GPS AI",
+      "text": "Path Forger",
+      "textPreview": "Path Forger",
       "resolvedFontSize": 62,
       "resolvedTextStyle": {
         "anchor": 1,
@@ -167,14 +167,14 @@
         "lines": [
           {
             "index": 1,
-            "text": "Career GPS AI"
+            "text": "Path Forger"
           }
         ]
       },
       "paragraphs": [
         {
           "index": 1,
-          "text": "Career GPS AI",
+          "text": "Path Forger",
           "resolvedTextStyle": {
             "fontSize": 62,
             "typeface": "Arial",
@@ -185,7 +185,7 @@
           "runs": [
             {
               "index": 1,
-              "text": "Career GPS AI",
+              "text": "Path Forger",
               "fontSize": 62,
               "typeface": "Arial",
               "color": "#111111",
@@ -202,7 +202,7 @@
       "order": 3,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/2d07uxsz",
+      "aid": "sh/u1sfylwz",
       "id": "3",
       "name": "cover-body",
       "bbox": [
@@ -276,7 +276,7 @@
       "order": 4,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/d4b69cbm",
+      "aid": "sh/p83ex0fm",
       "id": "4",
       "name": "cover-rule",
       "bbox": [
@@ -294,7 +294,7 @@
       "order": 5,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/c32p07a1",
+      "aid": "sh/47ux4ve1",
       "id": "5",
       "name": "cover-flow",
       "bbox": [
@@ -360,7 +360,7 @@
       "order": 6,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/b2to72tg",
+      "aid": "sh/361wvqxg",
       "id": "6",
       "name": "cover-image-frame",
       "bbox": [
@@ -378,7 +378,7 @@
       "order": 7,
       "kind": "image",
       "scope": "slide",
-      "aid": "im/76do72xw",
+      "aid": "im/76tozm98",
       "id": "7",
       "bbox": [
         658,
@@ -394,7 +394,7 @@
         "geometry": "roundRect"
       },
       "asset": {
-        "assetId": "83ce4f54-63bd-46f0-bc60-de856e6693c3",
+        "assetId": "7138bb04-87c5-4840-93e0-a599eb3642fb",
         "contentType": "image/png",
         "byteLength": 1734611
       }
@@ -403,7 +403,7 @@
       "order": 8,
       "kind": "shape",
       "scope": "slide",
-      "aid": "sh/l8vqdcbi",
+      "aid": "sh/5czelwfi",
       "id": "8",
       "name": "footer-1",
       "bbox": [
