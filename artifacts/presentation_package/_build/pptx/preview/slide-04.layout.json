@@ -1,0 +1,776 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/st9gxx",
+    "id": "st9gxx",
+    "slide": 4,
+    "layoutId": "02fad801-441d-4303-a4b7-88cdd9b48015",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "02fad801-441d-4303-a4b7-88cdd9b48015",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "1b1a4add-28e5-4626-9430-253b5af4a765",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rih8fmp0",
+      "id": "1",
+      "name": "title",
+      "bbox": [
+        41,
+        36,
+        1197,
+        100
+      ],
+      "geometry": "rect",
+      "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
+      "textPreview": "Reliability comes from separating facts, tools, reasoning, and verification.",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "Arial",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Reliability comes from separating facts, tools, reasoning, and"
+          },
+          {
+            "index": 2,
+            "text": "verification."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "typeface": "Arial",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Reliability comes from separating facts, tools, reasoning, and verification.",
+              "fontSize": 40,
+              "typeface": "Arial",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cjap8r6l",
+      "id": "2",
+      "name": "arch-card-0",
+      "bbox": [
+        41,
+        147,
+        375,
+        398
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dkjqhw76",
+      "id": "3",
+      "name": "arch-title-0",
+      "bbox": [
+        73,
+        188,
+        311,
+        76
+      ],
+      "geometry": "rect",
+      "text": "Typed extraction",
+      "textPreview": "Typed extraction",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Typed extraction"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Typed extraction",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Typed extraction",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/els7a1or",
+      "id": "4",
+      "name": "arch-body-0",
+      "bbox": [
+        73,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+      "textPreview": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A provider turns documents or"
+          },
+          {
+            "index": 2,
+            "text": "guided answers into a"
+          },
+          {
+            "index": 3,
+            "text": "reviewable profile with evidence"
+          },
+          {
+            "index": 4,
+            "text": "spans, confidence, and"
+          },
+          {
+            "index": 5,
+            "text": "warnings."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A provider turns documents or guided answers into a reviewable profile with evidence spans, confidence, and warnings.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zm18j6pc",
+      "id": "5",
+      "name": "arch-card-1",
+      "bbox": [
+        452,
+        147,
+        375,
+        398
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#E9F7F4",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/07apcb6x",
+      "id": "6",
+      "name": "arch-title-1",
+      "bbox": [
+        484,
+        188,
+        311,
+        76
+      ],
+      "geometry": "rect",
+      "text": "Deterministic tools",
+      "textPreview": "Deterministic tools",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#0F766E",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Deterministic tools"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Deterministic tools",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#0F766E",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Deterministic tools",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#0F766E",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18jqlw7i",
+      "id": "7",
+      "name": "arch-body-1",
+      "bbox": [
+        484,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+      "textPreview": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Five local tools calculate role"
+          },
+          {
+            "index": 2,
+            "text": "evidence, skill gaps, project"
+          },
+          {
+            "index": 3,
+            "text": "ideas, next actions, and"
+          },
+          {
+            "index": 4,
+            "text": "supporting evidence before"
+          },
+          {
+            "index": 5,
+            "text": "synthesis."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Five local tools calculate role evidence, skill gaps, project ideas, next actions, and supporting evidence before synthesis.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m9s7e1on",
+      "id": "8",
+      "name": "arch-card-2",
+      "bbox": [
+        865,
+        147,
+        375,
+        398
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/na18n6p8",
+      "id": "9",
+      "name": "arch-title-2",
+      "bbox": [
+        897,
+        188,
+        311,
+        76
+      ],
+      "geometry": "rect",
+      "text": "Reasoner + verifier",
+      "textPreview": "Reasoner + verifier",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Reasoner + verifier"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Reasoner + verifier",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Reasoner + verifier",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ne90ji9w",
+      "id": "10",
+      "name": "arch-body-2",
+      "bbox": [
+        897,
+        290,
+        311,
+        190
+      ],
+      "geometry": "rect",
+      "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+      "textPreview": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#565D66",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The LLM produces typed JSON;"
+          },
+          {
+            "index": 2,
+            "text": "verification preserves caveats,"
+          },
+          {
+            "index": 3,
+            "text": "warnings, latency, fallback"
+          },
+          {
+            "index": 4,
+            "text": "events, and routing trace."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#565D66",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The LLM produces typed JSON; verification preserves caveats, warnings, latency, fallback events, and routing trace.",
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#565D66",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/md0zqdsb",
+      "id": "11",
+      "name": "provider-band",
+      "bbox": [
+        41,
+        584,
+        1120,
+        44
+      ],
+      "geometry": "rect",
+      "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+      "textPreview": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Arial",
+        "color": "#0F766E",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Arial",
+            "color": "#0F766E",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Provider-neutral by design: Gemini  /  OpenAI  /  Qwen  /  local HTTP  /  offline demo",
+              "fontSize": 22,
+              "typeface": "Arial",
+              "color": "#0F766E",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/90rilsrm",
+      "id": "12",
+      "name": "footer-4",
+      "bbox": [
+        1184,
+        659,
+        55,
+        26
+      ],
+      "geometry": "rect",
+      "text": "04",
+      "textPreview": "04",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 13,
+        "typeface": "Arial",
+        "color": "#111111",
+        "alignment": "right",
+        "verticalAlignment": "bottom",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "typeface": "Arial",
+            "color": "#111111",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04",
+              "fontSize": 13,
+              "typeface": "Arial",
+              "color": "#111111",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
